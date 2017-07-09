@@ -34,13 +34,13 @@
 <link rel="canonical" href="http://uqlai.cn/2017/05/10/知错能改的感知机(Perceptron)/"/>
 
 
-<meta name="description" content="感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神">
+<meta name="description" content="感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面">
 <meta name="keywords" content="感知机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知错能改的感知机(Perceptron)">
 <meta property="og:url" content="http://uqlai.cn/2017/05/10/知错能改的感知机(Perceptron)/index.html">
 <meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:description" content="感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神">
+<meta property="og:description" content="感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面">
 <meta property="og:image" content="http://opdexhju0.bkt.clouddn.com/14952804093807.jpg">
 <meta property="og:image" content="http://opdexhju0.bkt.clouddn.com/14952805258506.jpg">
 <meta property="og:image" content="http://opdexhju0.bkt.clouddn.com/14952806052077.jpg">
@@ -54,10 +54,10 @@
 <meta property="og:image" content="http://opdexhju0.bkt.clouddn.com/14956134012895.jpg">
 <meta property="og:image" content="http://opdexhju0.bkt.clouddn.com/14956133096009.jpg">
 <meta property="og:image" content="http://opdexhju0.bkt.clouddn.com/14956113311561.jpg">
-<meta property="og:updated_time" content="2017-05-24T08:17:51.000Z">
+<meta property="og:updated_time" content="2017-07-09T01:59:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知错能改的感知机(Perceptron)">
-<meta name="twitter:description" content="感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神">
+<meta name="twitter:description" content="感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面">
 <meta name="twitter:image" content="http://opdexhju0.bkt.clouddn.com/14952804093807.jpg">
 
 
@@ -190,8 +190,9 @@
     <div class="post-content">
       
         <blockquote>
-<p>感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神经网络与支持向量机的基础。<br><a id="more"></a><br><strong>划重点：简单说就是个二分类的线性分类模型,感知机学习，就是通过训练数据集，求得感知机模型，即求的模型参数。</strong></p>
+<p>感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面<a id="more"></a>，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神经网络与支持向量机的基础。</p>
 </blockquote>
+<p><strong>划重点：简单说就是个二分类的线性分类模型,感知机学习，就是通过训练数据集，求得感知机模型，即求的模型参数。</strong></p>
 <h1 id="感知机模型"><a href="#感知机模型" class="headerlink" title="感知机模型"></a>感知机模型</h1><ul>
 <li>由输入空间到输出空间的如下函数称为感知机：<br>   f(x)=sign(w.x+b)</li>
 </ul>

@@ -145,6 +145,50 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/07/09/list1-Getting-Started-with-BigData/">list1-Getting Started with BigData</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jul 9, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>这是我在Coursea上学习加州大学圣地亚哥大学系列课程BigData整理的笔记，都是英文很难受，不过讲的是真好，我会保持每天一篇或者两篇的速度整理笔记。<a href="https://www.coursera.org/specializations/big-data" target="_blank" rel="external">Coursea地址</a>欢迎交流。</p>
+<h1 id="1、-When-to-reconsider-Hadoop"><a href="#1、-When-to-reconsider-Hadoop" class="headerlink" title="1、 When to reconsider Hadoop"></a>1、 When to reconsider Hadoop</h1><ul>
+<li>何时用考虑Hadoop？Hadoop生态系统正在快速增长。这意味着很多有困难或不支持的东西正在成为可能。
+          <div class="read-more">
+            <a href="/2017/07/09/list1-Getting-Started-with-BigData/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/07/05/Preliminary-Info-of-Spark/">Preliminary Info of Spark</a>
         
       </h1>
@@ -163,29 +207,14 @@
       
         
         
+          
+        
 
         
-          <h2 id="What-is-Apache-Spark"><a href="#What-is-Apache-Spark" class="headerlink" title="What is Apache Spark?"></a>What is Apache Spark?</h2><p>Apache Spark is a cluster computing platform designed to be fast and general-purpose.</p>
-<p>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory, but the system is also more efficient than MapReduce for complex applications running on disk.</p>
-<p>Apache Spark 是一款旨在快速通用的集群计算平台,在速度方面，扩展了流行的MapReduce模型，以有效支持更多类型的计算，包括交互式查询和流处理。能够在内存中运行计算，但是对于在磁盘上运行的复杂应用程序，该系统也比MapReduce更高效。</p>
-<p>The Spark project contains multiple closely integrated components. At its core, Spark is a “computational engine” that is responsible for scheduling, distributing, and mon‐itoring applications consisting of many computational tasks across many worker machines, or a computing cluster. Because the core engine of Spark is both fast and general-purpose, it powers multiple higher-level components specialized for various workloads, such as SQL or machine learning. These components are designed to interoperate closely, letting you combine them like libraries in a software project。</p>
-<p>Spark项目包含多个紧密集成的组件。其核心在于，Spark是一个“计算引擎”，负责在多个工作机器或计算集群中安排，分发和监视由许多计算任务组成的应用程序。由于Spark的核心引擎既快速又通用，因此可以为多种工作负载（如SQL或机器学习）提供专门的多个高级组件。这些组件的设计是为了与软件项目中的library进行紧密的交互操作。</p>
-<p>We should learn the characteristics and benefits of its tight integration. Specific content, you can see “learning spark”。<br>我们应该学习它的紧密整合的特点和好处。具体的内容，可以看看《learning spark》</p>
-<h2 id="Each-of-Spark’s-components"><a href="#Each-of-Spark’s-components" class="headerlink" title="Each of Spark’s components"></a>Each of Spark’s components</h2><p><img src="http://opdexhju0.bkt.clouddn.com/14992172107388.jpg" alt=" Each of Spark’s components"></p>
-<h4 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h4><p>Spark core includes the basic functions of Spark, including for task scheduling, memory management, fault recovery, and storage system interaction components. Spark Core also defines the Flexible Distributed Data Set (RDD) API. He provides a number of APIs for building and manipulating collections</p>
-<p>Spark core 包含Spark的基本功能，包括用于任务调度，内存管理，故障恢复，与存储系统交互的组件。Spark Core 也是定义弹性分布式数据集(RDD)API所在。他提供了许多用于构建和操作集合的API</p>
-<h4 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h4><p>Spark SQL is a spark package for handling structured data. It allows data to be queried through SQL. Is a variant of Apache Hive. Combine SQL with complex analysis.</p>
-<p>Spark SQL是用于处理结构化数据的spark包。它允许通过SQL查询数据。是Apache Hive的变体。将SQL与复杂的分析相结合。</p>
-<h4 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h4><p>Spark Streaming is a Spark component that can handle real-time streaming data. At the same time, it provides an API for handling data streams that are closely related to the Spark Core RDD API. This is very convenient. And move between applications that store data on memory, on disk, or in real-time access. The same program has fault tolerance, throughput, and scalability as the Spark Core.</p>
-<p>Spark Streaming 是一个Spark组件，可以处理实时流数据。同时，它提供了一个API用于处理与Spark Core RDD API密切相关的数据流。这是很方便的。而且操作存储在内存，磁盘上的或者实时访问中的数据的应用程序之间移动。与Spark Core有相同程序的容错能力，吞吐量和可扩展性。</p>
-<h4 id="MLIb"><a href="#MLIb" class="headerlink" title="MLIb"></a>MLIb</h4><p>This is a library of common machine learning functions that provide many types of machine learning algorithms, including classification, regression, clustering, and collaborative filtering. It also provides some lower level ML primitives, including gradient descent optimization algorithms. So these methods can be designed to expand the cluster expansion, is not it amazing?</p>
-<p>这是一个通用机器学习功能的库，提供很多类型的机器学习算法，包括分类，回归，聚类和协同过滤等等。它还提供了一些较低级别的ML原语，包括梯度下降优化算法。所以的这些方法都可以被设计为扩集群扩展，是不是很amazing呢？</p>
-<h4 id="GraphX"><a href="#GraphX" class="headerlink" title="GraphX"></a>GraphX</h4><p>GraphX is a library for manipulating graphics and performing graphical parallel computing. It also extends the Spark RDD API, allowing the user to create a directed graph with arbi-trary attributes attached to each vertex and edge. GraphX also provides a variety of operators for manipulating graphics and a library of common graphics algorithms.</p>
-<p>Graphx 是用于操作图形和执行图形并行计算的库，它也扩展了Spark RDD API，允许使用者创建一个连接到每个顶点和边缘的具有arbi-trary属性的有向图。GraphX还提供了各种用于操作图形的操作器和一个常见图形算法库。</p>
-<h4 id="Cluster-Managers-集群管理器"><a href="#Cluster-Managers-集群管理器" class="headerlink" title="Cluster Managers(集群管理器)"></a>Cluster Managers(集群管理器)</h4><p>Under the engine, Spark is designed to effectively extend from one to thousands of compute nodes. How to achieve and maximize flexibility? So with the cluster manager. Spark can run on a clustered manager, including Hadoop YARN, Apache Mesos, and a simple cluster manager that is included in Spark itself as a separate scheduler. This concept is far from the current far, and so learn to write later, first we just  know  this concept.</p>
-<p>在引擎下，Spark旨在有效地从一个到数千个计算节点扩展。怎么实现而且最大限度地提升灵活性？于是有了集群管理器。Spark可以运行在在中集群管理器上，包括Hadoop YARN，Apache Mesos，以及包含在Spark本身称为独立调度程序的简单集群管理器。这个概念离目前有点远，等学到后面再写，先知道有这个概念就好。</p>
-<p>具体的可以看看Spark的官方文档。</p>
-
+          <h2 id="What-is-Apache-Spark"><a href="#What-is-Apache-Spark" class="headerlink" title="What is Apache Spark?"></a>What is Apache Spark?</h2><p>Apache Spark is a cluster computing platform designed to be fast and general-purpose.<br>
+          <div class="read-more">
+            <a href="/2017/07/05/Preliminary-Info-of-Spark/" class="read-more-link">Read more..</a>
+          </div>
         
       
     </div>
@@ -272,7 +301,7 @@
           <blockquote>
 <p>本篇翻译自Denny Britz(Google Brain Team成员)的<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">RNN系列教程</a>，因为RNN应用很广也取得一定的成果，但作者发现在这方面的教程和资料很少，所以写下这个系列</p>
 </blockquote>
-<p>RNN也就是Recurrent Neural Network，在语音识别，自然语言处理(NLP)等很多领域广泛应用，人气很高。这个系列教程包含以下：<br>1、RNN简介(本文)<br>2、使用Python和Theano实现RNN<br>3、了解方向传播算法和梯度消失问题<br>4、实施GRU/LSTM RNN<br>
+<p>RNN也就是Recurrent Neural Network，在语音识别，自然语言处理(NLP)等很多领域广泛应用，人气很高。这个系列教程包含以下：<br>
           <div class="read-more">
             <a href="/2017/05/24/RNN系列教程之rnns简介/" class="read-more-link">Read more..</a>
           </div>
@@ -358,7 +387,7 @@
 
         
           <blockquote>
-<p>感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神经网络与支持向量机的基础。<br>
+<p>感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面
           <div class="read-more">
             <a href="/2017/05/10/知错能改的感知机(Perceptron)/" class="read-more-link">Read more..</a>
           </div>
@@ -401,16 +430,7 @@
 
         
           <p>已经大致了解这个领域所用到的知识，根据网上的参考进行1.0阶段的学习，看了前面的知道我对PGM特别感兴趣啊，所以受夕小瑶影响(wx:xixiaoyaoQAQ),非常感谢这个萌妹子,而且我也会把我对这些知识的总结和理解写出来。</p>
-<h2 id="第一阶段-五月到六月-：基本模型"><a href="#第一阶段-五月到六月-：基本模型" class="headerlink" title="第一阶段(五月到六月)：基本模型"></a>第一阶段(五月到六月)：基本模型</h2><p>辅助用视频Ng的courses《machine learning》、《数据挖掘导论》第4、5章</p>
-<ul>
-<li>线性回归模型(Linear regression model)   (已完成)</li>
-<li>逻辑回归模型(Logistic regression model) （已完成）</li>
-<li>浅层神经网络(Neural Network) </li>
-<li>支持向量机(Support Vector Machine)</li>
-<li>交叉验证</li>
-<li>聚类</li>
-<li>K-Means Model</li>
-<li><p>内积与映射，线性相关/无关，特征值/特征向量、特征向量、特征分解、矩阵的迹、奇异值分解(SVD)、谱定理</p>
+<h2 id="第一阶段-五月到六月-：基本模型"><a href="#第一阶段-五月到六月-：基本模型" class="headerlink" title="第一阶段(五月到六月)：基本模型"></a>第一阶段(五月到六月)：基本模型</h2>
           <div class="read-more">
             <a href="/2017/05/09/ML-learning-Plan/" class="read-more-link">Read more..</a>
           </div>
@@ -456,7 +476,7 @@
 <blockquote>
 <p>当我看到好的文章后我就会把它翻译下来放在博客里，一方面方便回顾，另一方面在翻译地过程中学习，可能有不准确的地方以原文为主</p>
 </blockquote>
-<p>这篇内容是使用深度学习获取语义意义，了解如何以分布式方式处理大型自然语言文本，其中包括搭建spark的自然语言理解管道。原文地址：<a href="https://www.oreilly.com/learning/capturing-semantic-meanings-using-deep-learning" target="_blank" rel="external">《Capturing semantic meanings using deep learning》</a><br>
+<p>这篇内容是使用深度学习获取语义意义，<br>
           <div class="read-more">
             <a href="/2017/05/03/用深度学习获取语义/" class="read-more-link">Read more..</a>
           </div>
@@ -499,7 +519,7 @@
 
         
           <h4 id="关于-概率图模型-PGM在wiki上的定义："><a href="#关于-概率图模型-PGM在wiki上的定义：" class="headerlink" title="关于(概率图模型)PGM在wiki上的定义："></a>关于(概率图模型)PGM在wiki上的定义：</h4><blockquote>
-<p>在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。<br>两种常见的概率图模型是具有向性边的图及具无向性边的图。 若为具有向性边的图，该图显示了所有随机变量的合成概率函数的因子分区。<br>概率图模型被广泛地应用于概率论，数理统计等学科，特别是贝叶斯概率与机器学习中。<br>
+<p>在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。<br>
           <div class="read-more">
             <a href="/2017/04/29/概率图(PGM)简述/" class="read-more-link">Read more..</a>
           </div>
@@ -541,7 +561,7 @@
         
 
         
-          <p>这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，所以以前的文章都没有了，我又转战简书，我很喜欢<a href="http://www.jianshu.com/u/9d619ad71963" target="_blank" rel="external">简书</a>，也写了一些，但是没有个自己的“窝”还是不方便。<br>
+          <p>这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，<br>
           <div class="read-more">
             <a href="/2017/04/29/我又重新来过了/" class="read-more-link">Read more..</a>
           </div>
