@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="ML learning Plan"/>
+
+
+
+
+  <meta name="keywords" content="Plan," />
+
+
+
+
+  <link rel="alternate" href="/default" title="Uqlai`blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://uqlai.cn/2017/05/09/ML-learning-Plan/"/>
+
+
+<meta name="description" content="已经大致了解这个领域所用到的知识，根据网上的参考进行1.0阶段的学习，看了前面的知道我对PGM特别感兴趣啊，所以受夕小瑶影响(wx:xixiaoyaoQAQ),非常感谢这个萌妹子,而且我也会把我对这些知识的总结和理解写出来。 第一阶段(五月到六月)：基本模型辅助用视频Ng的courses《machine learning》、《数据挖掘导论》第4、5章  线性回归模型(Linear regressi">
+<meta name="keywords" content="Plan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML learning Plan">
+<meta property="og:url" content="http://uqlai.cn/2017/05/09/ML-learning-Plan/index.html">
+<meta property="og:site_name" content="Uqlai`blog">
+<meta property="og:description" content="已经大致了解这个领域所用到的知识，根据网上的参考进行1.0阶段的学习，看了前面的知道我对PGM特别感兴趣啊，所以受夕小瑶影响(wx:xixiaoyaoQAQ),非常感谢这个萌妹子,而且我也会把我对这些知识的总结和理解写出来。 第一阶段(五月到六月)：基本模型辅助用视频Ng的courses《machine learning》、《数据挖掘导论》第4、5章  线性回归模型(Linear regressi">
+<meta property="og:updated_time" content="2017-05-22T12:22:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ML learning Plan">
+<meta name="twitter:description" content="已经大致了解这个领域所用到的知识，根据网上的参考进行1.0阶段的学习，看了前面的知道我对PGM特别感兴趣啊，所以受夕小瑶影响(wx:xixiaoyaoQAQ),非常感谢这个萌妹子,而且我也会把我对这些知识的总结和理解写出来。 第一阶段(五月到六月)：基本模型辅助用视频Ng的courses《machine learning》、《数据挖掘导论》第4、5章  线性回归模型(Linear regressi">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> ML learning Plan · Uqlai`blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Uqlai`blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Uqlai`blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          ML learning Plan
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 9, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一阶段-五月到六月-：基本模型"><span class="toc-text">第一阶段(五月到六月)：基本模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二阶段（七月-）：最优化"><span class="toc-text">第二阶段（七月~）：最优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三阶段：模式识别与深度学习"><span class="toc-text">第三阶段：模式识别与深度学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四阶段："><span class="toc-text">第四阶段：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贯穿始终："><span class="toc-text">贯穿始终：</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>已经大致了解这个领域所用到的知识，根据网上的参考进行1.0阶段的学习，看了前面的知道我对PGM特别感兴趣啊，所以受夕小瑶影响(wx:xixiaoyaoQAQ),非常感谢这个萌妹子,而且我也会把我对这些知识的总结和理解写出来。</p>
+<h2 id="第一阶段-五月到六月-：基本模型"><a href="#第一阶段-五月到六月-：基本模型" class="headerlink" title="第一阶段(五月到六月)：基本模型"></a>第一阶段(五月到六月)：基本模型</h2><p>辅助用视频Ng的courses《machine learning》、《数据挖掘导论》第4、5章</p>
+<ul>
+<li>线性回归模型(Linear regression model)   (已完成)</li>
+<li>逻辑回归模型(Logistic regression model) （已完成）</li>
+<li>浅层神经网络(Neural Network) </li>
+<li>支持向量机(Support Vector Machine)</li>
+<li>交叉验证</li>
+<li>聚类</li>
+<li>K-Means Model</li>
+<li><p>内积与映射，线性相关/无关，特征值/特征向量、特征向量、特征分解、矩阵的迹、奇异值分解(SVD)、谱定理</p>
+<a id="more"></a>
+<h2 id="第二阶段（七月-）：最优化"><a href="#第二阶段（七月-）：最优化" class="headerlink" title="第二阶段（七月~）：最优化"></a>第二阶段（七月~）：最优化</h2><p>复习《概率论与数理统计》、理解《Deep Learning》中的4.3节和4.4节，《Numerical Optimazation》、《最优化理论与方法》袁亚湘，孙文瑜、《统计学习方法》、《数据 挖掘导论》、《机器学习实战》、《智能优化方法》</p>
+</li>
+<li><p>一阶无约束优化算法</p>
+<ul>
+<li>梯度下降法（步长的确定方法、线搜索法，信赖域法）</li>
+</ul>
+</li>
+<li>二阶无约束优化算法<ul>
+<li>牛顿法</li>
+<li>共轭梯度法</li>
+<li>拟牛顿法</li>
+</ul>
+</li>
+<li>约束优化算法<ul>
+<li>线性规划(概念与应用、单纯形法、内点法）</li>
+<li>二次规划(概念与应用、对偶法、积极集法）</li>
+<li>拉格朗日乘子法的简单认识</li>
+</ul>
+</li>
+<li>感知机模型</li>
+<li>K近邻模型</li>
+<li>朴素贝叶斯模型</li>
+<li>决策树模型</li>
+<li>支持向量机模型</li>
+<li>集成分类器<ul>
+<li>Bagging</li>
+<li>Boosting</li>
+<li>Random Forest</li>
+</ul>
+</li>
+<li>遗传算法</li>
+<li>模拟退火</li>
+<li>禁忌搜索算法</li>
+<li>蚁群算法</li>
+<li>粒子群优化算法</li>
+<li>PCA / SVD</li>
+</ul>
+<h2 id="第三阶段：模式识别与深度学习"><a href="#第三阶段：模式识别与深度学习" class="headerlink" title="第三阶段：模式识别与深度学习"></a>第三阶段：模式识别与深度学习</h2><ul>
+<li>贝叶斯决策（《模式分类》）</li>
+<li>参数估计</li>
+<li>非参数方法</li>
+<li>线性判别函数</li>
+<li>浅层神经网络<ul>
+<li>delta方法</li>
+<li>BP算法及其优化</li>
+<li>RBF网络</li>
+</ul>
+</li>
+<li>深度神经网络（DL中文版书籍）<ul>
+<li>Hopfield网络</li>
+<li>玻尔兹曼机</li>
+<li>RBM</li>
+<li>DBN</li>
+<li>DBM</li>
+<li>CNN</li>
+<li>Autoencoder</li>
+<li>RNN</li>
+<li>LSTM</li>
+</ul>
+</li>
+<li>聚类<ul>
+<li>高斯混合密度</li>
+<li>K-means</li>
+<li>层次聚类</li>
+</ul>
+</li>
+<li>决策树与随机森林</li>
+<li>特征提取与特征选择</li>
+</ul>
+<h2 id="第四阶段："><a href="#第四阶段：" class="headerlink" title="第四阶段："></a>第四阶段：</h2><p>应该是各种框架和工程，比赛吧，哈哈，到这个阶段就有自己的方向，现在自己也不知道干啥，哈哈哈</p>
+<h2 id="贯穿始终："><a href="#贯穿始终：" class="headerlink" title="贯穿始终："></a>贯穿始终：</h2><p>知识点：(每一周深入学习一种网络)<br>《统计学习方法》、《Deep Learning》、《模式分类》</p>
+<ul>
+<li>前馈神经网络</li>
+<li>自编码器(Auto-Encoder)递归神经网络(Recursive NN) / 循环神经网络(RNN)/ 卷积神经网络(CNN) / 神经张量网络 (NTN)</li>
+<li>长短时记忆网络(LSTM) / 卷积长短时神经网络(convLSTM) / 张量递归神经网络(MV-RNN)/递归神经张量网络(RNTN)</li>
+<li><p>受限波尔兹曼机(RBM) / 玻尔兹曼机</p>
+</li>
+<li><p>概率图模型</p>
+<ul>
+<li>有向图模型-&gt;贝叶斯网络</li>
+<li>无向图模型-&gt;马尔科夫随机场-&gt;条件随机场</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <span>YangXuLei</span>
+    </p>
+    <p class="copyright-item">
+      <span>来源: </span>
+      <a href="http://uqlai.cn">http://uqlai.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="http://uqlai.cn/2017/05/09/ML-learning-Plan/">http://uqlai.cn/2017/05/09/ML-learning-Plan/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Plan/">Plan</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/10/知错能改的感知机(Perceptron)/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">知错能改的感知机(Perceptron)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/05/03/用深度学习获取语义/">
+        <span class="next-text nav-default">用深度学习获取语义</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:uqraiyang@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="/www.github.com/YangXuLei" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">YangXuLei</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>

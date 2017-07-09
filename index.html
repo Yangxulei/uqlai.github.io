@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Uqlai`blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://uqlai.cn/"/>
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Uqlai`blog">
+<meta property="og:url" content="http://uqlai.cn/index.html">
+<meta property="og:site_name" content="Uqlai`blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Uqlai`blog">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> Uqlai`blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Uqlai`blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Uqlai`blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/05/Preliminary-Info-of-Spark/">Preliminary Info of Spark</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jul 5, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="What-is-Apache-Spark"><a href="#What-is-Apache-Spark" class="headerlink" title="What is Apache Spark?"></a>What is Apache Spark?</h2><p>Apache Spark is a cluster computing platform designed to be fast and general-purpose.</p>
+<p>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory, but the system is also more efficient than MapReduce for complex applications running on disk.</p>
+<p>Apache Spark 是一款旨在快速通用的集群计算平台,在速度方面，扩展了流行的MapReduce模型，以有效支持更多类型的计算，包括交互式查询和流处理。能够在内存中运行计算，但是对于在磁盘上运行的复杂应用程序，该系统也比MapReduce更高效。</p>
+<p>The Spark project contains multiple closely integrated components. At its core, Spark is a “computational engine” that is responsible for scheduling, distributing, and mon‐itoring applications consisting of many computational tasks across many worker machines, or a computing cluster. Because the core engine of Spark is both fast and general-purpose, it powers multiple higher-level components specialized for various workloads, such as SQL or machine learning. These components are designed to interoperate closely, letting you combine them like libraries in a software project。</p>
+<p>Spark项目包含多个紧密集成的组件。其核心在于，Spark是一个“计算引擎”，负责在多个工作机器或计算集群中安排，分发和监视由许多计算任务组成的应用程序。由于Spark的核心引擎既快速又通用，因此可以为多种工作负载（如SQL或机器学习）提供专门的多个高级组件。这些组件的设计是为了与软件项目中的library进行紧密的交互操作。</p>
+<p>We should learn the characteristics and benefits of its tight integration. Specific content, you can see “learning spark”。<br>我们应该学习它的紧密整合的特点和好处。具体的内容，可以看看《learning spark》</p>
+<h2 id="Each-of-Spark’s-components"><a href="#Each-of-Spark’s-components" class="headerlink" title="Each of Spark’s components"></a>Each of Spark’s components</h2><p><img src="http://opdexhju0.bkt.clouddn.com/14992172107388.jpg" alt=" Each of Spark’s components"></p>
+<h4 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h4><p>Spark core includes the basic functions of Spark, including for task scheduling, memory management, fault recovery, and storage system interaction components. Spark Core also defines the Flexible Distributed Data Set (RDD) API. He provides a number of APIs for building and manipulating collections</p>
+<p>Spark core 包含Spark的基本功能，包括用于任务调度，内存管理，故障恢复，与存储系统交互的组件。Spark Core 也是定义弹性分布式数据集(RDD)API所在。他提供了许多用于构建和操作集合的API</p>
+<h4 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h4><p>Spark SQL is a spark package for handling structured data. It allows data to be queried through SQL. Is a variant of Apache Hive. Combine SQL with complex analysis.</p>
+<p>Spark SQL是用于处理结构化数据的spark包。它允许通过SQL查询数据。是Apache Hive的变体。将SQL与复杂的分析相结合。</p>
+<h4 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h4><p>Spark Streaming is a Spark component that can handle real-time streaming data. At the same time, it provides an API for handling data streams that are closely related to the Spark Core RDD API. This is very convenient. And move between applications that store data on memory, on disk, or in real-time access. The same program has fault tolerance, throughput, and scalability as the Spark Core.</p>
+<p>Spark Streaming 是一个Spark组件，可以处理实时流数据。同时，它提供了一个API用于处理与Spark Core RDD API密切相关的数据流。这是很方便的。而且操作存储在内存，磁盘上的或者实时访问中的数据的应用程序之间移动。与Spark Core有相同程序的容错能力，吞吐量和可扩展性。</p>
+<h4 id="MLIb"><a href="#MLIb" class="headerlink" title="MLIb"></a>MLIb</h4><p>This is a library of common machine learning functions that provide many types of machine learning algorithms, including classification, regression, clustering, and collaborative filtering. It also provides some lower level ML primitives, including gradient descent optimization algorithms. So these methods can be designed to expand the cluster expansion, is not it amazing?</p>
+<p>这是一个通用机器学习功能的库，提供很多类型的机器学习算法，包括分类，回归，聚类和协同过滤等等。它还提供了一些较低级别的ML原语，包括梯度下降优化算法。所以的这些方法都可以被设计为扩集群扩展，是不是很amazing呢？</p>
+<h4 id="GraphX"><a href="#GraphX" class="headerlink" title="GraphX"></a>GraphX</h4><p>GraphX is a library for manipulating graphics and performing graphical parallel computing. It also extends the Spark RDD API, allowing the user to create a directed graph with arbi-trary attributes attached to each vertex and edge. GraphX also provides a variety of operators for manipulating graphics and a library of common graphics algorithms.</p>
+<p>Graphx 是用于操作图形和执行图形并行计算的库，它也扩展了Spark RDD API，允许使用者创建一个连接到每个顶点和边缘的具有arbi-trary属性的有向图。GraphX还提供了各种用于操作图形的操作器和一个常见图形算法库。</p>
+<h4 id="Cluster-Managers-集群管理器"><a href="#Cluster-Managers-集群管理器" class="headerlink" title="Cluster Managers(集群管理器)"></a>Cluster Managers(集群管理器)</h4><p>Under the engine, Spark is designed to effectively extend from one to thousands of compute nodes. How to achieve and maximize flexibility? So with the cluster manager. Spark can run on a clustered manager, including Hadoop YARN, Apache Mesos, and a simple cluster manager that is included in Spark itself as a separate scheduler. This concept is far from the current far, and so learn to write later, first we just  know  this concept.</p>
+<p>在引擎下，Spark旨在有效地从一个到数千个计算节点扩展。怎么实现而且最大限度地提升灵活性？于是有了集群管理器。Spark可以运行在在中集群管理器上，包括Hadoop YARN，Apache Mesos，以及包含在Spark本身称为独立调度程序的简单集群管理器。这个概念离目前有点远，等学到后面再写，先知道有这个概念就好。</p>
+<p>具体的可以看看Spark的官方文档。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/25/Regularize-L-Paradigm/">Regularize&&L-Paradigm</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 25, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>这篇文章带你彻底搞清过拟合，正则化和L范式。</p>
+<h3 id="什么是过拟合？"><a href="#什么是过拟合？" class="headerlink" title="什么是过拟合？"></a>什么是过拟合？</h3><p>我们常常在机器学习中听到正则化和L0，L1，L2范式，这些到底是什么意思，怎么用的？<br>其实正则化存在是为了减少过拟合的？对了，我们也经常听到欠拟合和过拟合，在说这些概念前先听一个故事：</p>
+<blockquote>
+<p>诺贝尔奖获得者物理学家恩里科-费米有次在被问到对同僚提出的一个数学模型意见，模型和实验非常匹配，但费米对其产生了怀疑。他问模型需要设置的自由参数有多少个。答案是四个，费米说：“我的朋友约翰冯诺依曼过去常说，有四个参数，我可以模拟一头大象，而有五个参数，我能让他卷鼻子。”<br>
+          <div class="read-more">
+            <a href="/2017/05/25/Regularize-L-Paradigm/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/24/RNN系列教程之rnns简介/">RNN系列教程之rnns简介</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 24, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>本篇翻译自Denny Britz(Google Brain Team成员)的<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">RNN系列教程</a>，因为RNN应用很广也取得一定的成果，但作者发现在这方面的教程和资料很少，所以写下这个系列</p>
+</blockquote>
+<p>RNN也就是Recurrent Neural Network，在语音识别，自然语言处理(NLP)等很多领域广泛应用，人气很高。这个系列教程包含以下：<br>1、RNN简介(本文)<br>2、使用Python和Theano实现RNN<br>3、了解方向传播算法和梯度消失问题<br>4、实施GRU/LSTM RNN<br>
+          <div class="read-more">
+            <a href="/2017/05/24/RNN系列教程之rnns简介/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/20/Support-Vector-Machines-Summary/">Support Vector Machines Summary</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 20, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>经过最近的学习了解了部分理论但是没有实践应用，所以先写下来，可能不准确。</p>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>在reddit上看到一个很好的解释更直观和生动：<br><a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">如何向一个五岁的孩子解释SVM</a><br>知乎上也有人提到这个，而且已经整理如下：<a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">中文</a><br>
+          <div class="read-more">
+            <a href="/2017/05/20/Support-Vector-Machines-Summary/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/10/知错能改的感知机(Perceptron)/">知错能改的感知机(Perceptron)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 10, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神经网络与支持向量机的基础。<br>
+          <div class="read-more">
+            <a href="/2017/05/10/知错能改的感知机(Perceptron)/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/09/ML-learning-Plan/">ML learning Plan</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 9, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>已经大致了解这个领域所用到的知识，根据网上的参考进行1.0阶段的学习，看了前面的知道我对PGM特别感兴趣啊，所以受夕小瑶影响(wx:xixiaoyaoQAQ),非常感谢这个萌妹子,而且我也会把我对这些知识的总结和理解写出来。</p>
+<h2 id="第一阶段-五月到六月-：基本模型"><a href="#第一阶段-五月到六月-：基本模型" class="headerlink" title="第一阶段(五月到六月)：基本模型"></a>第一阶段(五月到六月)：基本模型</h2><p>辅助用视频Ng的courses《machine learning》、《数据挖掘导论》第4、5章</p>
+<ul>
+<li>线性回归模型(Linear regression model)   (已完成)</li>
+<li>逻辑回归模型(Logistic regression model) （已完成）</li>
+<li>浅层神经网络(Neural Network) </li>
+<li>支持向量机(Support Vector Machine)</li>
+<li>交叉验证</li>
+<li>聚类</li>
+<li>K-Means Model</li>
+<li><p>内积与映射，线性相关/无关，特征值/特征向量、特征向量、特征分解、矩阵的迹、奇异值分解(SVD)、谱定理</p>
+          <div class="read-more">
+            <a href="/2017/05/09/ML-learning-Plan/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/03/用深度学习获取语义/">用深度学习获取语义</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 3, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>&gt;</p>
+<blockquote>
+<p>当我看到好的文章后我就会把它翻译下来放在博客里，一方面方便回顾，另一方面在翻译地过程中学习，可能有不准确的地方以原文为主</p>
+</blockquote>
+<p>这篇内容是使用深度学习获取语义意义，了解如何以分布式方式处理大型自然语言文本，其中包括搭建spark的自然语言理解管道。原文地址：<a href="https://www.oreilly.com/learning/capturing-semantic-meanings-using-deep-learning" target="_blank" rel="external">《Capturing semantic meanings using deep learning》</a><br>
+          <div class="read-more">
+            <a href="/2017/05/03/用深度学习获取语义/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/04/29/概率图(PGM)简述/">概率图(PGM)简述</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 29, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h4 id="关于-概率图模型-PGM在wiki上的定义："><a href="#关于-概率图模型-PGM在wiki上的定义：" class="headerlink" title="关于(概率图模型)PGM在wiki上的定义："></a>关于(概率图模型)PGM在wiki上的定义：</h4><blockquote>
+<p>在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。<br>两种常见的概率图模型是具有向性边的图及具无向性边的图。 若为具有向性边的图，该图显示了所有随机变量的合成概率函数的因子分区。<br>概率图模型被广泛地应用于概率论，数理统计等学科，特别是贝叶斯概率与机器学习中。<br>
+          <div class="read-more">
+            <a href="/2017/04/29/概率图(PGM)简述/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/04/29/我又重新来过了/">我又重新来过了</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 29, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，所以以前的文章都没有了，我又转战简书，我很喜欢<a href="http://www.jianshu.com/u/9d619ad71963" target="_blank" rel="external">简书</a>，也写了一些，但是没有个自己的“窝”还是不方便。<br>
+          <div class="read-more">
+            <a href="/2017/04/29/我又重新来过了/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:uqraiyang@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="/www.github.com/YangXuLei" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">YangXuLei</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  </body>
+</html>
