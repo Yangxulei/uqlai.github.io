@@ -12,10 +12,12 @@
 
 
 
-  <meta name="description" content="我又重新来过了"/>
+  <meta name="description" content="RNN系列教程之终结"/>
 
 
 
+
+  <meta name="keywords" content="RNN," />
 
 
 
@@ -29,19 +31,20 @@
 
 
 
-<link rel="canonical" href="http://uqlai.cn/2017/04/29/我又重新来过了/"/>
+<link rel="canonical" href="http://uqlai.cn/2017/07/26/RNN系列教程之终结/"/>
 
 
-<meta name="description" content="这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，">
+<meta name="description" content="这个系列教程来源自Denny Britz(Google Brain Team成员)的RNN系列教程">
+<meta name="keywords" content="RNN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我又重新来过了">
-<meta property="og:url" content="http://uqlai.cn/2017/04/29/我又重新来过了/index.html">
+<meta property="og:title" content="RNN系列教程之终结">
+<meta property="og:url" content="http://uqlai.cn/2017/07/26/RNN系列教程之终结/index.html">
 <meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:description" content="这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，">
-<meta property="og:updated_time" content="2017-07-09T01:59:24.000Z">
+<meta property="og:description" content="这个系列教程来源自Denny Britz(Google Brain Team成员)的RNN系列教程">
+<meta property="og:updated_time" content="2017-07-26T13:02:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我又重新来过了">
-<meta name="twitter:description" content="这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，">
+<meta name="twitter:title" content="RNN系列教程之终结">
+<meta name="twitter:description" content="这个系列教程来源自Denny Britz(Google Brain Team成员)的RNN系列教程">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -68,7 +71,7 @@
 
 
 
-    <title> 我又重新来过了 · Uqlai`blog </title>
+    <title> RNN系列教程之终结 · Uqlai`blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -149,13 +152,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          我又重新来过了
+          RNN系列教程之终结
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Apr 29, 2017
+          Jul 26, 2017
         </span>
       </div>
     </header>
@@ -165,10 +168,13 @@
 
     <div class="post-content">
       
-        <p>这次开博是个全新的开始吧，从15年就开始再CSDN上写，然后在新浪博客也写过，后面自己建站写技术博客，因为没有干货后面渐渐放弃，虽然写了很多但服务器到期也没有备份数据，<br><a id="more"></a><br>所以以前的文章都没有了，我又转战简书，我很喜欢<a href="http://www.jianshu.com/u/9d619ad71963" target="_blank" rel="external">简书</a>，也写了一些，但是没有个自己的“窝”还是不方便。 </p>
-<p>这段时间，感觉找到了适合自己的方向(不一定真的适合)，所以我想用博客来记录我在这个方向的进步，去年开始跟着理学院教授做图论与组合数学中的一个课题叫 《antimagic coloring conjecture》，就有点狠不下心观望中，很纠结花了那么多精力做有没有意义，事实上学习都是有用的，学习不能带有功利性。今年AI爆发很感兴趣就搭上了ML的车，但对于ML真的是什么都不知道这个领域又这么大，身边也没人能指导，自己Google，混知乎一点点摸索，所以课题的研究就基本没有花精力了。</p>
-<p>在Courses听Ng的《Machine Learning》，看周志华老师的《机器学习》西瓜书等等，微博上关注大V，逐渐的清晰。之前一直做数学建模的比赛和学习，一直都有知道贝叶斯和马尔科夫随机场这两个词，后来在看文章时，无意看到了一个对于我来说很新鲜的词-概率图。 而且看文章这东东对ML还很重要，就了解了下下。哇哇，好牛逼，它的理论就涵盖了贝叶斯和马尔科夫随机场，用图和概率表示一种新的数据结构。感觉自己就是只井底之蛙。 有的时候，成长有多高只努力是不行的，闭门造车，视野短浅终归无济于事啊。关于概率图，下面的文章我就会好好的写一写，这个博客主要会写关于ML、Tensorflow、PGM的。</p>
-<p>一起学习，一起进步，记录成长。</p>
+        <blockquote>
+<p>这个系列教程来源自Denny Britz(Google Brain Team成员)的<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">RNN系列教程</a><br><a id="more"></a><br>经过授权发在我的博客，本来想翻译完，目前完成了<a href="http://uqlai.cn/2017/05/24/RNN系列教程之rnns简介/">第一篇</a>。不打算继续了，本来觉得是中文方便阅读，现在看来英文表达的更加清楚，现在单独写篇blog说说这个事，也是自己功力不够，不能言简意赅，幽默诙谐的讲解。</p>
+</blockquote>
+<p>第一篇发表在了雷锋网上，编辑王哥一直很期望我翻译完，现在是很抱歉了。说声对不起。</p>
+<p>上个月除了在了解机器学习在大数据方面应用外，一直在学校实训，时间不多，现在这个月可以接着我指定的<a href="http://uqlai.cn/2017/05/09/ML-learning-Plan/">计划</a>进行了，开心<br>时间不多了，努力搞了。</p>
+<p>下面2，3，4都是原链接地址，这是大神的博客<a href="http://www.wildml.com" target="_blank" rel="external">http://www.wildml.com</a>  和  <a href="http://blog.dennybritz.com" target="_blank" rel="external">http://blog.dennybritz.com</a> </p>
+<p>1、<a href="http://uqlai.cn/2017/05/24/RNN系列教程之rnns简介/">RNN简介</a><br>2、<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/" target="_blank" rel="external">使用Python和Theano实现RNN</a><br>3、<a href="http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/" target="_blank" rel="external">了解方向传播算法和梯度消失问题</a><br>4、<a href="http://www.wildml.com/2015/10/recurrent-neural-network-tutorial-part-4-implementing-a-grulstm-rnn-with-python-and-theano/" target="_blank" rel="external">实施GRU/LSTM RNN</a></p>
 
       
     </div>
@@ -188,7 +194,7 @@
     </p>
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://uqlai.cn/2017/04/29/我又重新来过了/">http://uqlai.cn/2017/04/29/我又重新来过了/</a>
+      <a href="http://uqlai.cn/2017/07/26/RNN系列教程之终结/">http://uqlai.cn/2017/07/26/RNN系列教程之终结/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -224,16 +230,22 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/RNN/">RNN</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/04/29/概率图(PGM)简述/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">概率图(PGM)简述</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
     
+      <a class="next" href="/2017/07/18/list5-Flight-Data-Management-at-FlightStats/">
+        <span class="next-text nav-default">list5-Flight Data Management at FlightStats</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
