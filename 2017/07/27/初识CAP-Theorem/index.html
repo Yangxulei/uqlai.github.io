@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="概率图(PGM)简述"/>
+  <meta name="description" content="初识CAP Theorem"/>
 
 
 
 
-  <meta name="keywords" content="PGM," />
+  <meta name="keywords" content="CAP," />
 
 
 
@@ -31,20 +31,20 @@
 
 
 
-<link rel="canonical" href="http://uqlai.cn/2017/04/29/概率图(PGM)简述/"/>
+<link rel="canonical" href="http://uqlai.cn/2017/07/27/初识CAP-Theorem/"/>
 
 
-<meta name="description" content="关于(概率图模型)PGM在wiki上的定义： 在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。">
-<meta name="keywords" content="PGM">
+<meta name="description" content="在”地铁图“的1-Funcdamentals部分看到了这个CAP Theorem(CAP定理)，不知道是啥，好奇下wiki了下，大概知道了点 它又被称作布鲁尔定理（Brewer’s theorem），它指出对于一个分布式计算系统来说，不能同时满足C(Consistence),A(Availability),P(Network partitioning)  看到这我也不懂啊，肿么办，知识还是太少，还">
+<meta name="keywords" content="CAP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="概率图(PGM)简述">
-<meta property="og:url" content="http://uqlai.cn/2017/04/29/概率图(PGM)简述/index.html">
+<meta property="og:title" content="初识CAP Theorem">
+<meta property="og:url" content="http://uqlai.cn/2017/07/27/初识CAP-Theorem/index.html">
 <meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:description" content="关于(概率图模型)PGM在wiki上的定义： 在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。">
-<meta property="og:updated_time" content="2017-07-11T00:56:26.000Z">
+<meta property="og:description" content="在”地铁图“的1-Funcdamentals部分看到了这个CAP Theorem(CAP定理)，不知道是啥，好奇下wiki了下，大概知道了点 它又被称作布鲁尔定理（Brewer’s theorem），它指出对于一个分布式计算系统来说，不能同时满足C(Consistence),A(Availability),P(Network partitioning)  看到这我也不懂啊，肿么办，知识还是太少，还">
+<meta property="og:updated_time" content="2017-07-27T15:04:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="概率图(PGM)简述">
-<meta name="twitter:description" content="关于(概率图模型)PGM在wiki上的定义： 在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。">
+<meta name="twitter:title" content="初识CAP Theorem">
+<meta name="twitter:description" content="在”地铁图“的1-Funcdamentals部分看到了这个CAP Theorem(CAP定理)，不知道是啥，好奇下wiki了下，大概知道了点 它又被称作布鲁尔定理（Brewer’s theorem），它指出对于一个分布式计算系统来说，不能同时满足C(Consistence),A(Availability),P(Network partitioning)  看到这我也不懂啊，肿么办，知识还是太少，还">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -71,7 +71,7 @@
 
 
 
-    <title> 概率图(PGM)简述 · Uqlai`blog </title>
+    <title> 初识CAP Theorem · Uqlai`blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -214,39 +214,31 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          概率图(PGM)简述
+          初识CAP Theorem
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Apr 29, 2017
+          Jul 27, 2017
         </span>
       </div>
     </header>
 
     
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#关于-概率图模型-PGM在wiki上的定义："><span class="toc-text">关于(概率图模型)PGM在wiki上的定义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#大致我也就是了解到这里，推荐一下我搜集和对比后的资料："><span class="toc-text">大致我也就是了解到这里，推荐一下我搜集和对比后的资料：</span></a></li></ol>
-    </div>
-  </div>
-
 
     <div class="post-content">
       
-        <h4 id="关于-概率图模型-PGM在wiki上的定义："><a href="#关于-概率图模型-PGM在wiki上的定义：" class="headerlink" title="关于(概率图模型)PGM在wiki上的定义："></a>关于(概率图模型)PGM在wiki上的定义：</h4><blockquote>
-<p>在概率论、统计学及机器学习中，概率图模型是用图论方法以表现数个独立随机变量之关系的一种建模法。其图中的任一节点为随机变量，若两节点间无边相接则意味此二变量彼此条件独立。<br><a id="more"></a><br>两种常见的概率图模型是具有向性边的图及具无向性边的图。 若为具有向性边的图，该图显示了所有随机变量的合成概率函数的因子分区。<br>概率图模型被广泛地应用于概率论，数理统计等学科，特别是贝叶斯概率与机器学习中。</p>
-</blockquote>
-<p>所以当我看到这个概念时，我内心很小激动感觉看到自己适合的路，苦苦的图论有了用武之地又是ML重要的内容，所有的知识开始会与一点，而且仔细了解后这是个很有潜力和厉害的方向。</p>
-<p>关于pgm理论的综述个人感觉这篇<a href="http://www.sigvc.org/bbs/thread-728-1-1.html" target="_blank" rel="external">概率图模型(PGM)综述</a>很好，是MIT林达华博士写的，高屋建瓴总结了PGM的主要分之和发展趋势。</p>
-<p>概率图模型大致可以分为两种，directed graphical model(又称贝叶斯网络）和undirected graphical model（又称马尔可夫随机场）。贝叶斯网络由Judea Pearl 教授发明于上世界80年代，这项工作获得了2011年图灵奖。马尔可夫随机场最早被物理学家用于对原子进行建模，其中的代表作Ising model获得过诺贝尔奖。图灵奖+诺贝尔奖，PGM的重要性可见一斑。另外，PGM是将人工智能（AI）的研究热点从传统AI(如逻辑、推理、知识表示）转向机器学习的重要工作（其他起到这一作用的工作有支持向量机、决策树、boosting等）。概率图模型在实际中（包括工业界）的应用非常广泛与成功。这里举几个例子。隐马尔可夫模型（HMM）是语音识别的支柱模型，高斯混合模型（GMM）及其变种K-means是数据聚类的最基本模型，条件随机场（CRF）广泛应用于自然语言处理（如词性标注，命名实体识别），Ising模型获得过诺贝尔奖，话题模型在工业界大量使用(如腾讯的推荐系统）</p>
-<h4 id="大致我也就是了解到这里，推荐一下我搜集和对比后的资料："><a href="#大致我也就是了解到这里，推荐一下我搜集和对比后的资料：" class="headerlink" title="大致我也就是了解到这里，推荐一下我搜集和对比后的资料："></a>大致我也就是了解到这里，推荐一下我搜集和对比后的资料：</h4><p><a href="http://www.cs.cmu.edu/~epxing/Class/10708-14/lecture.html" target="_blank" rel="external">CMU Eric Xing教授每年开的10708 PGM课程</a></p>
-<p><a href="https://www.coursera.org/learn/probabilistic-graphical-models" target="_blank" rel="external">Koller公开课</a>(时间比较长)</p>
-<p>另外书籍推荐 《概率图模型：原理与技术》</p>
-<p>就些了，贪多不烂。</p>
+        <p>在”地铁图“的1-Funcdamentals部分看到了这个<a href="https://zh.wikipedia.org/wiki/CAP定理" target="_blank" rel="external">CAP Theorem(CAP定理)</a>，不知道是啥，好奇下wiki了下，大概知道了点</p>
+<p>它又被称作<strong>布鲁尔定理</strong>（Brewer’s theorem），它指出对于一个<a href="https://zh.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97" target="_blank" rel="external">分布式计算系统</a>来说，不能同时满足C(Consistence),A(<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E7%94%A8%E6%80%A7" target="_blank" rel="external">Availability</a>),P(<a href="https://zh.wikipedia.org/w/index.php?title=Partition_tolerance&amp;action=edit&amp;redlink=1" target="_blank" rel="external">Network partitioning</a>)  看到这我也不懂啊，肿么办，知识还是太少，还是不知道干啥的，耐心看了。</p>
+<p>CAP 定理是分布式系统理论的基础，它的核心内容是说，在存在分区（如网络故障）的情况下，一个系统无法同时保证一致性（consistency）和可用性（availability），只能二选其一。理解CAP理论的最简单方式是想象两个节点分处分区两侧。允许至少一个节点更新状态会导致数据不一致，即丧失了C性质。如果为了保证数据一致性，将分区一侧的节点设置为不可用，那么又丧失了A性质。除非两个节点可以互相通信，才能既保证C又保证A，这又会导致丧失P性质。</p>
+<p>感觉到这就好了，可能高可用，分布式等会更多接触和理解吧，毕竟只是理论，先知道这个就好，下面给些资料。</p>
+<ul>
+<li>Nancy Lynch and Seth Gilbert, <a href="http://lpd.epfl.ch/sgilbert/pubs/BrewersConjecture-SigAct.pdf" target="_blank" rel="external">“Brewer’s conjecture and the feasibility of consistent, available, partition-tolerant web services”</a>, <em>ACM SIGACT News</em>, Volume 33 Issue 2 (2002), pg. 51-59.</li>
+<li><a href="http://www.infoq.com/cn/articles/cap-twelve-years-later-how-the-rules-have-changed" target="_blank" rel="external">CAP理论十二年回顾：”规则”变了</a>.</li>
+<li><a href="http://www.julianbrowne.com/article/viewer/brewers-cap-theorem" target="_blank" rel="external">“Brewer’s CAP Theorem”</a>, julianbrowne.com, Retrieved 02-Mar-2010</li>
+</ul>
 
       
     </div>
@@ -266,7 +258,7 @@
     </p>
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://uqlai.cn/2017/04/29/概率图(PGM)简述/">http://uqlai.cn/2017/04/29/概率图(PGM)简述/</a>
+      <a href="http://uqlai.cn/2017/07/27/初识CAP-Theorem/">http://uqlai.cn/2017/07/27/初识CAP-Theorem/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -304,7 +296,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/PGM/">PGM</a>
+              <a href="/tags/CAP/">CAP</a>
             
           </div>
         
@@ -312,15 +304,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/05/03/用深度学习获取语义/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">用深度学习获取语义</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
     
-    
-      <a class="next" href="/2017/04/29/我又重新来过了/">
-        <span class="next-text nav-default">我又重新来过了</span>
+      <a class="next" href="/2017/07/27/Covariance&Matrix/">
+        <span class="next-text nav-default">Covariance&Matrix</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
