@@ -207,6 +207,49 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/08/03/Softmax回归/">Softmax回归</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Aug 3, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛<br>
+          <div class="read-more">
+            <a href="/2017/08/03/Softmax回归/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/07/29/线代中基本的点/">线代中基本的点</a>
         
       </h1>
@@ -225,44 +268,14 @@
       
         
         
+          
+        
 
         
-          <p>线代的重要性只要上大学的都知道它的重要性，不仅在计算机专业其他理工科都是特别重要的，在大学大多都只教授了计算，并没有多少实质(不绝对)，今天的计算机又非常牛逼，意义在哪里，先看个知乎贴<a href="https://www.zhihu.com/question/36845076" target="_blank" rel="external">线性代数有什么用？学习线性代数的意义在哪？</a></p>
-<p>上面只是吐个槽，说正文，毕竟我也是现在才明白的。。。。。。。</p>
-<p>本文将从<strong>内积与映射</strong>，<strong>线性相关/无关，特征值/特征向量、特征分解、秩、矩阵的迹、奇异值分解(SVD)、谱定理</strong>这些来说一说，与机器学习相关应用可能不会太多。如果有相关重要应用会单独领出来说一说,话不多少，马上开始：</p>
-<h2 id="内积与映射"><a href="#内积与映射" class="headerlink" title="内积与映射"></a>内积与映射</h2><ul>
-<li>内积</li>
-</ul>
-<p>点乘得到的结果称作“内积”；点乘是模仿两个实数相乘推广的，如果两个向量a，b的夹角为0，则把它们的长度直接相乘；如果夹角为θ，则再乘以夹角的余弦。从而得到a·b=|a|<em>|b|</em>cosθ这样的公式。我们可以写成|a|<em>(|b|</em>cosθ)的形式，即b在a方向的投影，再乘以a的长度。</p>
-<p>中学我们就学过已知空间三点求三点确定的三角形面积就可以用向量的叉乘来求。</p>
-<p>额外说下这个叉乘吧，叉乘得到的结果称作“外积”；叉乘即两个向量组成的平行四边形的面积，其方向满足右手定则。</p>
-<p>使用内积和外积，能够定义混合积：(a×b)·c，参照叉乘的几何意义，混合积的几何意义表示以a，b，c为棱的平行六面体的体积。</p>
-<ul>
-<li>映射<br>线代中有个很重要但是老师一般不作重点的知识点<strong>空间</strong>，内积就是是个变换和矩阵一样呗 ，只不过内积把向量空间里的一组向量映射成了标量。其实函数就是一种映射，<a href="https://space.bilibili.com/88461692#!/channel/detail?cid=9450" target="_blank" rel="external">最近在B站看了个讲述线性代数本质的视频挺好的，插进来</a>。小弟学艺不精有的自己明白却表述不出来，因为要写公式啊。。。。所以贴个东东大家看了就明白了。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/744392-1cad739e0ae93689.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="很清楚"><br>看完大概就知道内积，内积空间，映射了吧。补充下向量本来没有维数，向量空间才有维数。数学上的向量不是一个数组，就是一个抽象的可加可数乘的东西。<br>接着写其他概念</p>
-<h2 id="线性相关-无关"><a href="#线性相关-无关" class="headerlink" title="线性相关/无关"></a>线性相关/无关</h2><p>线性代数，线性代数，咱们一般见的都是满足线性的。什么叫相关无关，举个栗子，你在你女神身边天天做的就是端茶递水，这样的工作也会被其他人替代，那么你的情敌跟你就是线性相关的。反过来没人做无人替代，那你们这些无可替代的人就是线性无关的。所以这个秩就是你们这些无可替代的人数，只有你一个秩就是1.<br>从向量来讲，线性相关就是向量之间有某种相互限制的关系，使得他们张成的空间不能达到最大维数。<br>引出在网上看到的一个<a href="https://www.zhihu.com/question/39326459/answer/124421671" target="_blank" rel="external">三色解释，作者：stanley</a></p>
-<p>1，线性无关和线性相关其实非常直观，举个例子：红R，绿G，蓝B是色彩的三原色，这三种颜色可以混合出其他所有颜色。假设这三个值都可以取0-255之间的整数值。比如纯红（255，0，0），纯绿（0，255，0），纯蓝（0，0，255），紫色（255，0，255），全白（255，255，255），全黑（0，0，0），等等。现在三种颜色e1=（1，0，0），e2=（0，1，0），e3=（0，0，1）可以组合成其他任何颜色，比如某一颜色a=（24，0，127）=24<em>e1+0</em>e2+127*e3（可由这三种颜色线性表出），所以a和e1,e2,e3是线性相关的。但是e1,e2与e3这三个之间不能由其余两个线性表出（比如e2与e3组合出来的第一个分量永远是0，不能变为1），所以e1,e2,e3是线性无关的。</p>
-<p>2，顺便提一下基底basis的概念：<br>（1）基底向量线性无关<br>（2）基底向量可以生成整个向量空间。举例来说整个向量空间为上述的所有颜色值集合。我要研究这个颜色空间，不会把所有颜色值列出来，而是选择最【基础】的那几个比如e1,e2,e3，因为其他所有的颜色都可以由这三个颜色合成出来（即basis定义的第二个要求，基底向量个数不能【太少】，太少了就生成不了整个颜色空间）。另外不会把e1,e2,e3,a都选为基底向量，因为a是多余的，e1,e2,e3就可以摆平了，不需要你（即basis定义的第一个要求，基底向量线性无关，基底向量不能【太多】，太多了就人浮于事）——是的，基底向量就是这么作，不能太多，也不能太少！</p>
-<p>这下看完就清楚了吧，继续</p>
-<h2 id="特征向量-值"><a href="#特征向量-值" class="headerlink" title="特征向量/值"></a>特征向量/值</h2><p>我看到过一个最本质的解读：</p>
-<ul>
-<li><p>线性变换使得大部分向量脱离了原先的张成空间，比如倾斜。</p>
-</li>
-<li><p>特征向量指很特殊的，经线性变换后依然保留在原张成空间中的向量。</p>
-</li>
-<li><p>这意味着线性变换于他们的意义，只是伸缩。</p>
-</li>
-<li><p>伸缩比例即为特征值，正负表达方向。</p>
-</li>
-</ul>
-<p>从定义出发，Ax=cx：A为矩阵，c为特征值，x为特征向量。矩阵A乘以x表示，对向量x进行一次转换（旋转或拉伸）（是一种线性转换），而该转换的效果为常数c乘以向量x（即只进行拉伸）。我们通常求特征值和特征向量即为求出该矩阵能使哪些向量（当然是特征向量）只发生拉伸，使其发生拉伸的程度如何（特征值大小）。这样做的意义在于，看清一个矩阵在那些方面能产生最大的效果（power），并根据所产生的每个特征向量（一般研究特征值最大的那几个）进行分类讨论与研究。</p>
-<p>这方面是真重要的，多翻翻课本看一看，主成分分析PCA算法就用到了。。。很关键，暂时先不写但推荐下<a href="https://www.zhihu.com/question/30094611/answer/120499954" target="_blank" rel="external">主成分分析PCA算法：为什么去均值以后的高维矩阵乘以其协方差矩阵的特征向量矩阵就是“投影”？ - 達聞西的回答</a></p>
-<h2 id="矩阵分解-谱分解"><a href="#矩阵分解-谱分解" class="headerlink" title="矩阵分解(谱分解)"></a>矩阵分解(谱分解)</h2><p>矩阵分解是说将矩阵分解为由其特征值和特征向量表示的矩阵之积方法，注意只有对可对角化矩阵才能进行特征分解。</p>
-<p>比如我们用来求矩阵的逆等，矩阵知识真的好多好多，相互联系着，我所列的都是很基本很重要的。</p>
-<h2 id="矩阵的迹"><a href="#矩阵的迹" class="headerlink" title="矩阵的迹"></a>矩阵的迹</h2><p>咱们学线代一般都先从多项式开始，然后引出行列式对吧，行列式对一个2x2矩阵来说就是一个平行四边形，这四个边四个方向的向量，变化时，对应的面积也会变化的。3x3就是平行六面体</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/744392-0a021229e6064362.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用触摸板手画的"><br>那么迹就是行列式的导数，表示在每个边变化时，该平行多边形的面积或者体积变化的大小，这也特征值有关，<strong>迹就是特征值的和，行列式是特征值的积</strong><br>更详细直关的看 <a href="https://mathoverflow.net/questions/13526/geometric-interpretation-of-trace" target="_blank" rel="external">Geometric Interpretation of Trace</a></p>
-<h2 id="SVD-PCA-很重要先留个坑单独说。。"><a href="#SVD-PCA-很重要先留个坑单独说。。" class="headerlink" title="SVD PCA 很重要先留个坑单独说。。"></a>SVD PCA 很重要先留个坑单独说。。</h2>
+          <p>线代的重要性只要上大学的都知道它的重要性，不仅在计算机专业其他理工科都是特别重要的，
+          <div class="read-more">
+            <a href="/2017/07/29/线代中基本的点/" class="read-more-link">Read more..</a>
+          </div>
         
       
     </div>
@@ -601,48 +614,6 @@
 <li>何时用考虑Hadoop？Hadoop生态系统正在快速增长。这意味着很多有困难或不支持的东西正在成为可能。
           <div class="read-more">
             <a href="/2017/07/09/list1-Getting-Started-with-BigData/" class="read-more-link">Read more..</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/07/05/Preliminary-Info-of-Spark/">Preliminary Info of Spark</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jul 5, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="What-is-Apache-Spark"><a href="#What-is-Apache-Spark" class="headerlink" title="What is Apache Spark?"></a>What is Apache Spark?</h2><p>Apache Spark is a cluster computing platform designed to be fast and general-purpose.<br>
-          <div class="read-more">
-            <a href="/2017/07/05/Preliminary-Info-of-Spark/" class="read-more-link">Read more..</a>
           </div>
         
       

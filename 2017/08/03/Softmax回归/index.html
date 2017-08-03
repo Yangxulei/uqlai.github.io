@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Softmax回归"/>
+
+
+
+
+  <meta name="keywords" content="Softmax," />
+
+
+
+
+  <link rel="alternate" href="/default" title="Uqlai`blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://uqlai.cn/2017/08/03/Softmax回归/"/>
+
+
+<meta name="description" content="SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛">
+<meta name="keywords" content="Softmax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Softmax回归">
+<meta property="og:url" content="http://uqlai.cn/2017/08/03/Softmax回归/index.html">
+<meta property="og:site_name" content="Uqlai`blog">
+<meta property="og:description" content="SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-7ea9eb17fa574abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-841d57054be63449.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-f938d5f1f6a9268b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-93c197dbc6d110f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-02d0f2e4fcd8015c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-3035225fe2166829.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-144e8942fbf438f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-03T11:19:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Softmax回归">
+<meta name="twitter:description" content="SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/744392-7ea9eb17fa574abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> Softmax回归 · Uqlai`blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Uqlai`blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Uqlai`blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Softmax回归
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Aug 3, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#从名字上理解"><span class="toc-text">从名字上理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、计算与标注样本的差距"><span class="toc-text">1、计算与标注样本的差距</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、计算方便"><span class="toc-text">2、计算方便</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛<br><a id="more"></a></p>
+<h2 id="从名字上理解"><a href="#从名字上理解" class="headerlink" title="从名字上理解"></a>从名字上理解</h2><p>上面一句话可谓是精辟，Softmax回归是<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">logistics回归</a>在多分类问题上的推广。max就是比较大小取大呗，但是有时不能直接取，不然会造成分值小的饥饿，怎么解决，也要雨露均沾，经常取大的，偶尔取小的就好了，概率和大小有关这也就是为啥是soft max。</p>
+</blockquote>
+<p>Softmax回归具体的典型实例就是MNIST手写数字分类。</p>
+<p>这个函数在<a href="https://www.youtube.com/watch?v=G4G7dWBi3II&amp;list=PLbBM_dvjud8oFj09MqqYnGSrT6zek42Q0&amp;index=4" target="_blank" rel="external">斯坦福最优化课程28分钟左右</a>有详细讲解，在吴恩达的课程中也有，不懂得可以再详细看看。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Softmax代价函数与logistic 代价函数在形式上非常类似，只是在Softmax损失函数中对类标记的k个可能值进行了累加。注意在Softmax回归中将x分类为类别j的概率为：<br><img src="http://upload-images.jianshu.io/upload_images/744392-7ea9eb17fa574abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Softmax代价函数与logistic 代价函数在形式上非常类似"><br>J(θ)最下化问题，通过求导得到梯度公式：<br><img src="http://upload-images.jianshu.io/upload_images/744392-841d57054be63449.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="梯度公式"></p>
+<p>Softmax是有监督的，当然也可以和无监督结合用。这个后面文章再说，</p>
+<p>简单的可以这样看：假设有一个数组V,Vi表示第i个指数，那么这个元素的Softmax值为：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-f938d5f1f6a9268b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Softmax值：该元素指数与所有元素指数和之比"></p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><h4 id="1、计算与标注样本的差距"><a href="#1、计算与标注样本的差距" class="headerlink" title="1、计算与标注样本的差距"></a>1、计算与标注样本的差距</h4><p>在神经网络计算中，我们经常计算正向传播计算分数S1和按照正确标注的分数S2之间的差距，计算Loss，才能应用反向传播。Loss定义为交叉熵</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-93c197dbc6d110f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="L_{i} = -\log(\frac{e^{f_{y_{i}}}}{\sum_{j}e^{j}})"></p>
+<p>取log里面的值就是这组数据正确分类的Softmax值，它占的比重越大，这个样本的Loss也就越小，这种定义符合我们的要求</p>
+<h4 id="2、计算方便"><a href="#2、计算方便" class="headerlink" title="2、计算方便"></a>2、计算方便</h4><p>当我们对分类的Loss进行改进的时候，我们要通过梯度下降，每次优化一个step大小的梯度，这个时候我们就要求Loss对每个权重矩阵的偏导，然后应用链式法则。那么这个过程的第一步，就是求Loss对score的偏导 (下面公式推导部分对于求偏导符号就用求导符号代替)</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-02d0f2e4fcd8015c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="推导"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-3035225fe2166829.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接结果"><br>最后结果的形式非常的简单，只要将算出来的概率的向量对应的真正结果的那一维减1，就可以了，举个例子，通过若干层的计算，最后得到的某个训练样本的向量的分数是[ 1, 5, 3 ], 那么概率分别就是[0.015,0.866,0.117],如果这个样本正确的分类是第二个的话，那么计算出来的偏导就是[0.015,0.866−1,0.117]=[0.015,−0.134,0.117]，是不是很简单！！然后再根据这个进行back propagation就可以了。</p>
+<p>看完上面还懂吗，不懂看这幅图<br><img src="http://upload-images.jianshu.io/upload_images/744392-144e8942fbf438f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="《一天搞懂深度学习》"></p>
+<p>不行就推推公式看看视频反过来再看看,数学公式的详细推到在这里面<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="external">ufldl:Softmax回归</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <span>YangXuLei</span>
+    </p>
+    <p class="copyright-item">
+      <span>来源: </span>
+      <a href="http://uqlai.cn">http://uqlai.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="http://uqlai.cn/2017/08/03/Softmax回归/">http://uqlai.cn/2017/08/03/Softmax回归/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Softmax/">Softmax</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2017/07/29/线代中基本的点/">
+        <span class="next-text nav-default">线代中基本的点</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:uqraiyang@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.github.com/YangXuLei" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">YangXuLei</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
