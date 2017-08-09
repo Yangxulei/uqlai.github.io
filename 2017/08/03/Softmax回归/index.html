@@ -48,7 +48,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-02d0f2e4fcd8015c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-3035225fe2166829.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-144e8942fbf438f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-03T11:19:07.000Z">
+<meta property="og:updated_time" content="2017-08-03T11:28:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax回归">
 <meta name="twitter:description" content="SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛">
@@ -249,7 +249,7 @@
 <p>SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛<br><a id="more"></a></p>
 <h2 id="从名字上理解"><a href="#从名字上理解" class="headerlink" title="从名字上理解"></a>从名字上理解</h2><p>上面一句话可谓是精辟，Softmax回归是<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">logistics回归</a>在多分类问题上的推广。max就是比较大小取大呗，但是有时不能直接取，不然会造成分值小的饥饿，怎么解决，也要雨露均沾，经常取大的，偶尔取小的就好了，概率和大小有关这也就是为啥是soft max。</p>
 </blockquote>
-<p>Softmax回归具体的典型实例就是MNIST手写数字分类。</p>
+<p>Softmax回归具体的典型实例就是<a href="http://www.tensorfly.cn/tfdoc/tutorials/mnist_beginners.html" target="_blank" rel="external">MNIST手写数字分类(关于Softmax部分)</a>。</p>
 <p>这个函数在<a href="https://www.youtube.com/watch?v=G4G7dWBi3II&amp;list=PLbBM_dvjud8oFj09MqqYnGSrT6zek42Q0&amp;index=4" target="_blank" rel="external">斯坦福最优化课程28分钟左右</a>有详细讲解，在吴恩达的课程中也有，不懂得可以再详细看看。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Softmax代价函数与logistic 代价函数在形式上非常类似，只是在Softmax损失函数中对类标记的k个可能值进行了累加。注意在Softmax回归中将x分类为类别j的概率为：<br><img src="http://upload-images.jianshu.io/upload_images/744392-7ea9eb17fa574abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Softmax代价函数与logistic 代价函数在形式上非常类似"><br>J(θ)最下化问题，通过求导得到梯度公式：<br><img src="http://upload-images.jianshu.io/upload_images/744392-841d57054be63449.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="梯度公式"></p>
 <p>Softmax是有监督的，当然也可以和无监督结合用。这个后面文章再说，</p>
@@ -327,6 +327,12 @@
         
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2017/08/05/线性判别分析-LDA-主成分分析-PCA-的理解/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">线性判别分析(LDA)主成分分析(PCA)的理解</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
       <a class="next" href="/2017/07/29/线代中基本的点/">
