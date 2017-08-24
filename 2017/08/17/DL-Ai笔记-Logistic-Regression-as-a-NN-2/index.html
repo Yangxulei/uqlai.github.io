@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="DL.Ai笔记:Logistic Regression as a NN(2)"/>
+
+
+
+
+  <meta name="keywords" content="Logistic," />
+
+
+
+
+  <link rel="alternate" href="/default" title="Uqlai`blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://uqlai.cn/2017/08/17/DL-Ai笔记-Logistic-Regression-as-a-NN-2/"/>
+
+
+<meta name="description" content="Ng新课程deeplearning.ai 第二篇笔记 正式开始前先说一些关于统计学习的东西有个整体的大局观">
+<meta name="keywords" content="Logistic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DL.Ai笔记:Logistic Regression as a NN(2)">
+<meta property="og:url" content="http://uqlai.cn/2017/08/17/DL-Ai笔记-Logistic-Regression-as-a-NN-2/index.html">
+<meta property="og:site_name" content="Uqlai`blog">
+<meta property="og:description" content="Ng新课程deeplearning.ai 第二篇笔记 正式开始前先说一些关于统计学习的东西有个整体的大局观">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-07ce408704385a66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-99ec8fca7a399035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-2425c6a2d7c20d07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-17T00:45:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DL.Ai笔记:Logistic Regression as a NN(2)">
+<meta name="twitter:description" content="Ng新课程deeplearning.ai 第二篇笔记 正式开始前先说一些关于统计学习的东西有个整体的大局观">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> DL.Ai笔记:Logistic Regression as a NN(2) · Uqlai`blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Uqlai`blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Uqlai`blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          DL.Ai笔记:Logistic Regression as a NN(2)
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Aug 17, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#统计学习"><span class="toc-text">统计学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression"><span class="toc-text">Logistic Regression</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression-Cost"><span class="toc-text">Logistic Regression Cost</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>Ng新课程deeplearning.ai 第二篇笔记</p>
+<p>正式开始前先说一些关于统计学习的东西有个整体的大局观<br><a id="more"></a></p>
+<h1 id="统计学习"><a href="#统计学习" class="headerlink" title="统计学习"></a>统计学习</h1><p>统计的三要素：模型，策略，和算法<br>模型：是要学习的条件概率分布或者决策函数。<br>策略：就是要按照怎么的学习规则学习或者选择最优模型，损失函数度量一次预测的好坏，风险函数度量平均意义下模型预测的好坏<br>算法：学习模型的具体计算方法，在统计中归结为最优化算法</p>
+<p>在监督学习中会从假设空间中选取模型 f作为决策函数，给定输入X由f(X)给出相应的输出Y， 用损失函数或者代价函数来度量预测的好坏程度。模型选择的典型方法是正则化，是结构风险最小化策略的实现。其它还有交叉验证。</p>
+<p>常见损失函数有：</p>
+<ul>
+<li>0-1 loss function</li>
+<li>quadratic loss function</li>
+<li>absolute loss function</li>
+<li>logarithmic loss function/loglikelihood loss function : L(Y,P(Y|X)) = -logP(Y|X)</li>
+</ul>
+<p>我们知道监督学习的任务是学习模型：决策函数Y=f(X)或者条件概率分布P(Y|X),监督学习的方法可分为 生成方法 和 判别方法 。它们对应学到的模型就是生成模型(朴素贝叶斯法和隐马尔科夫模型)和 判别模型（K近邻法，感知机，决策树，逻辑斯蒂回归模型，最大熵模型，支持向量机，提升方法和条件随机场）</p>
+<p>用监督学习的核心问题大概有分类，标注，回归。</p>
+<p>这节所说逻辑斯蒂回归其实就是个二分类算法。比如0或者1。先看下Binary Classification。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="识别猫"><br>如果输入一张64X64的图片，来识别是否为猫，用Y来表示输入，在过程中，会把图片转成64乘64的三个矩阵，因为图片三原色红蓝绿呗，看上图，将像素强度值展开转到特征向量Y中，直到我们得到一个非常长的特征向量列出了该图像的所有红色和蓝色，绿色像素强度值，所以一个64×64图像的总尺寸这个向量X将是64×64乘3，这个矩阵的结果是1 2 2 8 8，使用小写n来表示该输入特征向量的维度，因此在二进制分类中，我们的目标是学习可以输入由该特征向量X表示的图像的分类器，并且预测相应的标号Y是否为1或0，其中X是nx维特征向量，Y标签是0或1</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-07ce408704385a66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="一些数学表示"></p>
+<p>课程中的问题：Can the training set and test set have overlapping (x,y)pairs? No</p>
+<h1 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h1><p><img src="http://upload-images.jianshu.io/upload_images/744392-99ec8fca7a399035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistic regression 数学表达"><br>看上图表达已经很清楚了，有时候数据很大或者很小，我们没法比较，所以能不能把数据经过处理后就可以比较了呢，所以通过logistics表达式后值域为(0,1)。</p>
+<h1 id="Logistic-Regression-Cost"><a href="#Logistic-Regression-Cost" class="headerlink" title="Logistic Regression Cost"></a>Logistic Regression Cost</h1><p><img src="http://upload-images.jianshu.io/upload_images/744392-2425c6a2d7c20d07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistics cost function"></p>
+<p>其实这部分之前已经写过了可以看<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">之前的文章和总结</a></p>
+<p>参考：<br>李航《统计学习方法》</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <span>YangXuLei</span>
+    </p>
+    <p class="copyright-item">
+      <span>来源: </span>
+      <a href="http://uqlai.cn">http://uqlai.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="http://uqlai.cn/2017/08/17/DL-Ai笔记-Logistic-Regression-as-a-NN-2/">http://uqlai.cn/2017/08/17/DL-Ai笔记-Logistic-Regression-as-a-NN-2/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Logistic/">Logistic</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2017/08/10/DL-Ai笔记-Introduction-to-Deep-learning-1/">
+        <span class="next-text nav-default">DL.Ai笔记:Introduction to Deep learning(1)</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:uqraiyang@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.github.com/YangXuLei" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">YangXuLei</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
