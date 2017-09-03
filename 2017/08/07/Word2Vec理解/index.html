@@ -34,14 +34,17 @@
 <link rel="canonical" href="http://uqlai.cn/2017/08/07/Word2Vec理解/"/>
 
 
+<meta name="description" content="带着问题看文章  word2vec是怎么实现的？略过，看论文&amp;lt;!—more-&amp;gt;，先不总结  Wordvec怎么得到词向量？那么word2vec向量到底在哪儿？其实这些词向量就是神经网络里的参数，生成词向量的过程就是一个参数更新的过程。那么究竟是什么参数呢？就是这个网络的第一层：将one-hot向量转换成低维词向量的这一层（虽然大家都不称之为一层，但在我看来就是一层），因为word2ve">
 <meta name="keywords" content="Word2Vec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Word2Vec理解">
 <meta property="og:url" content="http://uqlai.cn/2017/08/07/Word2Vec理解/index.html">
 <meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:updated_time" content="2017-08-09T08:17:30.000Z">
+<meta property="og:description" content="带着问题看文章  word2vec是怎么实现的？略过，看论文&amp;lt;!—more-&amp;gt;，先不总结  Wordvec怎么得到词向量？那么word2vec向量到底在哪儿？其实这些词向量就是神经网络里的参数，生成词向量的过程就是一个参数更新的过程。那么究竟是什么参数呢？就是这个网络的第一层：将one-hot向量转换成低维词向量的这一层（虽然大家都不称之为一层，但在我看来就是一层），因为word2ve">
+<meta property="og:updated_time" content="2017-09-03T02:29:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Word2Vec理解">
+<meta name="twitter:description" content="带着问题看文章  word2vec是怎么实现的？略过，看论文&amp;lt;!—more-&amp;gt;，先不总结  Wordvec怎么得到词向量？那么word2vec向量到底在哪儿？其实这些词向量就是神经网络里的参数，生成词向量的过程就是一个参数更新的过程。那么究竟是什么参数呢？就是这个网络的第一层：将one-hot向量转换成低维词向量的这一层（虽然大家都不称之为一层，但在我看来就是一层），因为word2ve">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -227,7 +230,15 @@
 
     <div class="post-content">
       
-        
+        <p>带着问题看文章</p>
+<ul>
+<li><p>word2vec是怎么实现的？<br>略过，看论文&lt;!—more-&gt;，先不总结</p>
+</li>
+<li><p>Wordvec怎么得到词向量？<br>那么word2vec向量到底在哪儿？其实这些词向量就是神经网络里的参数，生成词向量的过程就是一个参数更新的过程。那么究竟是什么参数呢？就是这个网络的第一层：将one-hot向量转换成低维词向量的这一层（虽然大家都不称之为一层，但在我看来就是一层），因为word2vec的输入是one-hot。one-hot可看成是1<em>N（N是词总数）的矩阵，与这个系数矩阵（N</em>M, M是word2vec词向量维数）相乘之后就可以得到1<em>M的向量，这个向量就是这个词对应的词向量了。那么对于那个N</em>M的矩阵，每一行就对应了每个单词的词向量。接下来就是进入神经网络，然后通过训练不断更新这个矩阵。</p>
+</li>
+</ul>
+<p>参考：<br><a href="https://zhuanlan.zhihu.com/p/26306795" target="_blank" rel="external">秒懂词向量Word2vec的本质</a><br><a href="https://www.zhihu.com/question/32275069/answer/61059440" target="_blank" rel="external">有谁可以解释下word embedding? - li Eta 的回答</a><br><a href="https://www.zhihu.com/question/37677615/answer/73780047" target="_blank" rel="external">有没有详细讲解word2vec的原理、具体应用、中文处理 方面的资料或教程？ - li Eta 的回答</a><br><a href="https://www.zhihu.com/question/29894719/answer/92783887" target="_blank" rel="external">Skip-gram如何训练得到词向量（ Distributed Representation）？ - li Eta 的回答</a></p>
+
       
     </div>
 
@@ -237,15 +248,15 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>作者: </span>
+      <span>Author: </span>
       <span>YangXuLei</span>
     </p>
     <p class="copyright-item">
-      <span>来源: </span>
+      <span>Origin: </span>
       <a href="http://uqlai.cn">http://uqlai.cn</a>
     </p>
     <p class="copyright-item">
-      <span>链接: </span>
+      <span>Link: </span>
       <a href="http://uqlai.cn/2017/08/07/Word2Vec理解/">http://uqlai.cn/2017/08/07/Word2Vec理解/</a>
     </p>
 
@@ -261,7 +272,7 @@
       
   <div class="post-reward">
     <input type="checkbox" name="reward" id="reward" hidden />
-    <label class="reward-button" for="reward">赞赏支持</label>
+    <label class="reward-button" for="reward">Reward</label>
     <div class="qr-code">
       
       
@@ -292,9 +303,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/08/09/算法复习之字符串(1)/">
+      <a class="prev" href="/2017/08/09/算法之字符串(1)/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">算法复习之字符串(1)</span>
+        <span class="prev-text nav-default">算法之字符串(1)</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     

@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="DL.Ai笔记:Logistic Regression as a NN(2)"/>
+  <meta name="description" content="Logistic Regression as a NN"/>
 
 
 
@@ -34,21 +34,21 @@
 <link rel="canonical" href="http://uqlai.cn/2017/08/17/Logistic-Regression-as-a-NN-2/"/>
 
 
-<meta name="description" content="正式开始前先说一些关于统计学习的东西有个整体的大局观">
+<meta name="description" content="正式开始前先说一些关于统计学习的东西有个整体的大局观 统计的三要素：模型，策略，和算法">
 <meta name="keywords" content="Logistic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DL.Ai笔记:Logistic Regression as a NN(2)">
+<meta property="og:title" content="Logistic Regression as a NN">
 <meta property="og:url" content="http://uqlai.cn/2017/08/17/Logistic-Regression-as-a-NN-2/index.html">
 <meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:description" content="正式开始前先说一些关于统计学习的东西有个整体的大局观">
+<meta property="og:description" content="正式开始前先说一些关于统计学习的东西有个整体的大局观 统计的三要素：模型，策略，和算法">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-07ce408704385a66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-99ec8fca7a399035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/744392-2425c6a2d7c20d07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-24T08:06:10.000Z">
+<meta property="og:updated_time" content="2017-09-03T02:33:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DL.Ai笔记:Logistic Regression as a NN(2)">
-<meta name="twitter:description" content="正式开始前先说一些关于统计学习的东西有个整体的大局观">
+<meta name="twitter:title" content="Logistic Regression as a NN">
+<meta name="twitter:description" content="正式开始前先说一些关于统计学习的东西有个整体的大局观 统计的三要素：模型，策略，和算法">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -76,7 +76,7 @@
 
 
 
-    <title> DL.Ai笔记:Logistic Regression as a NN(2) · Uqlai`blog </title>
+    <title> Logistic Regression as a NN · Uqlai`blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -219,7 +219,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          DL.Ai笔记:Logistic Regression as a NN(2)
+          Logistic Regression as a NN
         
       </h1>
 
@@ -235,15 +235,15 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#统计学习"><span class="toc-text">统计学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression"><span class="toc-text">Logistic Regression</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression-Cost"><span class="toc-text">Logistic Regression Cost</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LR的优缺点："><span class="toc-text">LR的优缺点：</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>正式开始前先说一些关于统计学习的东西有个整体的大局观<br><a id="more"></a></p>
-<h1 id="统计学习"><a href="#统计学习" class="headerlink" title="统计学习"></a>统计学习</h1><p>统计的三要素：模型，策略，和算法<br>模型：是要学习的条件概率分布或者决策函数。<br>策略：就是要按照怎么的学习规则学习或者选择最优模型，损失函数度量一次预测的好坏，风险函数度量平均意义下模型预测的好坏<br>算法：学习模型的具体计算方法，在统计中归结为最优化算法</p>
+        <p>正式开始前先说一些关于统计学习的东西有个整体的大局观</p>
+<p>统计的三要素：模型，策略，和算法<br><a id="more"></a><br>模型：是要学习的条件概率分布或者决策函数。<br>策略：就是要按照怎么的学习规则学习或者选择最优模型，损失函数度量一次预测的好坏，风险函数度量平均意义下模型预测的好坏<br>算法：学习模型的具体计算方法，在统计中归结为最优化算法</p>
 <p>在监督学习中会从假设空间中选取模型 f作为决策函数，给定输入X由f(X)给出相应的输出Y， 用损失函数或者代价函数来度量预测的好坏程度。模型选择的典型方法是正则化，是结构风险最小化策略的实现。其它还有交叉验证。</p>
 <p>常见损失函数有：</p>
 <ul>
@@ -258,10 +258,16 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="识别猫"><br>如果输入一张64X64的图片，来识别是否为猫，用Y来表示输入，在过程中，会把图片转成64乘64的三个矩阵，因为图片三原色红蓝绿呗，看上图，将像素强度值展开转到特征向量Y中，直到我们得到一个非常长的特征向量列出了该图像的所有红色和蓝色，绿色像素强度值，所以一个64×64图像的总尺寸这个向量X将是64×64乘3，这个矩阵的结果是1 2 2 8 8，使用小写n来表示该输入特征向量的维度，因此在二进制分类中，我们的目标是学习可以输入由该特征向量X表示的图像的分类器，并且预测相应的标号Y是否为1或0，其中X是nx维特征向量，Y标签是0或1</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/744392-07ce408704385a66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="一些数学表示"></p>
 <p>课程中的问题：Can the training set and test set have overlapping (x,y)pairs? No</p>
-<h1 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h1><p><img src="http://upload-images.jianshu.io/upload_images/744392-99ec8fca7a399035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistic regression 数学表达"><br>看上图表达已经很清楚了，有时候数据很大或者很小，我们没法比较，所以能不能把数据经过处理后就可以比较了呢，所以通过logistics表达式后值域为(0,1)。</p>
-<h1 id="Logistic-Regression-Cost"><a href="#Logistic-Regression-Cost" class="headerlink" title="Logistic Regression Cost"></a>Logistic Regression Cost</h1><p><img src="http://upload-images.jianshu.io/upload_images/744392-2425c6a2d7c20d07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistics cost function"></p>
-<p>其实这部分之前已经写过了可以看<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">之前的文章和总结</a></p>
-<p>参考：<br>李航《统计学习方法》</p>
+<p>#Logistic Regression<br><img src="http://upload-images.jianshu.io/upload_images/744392-99ec8fca7a399035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistic regression 数学表达"><br>看上图表达已经很清楚了，有时候数据很大或者很小，我们没法比较，所以能不能把数据经过处理后就可以比较了呢，所以通过logistics表达式后值域为(0,1)。</p>
+<p>#Logistic Regression Cost</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-2425c6a2d7c20d07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistics cost function"></p>
+<h1 id="LR的优缺点："><a href="#LR的优缺点：" class="headerlink" title="LR的优缺点："></a>LR的优缺点：</h1><ul>
+<li>LR分类器适用数据类型：数值型和标称型数据。</li>
+<li>其优点是计算代价不高，易于理解和实现；</li>
+<li>其缺点是容易欠拟合，分类精度可能不高。</li>
+</ul>
+<p>重点要掌握的：<br>LR的优缺点和推导<br>写LR目标函数，目标函数怎么求最优解</p>
+<p><a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">之前的文章和总结</a><br><a href="https://zhuanlan.zhihu.com/p/28057866" target="_blank" rel="external">更详细的文章</a><br>参考：<br>李航《统计学习方法》</p>
 
       
     </div>
@@ -272,15 +278,15 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>作者: </span>
+      <span>Author: </span>
       <span>YangXuLei</span>
     </p>
     <p class="copyright-item">
-      <span>来源: </span>
+      <span>Origin: </span>
       <a href="http://uqlai.cn">http://uqlai.cn</a>
     </p>
     <p class="copyright-item">
-      <span>链接: </span>
+      <span>Link: </span>
       <a href="http://uqlai.cn/2017/08/17/Logistic-Regression-as-a-NN-2/">http://uqlai.cn/2017/08/17/Logistic-Regression-as-a-NN-2/</a>
     </p>
 
@@ -296,7 +302,7 @@
       
   <div class="post-reward">
     <input type="checkbox" name="reward" id="reward" hidden />
-    <label class="reward-button" for="reward">赞赏支持</label>
+    <label class="reward-button" for="reward">Reward</label>
     <div class="qr-code">
       
       
