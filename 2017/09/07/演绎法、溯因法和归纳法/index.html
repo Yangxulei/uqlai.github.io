@@ -12,10 +12,12 @@
 
 
 
-  <meta name="description" content="吸引力法则"/>
+  <meta name="description" content="演绎法、溯因法和归纳法"/>
 
 
 
+
+  <meta name="keywords" content="演绎法、溯因法和归纳法," />
 
 
 
@@ -29,19 +31,20 @@
 
 
 
-<link rel="canonical" href="http://uqlai.cn/2017/09/01/吸引力法则/"/>
+<link rel="canonical" href="http://uqlai.cn/2017/09/07/演绎法、溯因法和归纳法/"/>
 
 
-<meta name="description" content="自我实现的预言，意思是一个人常说的那些话，可能会成为他自己的生命预言。">
+<meta name="description" content="贝叶斯误差词袋模型分类，回归的指标及应用注意点混淆矩阵查准率 查全率 精准率 召回率 F1 分数既然我们已讨论了精确率和召回率，接下来可能要考虑的另一个指标是 F1 分数。F1 分数会同时考虑精确率和召回率，以便计算新的分数。 可将 F1 分数理解为精确率和召回率的加权平均值，其中 F1 分数的最佳值为 1、最差值为 0： F1 = 2  (精确率  召回率)  (精确率 + 召回率) 有关 F1">
+<meta name="keywords" content="演绎法、溯因法和归纳法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吸引力法则">
-<meta property="og:url" content="http://uqlai.cn/2017/09/01/吸引力法则/index.html">
+<meta property="og:title" content="演绎法、溯因法和归纳法">
+<meta property="og:url" content="http://uqlai.cn/2017/09/07/演绎法、溯因法和归纳法/index.html">
 <meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:description" content="自我实现的预言，意思是一个人常说的那些话，可能会成为他自己的生命预言。">
-<meta property="og:updated_time" content="2017-09-01T15:20:40.000Z">
+<meta property="og:description" content="贝叶斯误差词袋模型分类，回归的指标及应用注意点混淆矩阵查准率 查全率 精准率 召回率 F1 分数既然我们已讨论了精确率和召回率，接下来可能要考虑的另一个指标是 F1 分数。F1 分数会同时考虑精确率和召回率，以便计算新的分数。 可将 F1 分数理解为精确率和召回率的加权平均值，其中 F1 分数的最佳值为 1、最差值为 0： F1 = 2  (精确率  召回率)  (精确率 + 召回率) 有关 F1">
+<meta property="og:updated_time" content="2017-09-09T05:27:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吸引力法则">
-<meta name="twitter:description" content="自我实现的预言，意思是一个人常说的那些话，可能会成为他自己的生命预言。">
+<meta name="twitter:title" content="演绎法、溯因法和归纳法">
+<meta name="twitter:description" content="贝叶斯误差词袋模型分类，回归的指标及应用注意点混淆矩阵查准率 查全率 精准率 召回率 F1 分数既然我们已讨论了精确率和召回率，接下来可能要考虑的另一个指标是 F1 分数。F1 分数会同时考虑精确率和召回率，以便计算新的分数。 可将 F1 分数理解为精确率和召回率的加权平均值，其中 F1 分数的最佳值为 1、最差值为 0： F1 = 2  (精确率  召回率)  (精确率 + 召回率) 有关 F1">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -68,7 +71,7 @@
 
 
 
-    <title> 吸引力法则 · Uqlai`blog </title>
+    <title> 演绎法、溯因法和归纳法 · Uqlai`blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -203,13 +206,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          吸引力法则
+          演绎法、溯因法和归纳法
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Sep 1, 2017
+          Sep 7, 2017
         </span>
       </div>
     </header>
@@ -219,16 +222,18 @@
 
     <div class="post-content">
       
-        <blockquote>
-<p>自我实现的预言，意思是一个人常说的那些话，可能会成为他自己的生命预言。<a id="more"></a>因为为了面子“爱上”的言论，不论对错都会把事情往这个方向退队，我们外在人生也就是命运，常常内在意识，花很多年去推动的结果。—武志红自我意识的实现</p>
-</blockquote>
-<p>看完武志红老师这篇文章后我在评论发现了吸引力法则这个词，解决了我的一个困惑，因为我时常有这样的感受，我却无法描述，在微博在知乎我关注某个知识点的话，总会有相关的资源推送过来，哇，好神奇，后来我就知道这个法则。下面是百科的解释：</p>
-<blockquote>
-<p>吸引定律又称“吸引力法则”，指思想集中在某一领域的时候，跟这个领域相关的人、事、物就会被他吸引而来。有一种我们看不见的能量，一直引导着整个宇宙规律性的运转，正是因为它的作用地球才能够在46亿年的时间里保持着运转的状态。</p>
-</blockquote>
-<p>也正是因为它的作用，太阳系乃至整个宇宙中，数以亿计的星球，都能相安无事的停留在各自的轨道上安分地运行，这样一种能量引导着宇靠吸引力定律存在的化合物超盐酸宙中的每一样事物，也引导着我们的生活，这种能量就是——吸引力。</p>
-<p>这是一个心理学的概念，也挺受争议的，1877年，“吸引力法则”作为一个专业术语，出现在赫莲娜·布拉瓦茨基（Helena Blavatsky）的关于神秘密教的书《揭开伊西斯的面纱》（Isis Unveiled: Secrets of the Ancient Wisdom Tradition）中，而在1879年4月6日的《纽约时报》上，一篇关于在科罗拉多州淘金热中吸引财富的文章里提到了“吸引力法则”，这便是“吸引力法则”的概念第一次出现在大型的报刊媒体之上。</p>
-<p>后面我也了解很多，相似的有“墨菲定律”、“帕金森定理”和“彼德原理”并称为二十世纪西方文化三大发现。明白了这个定律其实就是概率事件，任何事情都会发生，人呢，就要多行动，不然这些都只是空想</p>
+        <p>贝叶斯误差<br>词袋模型<br>分类，回归的指标及应用注意点<br>混淆矩阵<br>查准率 查全率 精准率 召回率</p>
+<p>F1 分数<br>既然我们已讨论了精确率和召回率，接下来可能要考虑的另一个指标是 F1 分数。F1 分数会同时考虑精确率和召回率，以便计算新的分数。</p>
+<p>可将 F1 分数理解为精确率和召回率的加权平均值，其中 F1 分数的最佳值为 1、最差值为 0：</p>
+<p>F1 = 2  (精确率  召回率)  (精确率 + 召回率)</p>
+<p>有关 F1 分数和如何在 sklearn 中使用它的更多信息，请查看此链接此处。</p>
+<p>平均绝对误差<br>您可能已回想起，在统计学中可以使用绝对误差来测量误差，以找出预测值与真实值之间的差距。平均绝对误差的计算方法是，将各个样本的绝对误差汇总，然后根据数据点数量求出平均误差。通过将模型的所有绝对值加起来，可以避免因预测值比真实值过高或过低而抵销误差，并能获得用于评估模型的整体误差指标。</p>
+<p>方误差<br>均方误差是另一个经常用于测量模型性能的指标。与绝对误差相比，残差（预测值与真实值的差值）被求平方。对残差求平方的一些好处是，自动将所有误差转换为正数、注重较大的误差而不是较小的误差以及在微积分中是可微的（可让我们找到最小值和最大值）。</p>
+<p>在模型预测中，模型可能出现的误差来自两个主要来源，即：因模型无法表示基本数据的复杂度而造成的偏差（bias），或者因模型对训练它所用的有限数据过度敏感而造成的方差（variance）。我们会对两者进行更详细的探讨。</p>
+<p>偏差造成的误差 - 精度和欠拟合<br>如前所述，如果模型具有足够的数据，但因不够复杂而无法捕捉基本关系，则会出现偏差。这样一来，模型一直会系统地错误表示数据，从而导致预测精度低。这种现象叫做欠拟合（underfitting）。<br>简单来说，如果模型不适当，就会出现偏差。举个例子：如果对象是按颜色和形状分类的，但模型只能按颜色来区分对象和将对象分类（模型过度简化），因而一直会错误地分类对象。<br>或者，我们可能有本质上是多项式的连续数据，但模型只能表示线性关系。在此情况下，我们向模型提供多少数据并不重要，因为模型根本无法表示其中的基本关系，我们需要更复杂的模型。</p>
+<p>方差造成的误差 - 精度和过拟合<br>在训练模型时，通常使用来自较大母体（训练集）的有限数量样本。如果利用随机选择的数据子集反复训练模型，可以预料它的预测结果会因提供给它的具体样本而异。在这里，方差（variance）用来测量预测结果对于任何给定的测试样本会出现多大的变化。<br>出现方差是正常的，但方差过高表明模型无法将其预测结果泛化到从中抽取训练样本的较大母体。对训练集高度敏感也称为过拟合（overfitting），而且通常出现在模型过于复杂或我们没有足够的数据支持它时。</p>
+<p>改进模型的有效性<br>我们可以看到，在给定一组固定数据时，模型不能过于简单或复杂。如果过于简单，模型无法了解数据并会错误地表示数据。但是，如果建立非常复杂的模型，则需要更多数据才能了解基本关系，否则十分常见的是，模型会推断出在数据中实际上并不存在的关系。<br>关键在于，通过找出正确的模型复杂度来找到最大限度降低偏差和方差的最有效点。当然，数据越多，模型随着时间推移会变得越好。<br>要详细了解偏差和方差，建议阅读 Scott Fortmann-Roe 撰写的这篇文章。<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="external">http://scott.fortmann-roe.com/docs/BiasVariance.html</a></p>
+<p>决策树 ID3(偏差)</p>
 
       
     </div>
@@ -248,7 +253,7 @@
     </p>
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://uqlai.cn/2017/09/01/吸引力法则/">http://uqlai.cn/2017/09/01/吸引力法则/</a>
+      <a href="http://uqlai.cn/2017/09/07/演绎法、溯因法和归纳法/">http://uqlai.cn/2017/09/07/演绎法、溯因法和归纳法/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -284,19 +289,19 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/演绎法、溯因法和归纳法/">演绎法、溯因法和归纳法</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/09/07/演绎法、溯因法和归纳法/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">演绎法、溯因法和归纳法</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
     
-    
-      <a class="next" href="/2017/08/17/Logistic-Regression-as-a-NN-2/">
-        <span class="next-text nav-default">Logistic Regression as a NN</span>
+      <a class="next" href="/2017/09/01/吸引力法则/">
+        <span class="next-text nav-default">吸引力法则</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
