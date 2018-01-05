@@ -1,232 +1,127 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
   <head>
-    
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="description" content="list1-Getting Started with BigData"/>
-
-
-
-
-
-
-
-  <link rel="alternate" href="/default" title="Uqlai`blog">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
-
-
-
-<link rel="canonical" href="http://uqlai.cn/2017/07/09/list1-Getting-Started-with-BigData/"/>
-
-
-<meta name="description" content="这是我在Coursea上学习加州大学圣地亚哥大学系列课程BigData整理的笔记，都是英文很难受，不过讲的是真好，我会保持每天一篇或者两篇的速度整理笔记。Coursea地址欢迎交流。 1、 When to reconsider Hadoop 何时用考虑Hadoop？Hadoop生态系统正在快速增长。这意味着很多有困难或不支持的东西正在成为可能。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="list1-Getting Started with BigData">
-<meta property="og:url" content="http://uqlai.cn/2017/07/09/list1-Getting-Started-with-BigData/index.html">
-<meta property="og:site_name" content="Uqlai`blog">
-<meta property="og:description" content="这是我在Coursea上学习加州大学圣地亚哥大学系列课程BigData整理的笔记，都是英文很难受，不过讲的是真好，我会保持每天一篇或者两篇的速度整理笔记。Coursea地址欢迎交流。 1、 When to reconsider Hadoop 何时用考虑Hadoop？Hadoop生态系统正在快速增长。这意味着很多有困难或不支持的东西正在成为可能。">
-<meta property="og:updated_time" content="2017-07-09T02:04:10.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="list1-Getting Started with BigData">
-<meta name="twitter:description" content="这是我在Coursea上学习加州大学圣地亚哥大学系列课程BigData整理的笔记，都是英文很难受，不过讲的是真好，我会保持每天一篇或者两篇的速度整理笔记。Coursea地址欢迎交流。 1、 When to reconsider Hadoop 何时用考虑Hadoop？Hadoop生态系统正在快速增长。这意味着很多有困难或不支持的东西正在成为可能。">
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
-
-
-
-
-
-
-
-<script>
-  var CONFIG = {
-    search: false,
-    searchPath: "/search.xml",
-    fancybox: false,
-    toc: true,
-  }
-</script>
-
-
-
-
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
   
-
-
-
-    <title> list1-Getting Started with BigData · Uqlai`blog </title>
-  </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/." class="logo">Uqlai`blog</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      list1-Getting Started with BigData | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
 </div>
 
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    
-      <a href="/">
-        <li class="mobile-menu-item">
-          
-          
-            Home
-          
-        </li>
-      </a>
-    
-      <a href="/archives/">
-        <li class="mobile-menu-item">
-          
-          
-            Archives
-          
-        </li>
-      </a>
-    
-      <a href="/tags">
-        <li class="mobile-menu-item">
-          
-          
-            Tags
-          
-        </li>
-      </a>
-    
-      <a href="/categories">
-        <li class="mobile-menu-item">
-          
-          
-            Categories
-          
-        </li>
-      </a>
-    
-      <a href="/about">
-        <li class="mobile-menu-item">
-          
-          
-            About
-          
-        </li>
-      </a>
-    
-  </ul>
-</nav>
-
-    <div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Uqlai`blog</a>
-</div>
-
-<nav class="site-navbar">
-  
-    <ul id="menu" class="menu">
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            
-            
-              Home
-            
-          </a>
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
         </li>
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            
-            
-              Archives
-            
-          </a>
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
         </li>
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/tags">
-            
-            
-              Tags
-            
-          </a>
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
         </li>
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/categories">
-            
-            
-              Categories
-            
-          </a>
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
         </li>
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/about">
-            
-            
-              About
-            
-          </a>
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
         </li>
-      
       
     </ul>
-  
-</nav>
-
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
             
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
         
-          list1-Getting Started with BigData
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
         
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jul 9, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、-When-to-reconsider-Hadoop"><span class="toc-text">1、 When to reconsider Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先让我们来看看Hadoop的关键功能。"><span class="toc-text">首先让我们来看看Hadoop的关键功能。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#这些工具提供的确切好处是什么？"><span class="toc-text">这些工具提供的确切好处是什么？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-、Cloud-Computing"><span class="toc-text">2 、Cloud Computing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#云可以为我们做什么？"><span class="toc-text">云可以为我们做什么？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、Cloud-Service-Models"><span class="toc-text">3、Cloud Service Models</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#云服务模式：探索选择。"><span class="toc-text">云服务模式：探索选择。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IaaS，基础设施即服务，可以定义为最低租赁服务。"><span class="toc-text">IaaS，基础设施即服务，可以定义为最低租赁服务。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PaaS，平台即服务，是用户提供整个计算平台的模式。这可能包括您需要的操作系统和编程语言。"><span class="toc-text">PaaS，平台即服务，是用户提供整个计算平台的模式。这可能包括您需要的操作系统和编程语言。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#作为服务模式的软件SaaS是云服务提供商对操作系统和应用软件等硬件和软件环境负责的模式。"><span class="toc-text">作为服务模式的软件SaaS是云服务提供商对操作系统和应用软件等硬件和软件环境负责的模式。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#安全是当今信息数字化日益增长的世界中非常重要的一个方面。"><span class="toc-text">安全是当今信息数字化日益增长的世界中非常重要的一个方面。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#XaaS是一个总括术语，表示对您想要租用的计算资源进行更细粒度的控制。例如，作为服务的存储，作为服务的通信，作为服务的营销等。"><span class="toc-text">XaaS是一个总括术语，表示对您想要租用的计算资源进行更细粒度的控制。例如，作为服务的存储，作为服务的通信，作为服务的营销等。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、Value-From-Hadoop-and-Pre-built-Hadoop-Images"><span class="toc-text">4、Value From Hadoop and Pre-built Hadoop Images</span></a></li></ol>
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
     </div>
   </div>
+</header>
 
-
-    <div class="post-content">
-      
-        <p>这是我在Coursea上学习加州大学圣地亚哥大学系列课程BigData整理的笔记，都是英文很难受，不过讲的是真好，我会保持每天一篇或者两篇的速度整理笔记。<a href="https://www.coursera.org/specializations/big-data" target="_blank" rel="external">Coursea地址</a>欢迎交流。</p>
+    <div id="article-banner">
+  <h2>list1-Getting Started with BigData</h2>
+  <p class="post-date">2017-07-09</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>这是我在Coursea上学习加州大学圣地亚哥大学系列课程BigData整理的笔记，都是英文很难受，不过讲的是真好，我会保持每天一篇或者两篇的速度整理笔记。<a href="https://www.coursera.org/specializations/big-data" target="_blank" rel="external">Coursea地址</a>欢迎交流。</p>
 <h1 id="1、-When-to-reconsider-Hadoop"><a href="#1、-When-to-reconsider-Hadoop" class="headerlink" title="1、 When to reconsider Hadoop"></a>1、 When to reconsider Hadoop</h1><ul>
 <li>何时用考虑Hadoop？Hadoop生态系统正在快速增长。这意味着很多有困难或不支持的东西正在成为可能。<a id="more"></a></li>
 <li>Hadoop真的对你的具体问题有意义吗？</li>
@@ -276,198 +171,190 @@
 <p>即使小团队也可以快速原型，部署和验证他们的项目想法。开发的分析解决方案可以扩展到更大的数量，并在数小时内提高数据的速度。这些公司还为大型，成熟的应用程序提供企业级解决方案。</p>
 <p>另外一个好处是有很多公司提供现成的解决方案。这意味着您可以选择最适合您的项目的选择。选择一个将取决于公司目标的变量数量。这三种模式启发了许多类似的模型，围绕云计算出现。</p>
 <p>最后附上Cloudera的安装for Mac &amp;&amp; Windows<br><a href="https://www.coursera.org/learn/big-data-introduction/supplement/JRLo2/downloading-and-installing-the-cloudera-vm-instructions-mac" target="_blank" rel="external">Mac</a><br><a href="https://www.coursera.org/learn/big-data-introduction/supplement/pGbsq/downloading-and-installing-the-cloudera-vm-instructions-windows" target="_blank" rel="external">Windows</a></p>
-
-      
-    </div>
-
+</section>
+    <!-- Tags START -->
     
-      
-      
-
-  <div class="post-copyright">
-    <p class="copyright-item">
-      <span>作者: </span>
-      <span>YangXuLei</span>
-    </p>
-    <p class="copyright-item">
-      <span>来源: </span>
-      <a href="http://uqlai.cn">http://uqlai.cn</a>
-    </p>
-    <p class="copyright-item">
-      <span>链接: </span>
-      <a href="http://uqlai.cn/2017/07/09/list1-Getting-Started-with-BigData/">http://uqlai.cn/2017/07/09/list1-Getting-Started-with-BigData/</a>
-    </p>
-
-    <p class="copyright-item lincese">
-      
-      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
-    </p>
-  </div>
-
-
-
-      
-      
-  <div class="post-reward">
-    <input type="checkbox" name="reward" id="reward" hidden />
-    <label class="reward-button" for="reward">赞赏支持</label>
-    <div class="qr-code">
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="/image/reward/wechat.png" title="wechat">
-        </label>
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="/image/reward/alipay.png" title="alipay">
-        </label>
-      
-    </div>
-  </div>
-
+    <!-- Tags END -->
+    <!-- 打赏 START -->
     
-
-    
-      <footer class="post-footer">
-        
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2017/07/11/list2-Running-HelloWorld-on-Hadoop/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">list2-Running HelloWorld on Hadoop</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
-    
-    
-      <a class="next" href="/2017/07/05/Preliminary-Info-of-Spark/">
-        <span class="next-text nav-default">Preliminary Info of Spark</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-	<!-- 来必力City版安装代码 -->
-	<div id="lv-container" data-id="city" data-uid="<%= theme.livere_uid %>">
-	   <script type="text/javascript">
-   		(function(d, s) {
-       		   var j, e = d.getElementsByTagName(s)[0];
-
-       			if (typeof LivereTower === 'function') { return; }
-
-       			j = d.createElement(s);
-      			 j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       			j.async = true;
-
-       			e.parentNode.insertBefore(j, e);
-   		})(document, 'script');
-	</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-	</div>
-		<!-- City版安装代码已完成 -->
-    
-  </div>
-     
-  
-
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:uqraiyang@gmail.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-        
-          <a href="http://www.github.com/YangXuLei" class="iconfont icon-github" title="github"></a>
-        
-      
-    
-    
-    
-      
-      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
-  </span>
-  
-  <span class="theme-info">
-    Theme - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-    
-    2017
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">YangXuLei</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
       </div>
-    </div>
-
     
-  
-
-  
-  
-
-
-
-
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
     
-
-
-
-
-  
-    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-  
-
-  
-    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  
-
-  
-
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
-
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
     
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1、-When-to-reconsider-Hadoop"><span class="toc-nav-text">1、 When to reconsider Hadoop</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#首先让我们来看看Hadoop的关键功能。"><span class="toc-nav-text">首先让我们来看看Hadoop的关键功能。</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#这些工具提供的确切好处是什么？"><span class="toc-nav-text">这些工具提供的确切好处是什么？</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-、Cloud-Computing"><span class="toc-nav-text">2 、Cloud Computing</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#云可以为我们做什么？"><span class="toc-nav-text">云可以为我们做什么？</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3、Cloud-Service-Models"><span class="toc-nav-text">3、Cloud Service Models</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#云服务模式：探索选择。"><span class="toc-nav-text">云服务模式：探索选择。</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#IaaS，基础设施即服务，可以定义为最低租赁服务。"><span class="toc-nav-text">IaaS，基础设施即服务，可以定义为最低租赁服务。</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#PaaS，平台即服务，是用户提供整个计算平台的模式。这可能包括您需要的操作系统和编程语言。"><span class="toc-nav-text">PaaS，平台即服务，是用户提供整个计算平台的模式。这可能包括您需要的操作系统和编程语言。</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#作为服务模式的软件SaaS是云服务提供商对操作系统和应用软件等硬件和软件环境负责的模式。"><span class="toc-nav-text">作为服务模式的软件SaaS是云服务提供商对操作系统和应用软件等硬件和软件环境负责的模式。</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安全是当今信息数字化日益增长的世界中非常重要的一个方面。"><span class="toc-nav-text">安全是当今信息数字化日益增长的世界中非常重要的一个方面。</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#XaaS是一个总括术语，表示对您想要租用的计算资源进行更细粒度的控制。例如，作为服务的存储，作为服务的通信，作为服务的营销等。"><span class="toc-nav-text">XaaS是一个总括术语，表示对您想要租用的计算资源进行更细粒度的控制。例如，作为服务的存储，作为服务的通信，作为服务的营销等。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#4、Value-From-Hadoop-and-Pre-built-Hadoop-Images"><span class="toc-nav-text">4、Value From Hadoop and Pre-built Hadoop Images</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/07/09/list1-Getting-Started-with-BigData/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "list1-Getting Started with BigData",
+        owner: "Yangxulei",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
   </body>
 </html>
