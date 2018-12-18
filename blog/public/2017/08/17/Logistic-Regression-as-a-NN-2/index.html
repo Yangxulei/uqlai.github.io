@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Logistic Regression as a NN | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Logistic Regression as a NN</h2>
+  <p class="post-date">2017-08-17</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>正式开始前先说一些关于统计学习的东西有个整体的大局观</p>
+<p>统计的三要素：模型，策略，和算法<br><a id="more"></a><br>模型：是要学习的条件概率分布或者决策函数。<br>策略：就是要按照怎么的学习规则学习或者选择最优模型，损失函数度量一次预测的好坏，风险函数度量平均意义下模型预测的好坏<br>算法：学习模型的具体计算方法，在统计中归结为最优化算法</p>
+<p>在监督学习中会从假设空间中选取模型 f作为决策函数，给定输入X由f(X)给出相应的输出Y， 用损失函数或者代价函数来度量预测的好坏程度。模型选择的典型方法是正则化，是结构风险最小化策略的实现。其它还有交叉验证。</p>
+<p>常见损失函数有：</p>
+<ul>
+<li>0-1 loss function</li>
+<li>quadratic loss function</li>
+<li>absolute loss function</li>
+<li>logarithmic loss function/loglikelihood loss function : L(Y,P(Y|X)) = -logP(Y|X)</li>
+</ul>
+<p>我们知道监督学习的任务是学习模型：决策函数Y=f(X)或者条件概率分布P(Y|X),监督学习的方法可分为 生成方法 和 判别方法 。它们对应学到的模型就是生成模型(朴素贝叶斯法和隐马尔科夫模型)和 判别模型（K近邻法，感知机，决策树，逻辑斯蒂回归模型，最大熵模型，支持向量机，提升方法和条件随机场）</p>
+<p>用监督学习的核心问题大概有分类，标注，回归。</p>
+<p>这节所说逻辑斯蒂回归其实就是个二分类算法。比如0或者1。先看下Binary Classification。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-9ec7e25f3009755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="识别猫"><br>如果输入一张64X64的图片，来识别是否为猫，用Y来表示输入，在过程中，会把图片转成64乘64的三个矩阵，因为图片三原色红蓝绿呗，看上图，将像素强度值展开转到特征向量Y中，直到我们得到一个非常长的特征向量列出了该图像的所有红色和蓝色，绿色像素强度值，所以一个64×64图像的总尺寸这个向量X将是64×64乘3，这个矩阵的结果是1 2 2 8 8，使用小写n来表示该输入特征向量的维度，因此在二进制分类中，我们的目标是学习可以输入由该特征向量X表示的图像的分类器，并且预测相应的标号Y是否为1或0，其中X是nx维特征向量，Y标签是0或1</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-07ce408704385a66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="一些数学表示"></p>
+<p>课程中的问题：Can the training set and test set have overlapping (x,y)pairs? No</p>
+<p>#Logistic Regression<br><img src="http://upload-images.jianshu.io/upload_images/744392-99ec8fca7a399035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistic regression 数学表达"><br>看上图表达已经很清楚了，有时候数据很大或者很小，我们没法比较，所以能不能把数据经过处理后就可以比较了呢，所以通过logistics表达式后值域为(0,1)。</p>
+<p>#Logistic Regression Cost</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-2425c6a2d7c20d07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="logistics cost function"></p>
+<h1 id="LR的优缺点："><a href="#LR的优缺点：" class="headerlink" title="LR的优缺点："></a>LR的优缺点：</h1><ul>
+<li>LR分类器适用数据类型：数值型和标称型数据。</li>
+<li>其优点是计算代价不高，易于理解和实现；</li>
+<li>其缺点是容易欠拟合，分类精度可能不高。</li>
+</ul>
+<p>重点要掌握的：<br>LR的优缺点和推导<br>写LR目标函数，目标函数怎么求最优解</p>
+<p><a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">之前的文章和总结</a><br><a href="https://zhuanlan.zhihu.com/p/28057866" target="_blank" rel="external">更详细的文章</a><br>参考：<br>李航《统计学习方法》</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Logistic" >
+    <span class="tag-code">Logistic</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#LR的优缺点："><span class="toc-nav-text">LR的优缺点：</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/08/17/Logistic-Regression-as-a-NN-2/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Logistic Regression as a NN",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

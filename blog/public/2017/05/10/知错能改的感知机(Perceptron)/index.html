@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      知错能改的感知机(Perceptron) | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>知错能改的感知机(Perceptron)</h2>
+  <p class="post-date">2017-05-10</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<p>感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面<a id="more"></a>，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。感知机是神经网络与支持向量机的基础。</p>
+</blockquote>
+<p><strong>划重点：简单说就是个二分类的线性分类模型,感知机学习，就是通过训练数据集，求得感知机模型，即求的模型参数。</strong></p>
+<h1 id="感知机模型"><a href="#感知机模型" class="headerlink" title="感知机模型"></a>感知机模型</h1><ul>
+<li>由输入空间到输出空间的如下函数称为感知机：<br>   f(x)=sign(w.x+b)</li>
+</ul>
+<p>w叫做权值（weight）或权值向量，b叫做偏置(bias)。当然可以也可以写成向量的形式。</p>
+<ul>
+<li><p>感知机模型的原理：给每一个属性一个权重w,对属性值和权重的乘积求和，将这个值和一个阀值进行比较，可以判定比如是否录用这个应聘者。</p>
+</li>
+<li><p>感知机的几何解释：线性方程.<br>线性分类器的几何表示：直线、平面、超平面。</p>
+</li>
+</ul>
+<p><img src="http://opdexhju0.bkt.clouddn.com/14952804093807.jpg" alt=""></p>
+<ul>
+<li>对应于特征空间Rn中的一个超平面S，其中w是超平面的法向量[注]，b是超平面的截距。这个超平面将特征空间划分为两个部分，位于两部分的点分别被分为正、负两类。因此，超平面S称为分离超平面（separating hyperplanes）。</li>
+</ul>
+<p>注：比如在二维平面里，分界是一条直线的情形下，y=wTx，那么分界线对应的y取值都是0，此时对于这条线来说，w就是分界线的法向量。</p>
+<h1 id="感知机是咋学习的，为啥说它是知错能改？"><a href="#感知机是咋学习的，为啥说它是知错能改？" class="headerlink" title="感知机是咋学习的，为啥说它是知错能改？"></a>感知机是咋学习的，为啥说它是知错能改？</h1><p>1&gt;假设数据集线性可分，感知机的学习目标是求得一个能够将训练集正实例点和负实例点完全正确分开的超平面。为了找到这个超平面，即确定感知机模型参数w，b，需要确定一个学习策略，即定义（经验）损失函数并将损失函数极小化。</p>
+<p>损失函数的一个自然选择是误分类点的总数，但是损失函数不是w，b的连续可导函数，不易优化。损失函数的另一个选择是计算误分类点到超平面的总距离。 输入空间中任一点x0x0到超平面S的距离为：</p>
+<p><img src="http://opdexhju0.bkt.clouddn.com/14952805258506.jpg" alt=""></p>
+<p>感知机sign(w.x+b)学习的损失函数定义为(重点)：<br><img src="http://opdexhju0.bkt.clouddn.com/14952806052077.jpg" alt=""></p>
+<p>一个特定样本的损失函数，在误分类的时候该函数是w和b的线性函数，而正确分类的时候是0，因此损失函数时w和b的连续可导函数。</p>
+<p><strong>划重点：感知机学习策略就是在假设空间中选取使感知机的损失函数最小的模型参数w和b，即感知机模型。</strong></p>
+<p>2&gt;感知机学习算法转化为求解感知机损失函数的最优化问题，最优化的方法是随机梯度下降法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">学习算法：</div><div class="line">输入：训练数据集T、学习率α</div><div class="line">输出：w,b；感知机模型f(x)=sign(w.x + b)</div><div class="line">(1)选取初值w0,b0</div><div class="line">(2)在训练集中选取数据(xi,yi)</div><div class="line">(3)如果yi(w.xi + b) &lt;= 0，使用随机梯度下降法更新w和b</div><div class="line">(4)转至(2)，直至训练集中没有误分类点（重复的将误分类的点一直更新）</div></pre></td></tr></table></figure>
+<p>任意选取一个超平面w0,b0w0,b0，然后用梯度下降法不断地极小化目标函数</p>
+<p><img src="http://opdexhju0.bkt.clouddn.com/14952806461673.jpg" alt=""></p>
+<p>随机选取一个误分类点(xi,yi)(xi,yi)，对w,b进行更新：<br><img src="http://opdexhju0.bkt.clouddn.com/14952806644853.jpg" alt=""></p>
+<p>其中η是步长，又称为学习速率。这样通过迭代可以期待损失函数L(w,b)不断减小，直到0.</p>
+<p>这种学习算法直观上解释：当一个实例类被误分类，即位于分离超平面的错误一侧时，则调整w,b的值，使分离超平面向该分类点的一侧移动，以减少该误分类点与超平面的距离，直至超平面越过该误分类点使其被正确分类。</p>
+<ul>
+<li>刚开始，随便一点，开始两个相同类型连线即法向量，作垂线得到初始的分类平面(线)<br><img src="http://opdexhju0.bkt.clouddn.com/14952806860138.jpg" alt=""></li>
+</ul>
+<ul>
+<li><p>当检测到错误后，通过旋转开始修正，得到优化的分类<br><img src="http://opdexhju0.bkt.clouddn.com/14952806997907.jpg" alt=""></p>
+</li>
+<li><p>不断检测，直到没有错误<br><img src="http://opdexhju0.bkt.clouddn.com/14952807132424.jpg" alt=""></p>
+</li>
+</ul>
+<h1 id="但是这个PLA算法真的会停吗？"><a href="#但是这个PLA算法真的会停吗？" class="headerlink" title="但是这个PLA算法真的会停吗？"></a>但是这个PLA算法真的会停吗？</h1><p>分两种情况讨论：数据线性可分；数据线性不可分</p>
+<p><img src="http://opdexhju0.bkt.clouddn.com/14952807286439.jpg" alt=""></p>
+<p>注意PLA 停止的条件是，对任何数据分类都正确，显然数据线性不可分时PLA 无法停止，那么我们可以用Pocket算法，运用贪心思想找到一个比较好的。</p>
+<h3 id="数据线性可分"><a href="#数据线性可分" class="headerlink" title="数据线性可分:"></a>数据线性可分:</h3><p>一定存在完美的w(记为wf)， 使得所有的(xi, yi), yi = sign(wf*xi).可知： <img src="https://img3.doubanio.com/view/note/large/public/p10433362.jpg" alt=""></p>
+<p>下面证明在数据线性可分时，简单的感知机算法会收敛。（这个是根据林老师的定义给的，我感觉比较清晰，详细的可以看《统计学习方法》第二章）<br><img src="http://opdexhju0.bkt.clouddn.com/14956134012895.jpg" alt=""></p>
+<p>而且量向量夹角余弦值不会大于1，可知T 的值有限。T=1，即向量内积为1，两向量重合，由此，我们证明了简单的PLA 算法可以收敛。</p>
+<h3 id="数据线性不可分："><a href="#数据线性不可分：" class="headerlink" title="数据线性不可分："></a>数据线性不可分：</h3><p>Pocket Algorithm当数据线性不可分时（存在噪音），简单的PLA 算法显然无法收敛。我们要讨论的是如何得到近似的结果。我们希望尽可能将所有结果做对，即：<br><img src="http://opdexhju0.bkt.clouddn.com/14956133096009.jpg" alt=""></p>
+<p>寻找wg 是一个NP-hard 问题！只能找到近似解。算法如下：<br><img src="http://opdexhju0.bkt.clouddn.com/14956113311561.jpg" alt=""></p>
+<p>与简单PLA 的区别：迭代有限次数（提前设定）；随机地寻找分错的数据（而不是循环遍历）；只有当新得到的w 比之前得到的最好的wg 还要好时，才更新wg（这里的好指的是分出来的错误更少）。由于计算w 后要和之前的wg 比较错误率来决定是否更新wg， 所以pocket algorithm 比简单的PLA 方法要低效。</p>
+<p>Reference：<br>《统计学习方法》第二章<br>《机器学习基石》台湾国立大学第8，9</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#感知机" >
+    <span class="tag-code">感知机</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#感知机模型"><span class="toc-nav-text">感知机模型</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#感知机是咋学习的，为啥说它是知错能改？"><span class="toc-nav-text">感知机是咋学习的，为啥说它是知错能改？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#但是这个PLA算法真的会停吗？"><span class="toc-nav-text">但是这个PLA算法真的会停吗？</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据线性可分"><span class="toc-nav-text">数据线性可分:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据线性不可分："><span class="toc-nav-text">数据线性不可分：</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/05/10/知错能改的感知机(Perceptron)/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "知错能改的感知机(Perceptron)",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

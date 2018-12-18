@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      RNN系列教程之rnns简介 | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>RNN系列教程之rnns简介</h2>
+  <p class="post-date">2017-05-24</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<p>本篇翻译自Denny Britz(Google Brain Team成员)的<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">RNN系列教程</a>，因为RNN应用很广也取得一定的成果，但作者发现在这方面的教程和资料很少，所以写下这个系列</p>
+</blockquote>
+<p>RNN也就是Recurrent Neural Network，在语音识别，自然语言处理(NLP)等很多领域广泛应用，人气很高。这个系列教程包含以下：<br><a id="more"></a><br>1、RNN简介(本文)<br>2、使用Python和Theano实现RNN<br>3、了解方向传播算法和梯度消失问题<br>4、实施GRU/LSTM RNN</p>
+<p>本文假设你对基本的神经网络有所了解。</p>
+<h2 id="什么是RNN"><a href="#什么是RNN" class="headerlink" title="什么是RNN?"></a>什么是RNN?</h2><p>RNN是按照时间维度的展开，代表信息在时间维度从前往后的的传递和积累，后面的信息的概率建立在前面信息的基础上，在神经网络结构上表现为后面的神经网络的隐藏层的输入是前面的神经网络的隐藏层的输出。</p>
+<p>假定所有输入(输出)是相互独立的，那这对于许多任务来说是扎心的。比如你想预测一个句子中的下一个单词，单词之间都独立还预测个DD，跟妹子陌路，还想拉拉小手。另外RNN称为循环因为它们是对序列的每个元素执行相同的任务，输出取决于先前的计算。考虑RNN的另一种方法是，它们有一个“记忆”，捕获到目前为止所计算的信息。在理论上RNN可以以任意长的序列来使用信息，但在实践中，它们仅限反向几步。一个典型的RNN：<br><img src="http://opdexhju0.bkt.clouddn.com/14956161082645.jpg" alt="A recurrent neural network and the unfolding in time of the computation involved in its forward computation. Source: Nature"><br>上图显示了RNN正展开成一个完整的网络。展开意味着我们写出了完整序列的网络。例如，如果我们关心的序列是5个字的句子，则网络将被展开为5层神经网络，每个单词一层。RNN中计算的公式如下：</p>
+<ul>
+<li>X<sub>t</sub>是输入t的时间步长。X<sub>1</sub>可以是对应于句子的第二个单词的ont-hot 向量。</li>
+<li><p>S<sub>t</sub>是时间t时的隐藏状态。它是构建网络的“记忆”。S<sub>t</sub>是基于以前的隐藏状态和当前步骤的输入计算的：s<sub>t</sub> = f(Ux<sub>t</sub> + Ws<sub>t-1</sub>)。该函数F通常是非线性的，如tanh或ReLU。  s<sub>-1</sub>存在是为了计算第一个隐藏状态,通常全被初始化为零。</p>
+</li>
+<li><p>O<sub>t</sub>是在t时的输出。例如，如果我们想预测一个句子中的下一个单词，会输出一个词汇概率的向量。o<sub>t</sub>  = softmax(Vs<sub>t</sub>)。</p>
+</li>
+</ul>
+<p>这里有几件事要注意：</p>
+<ul>
+<li>你可以将隐藏状态S<sub>T</sub>视为网络的记忆。S<sub>T</sub>捕获所有先前time step中的信息。在时间t可以根据时间记忆计算出输出O<sub>t</sub>。如上所述，在实践中有点复杂，因为S<sub>T</sub>通常无法从太长的时间捕获信息。</li>
+<li>不同于传统的深层神经网络，其在每个层使用不同的参数，RNN 在所有步骤中共享相同的参数(U，V，W)。这反映了我们在每个步骤上执行相同的任务，只用不同的输入。那这大大减少了我们学习的参数数量。</li>
+<li>上述图表在每个time step都有输出，但是根据任务，这不是必需的。例如，当预测句子的情绪时，我们可能只关心最终输出，而不是每个单词之后的情绪。类似地，我们可能不需要在每个time step都有输入。RNN的主要特征是它的隐藏状态并且能捕获有关序列的一些信息。</li>
+</ul>
+<h2 id="RNN可以做什么？"><a href="#RNN可以做什么？" class="headerlink" title="RNN可以做什么？"></a>RNN可以做什么？</h2><p>在许多NLPtask中，RNN已经取得了巨大的成功。与此同时也想到了LSTM，是的它的长期依赖性要好于RNN。不用担心的是LSTM与本教程中将要开发的RNN基本上是一样的，它们只是具有不同的计算隐藏状态的方法。我们将在稍后的文章中更详细地介绍LSTM。以下是NLP中RNN的一些示例应用。</p>
+<p>####语言建模和生成文本</p>
+<p>给定一系列单词，我们想预测并给出先前任一单词的概率。语言模型允许我们去衡量句子相似性，这是机器翻译的重要输入（因为高概率句子通常是正确的)。在能够预测下一个单词时会有一个slider-effect，它会得到一个生成模型，允许我们从输出概率中抽样生成新的文本。根据我们的训练数据，我们可以生成各种各样的东西。在语言建模中，我们的输入通常是一系列单词（例如，编码为one-hot），我们的输出是预测单词的序列。我们构造o<sub>t</sub> = x<sub>t + 1</sub>可以在step t中的输出单词是实际中我们想要的。</p>
+<p>####关于语言建模和生成文本的研究论文：</p>
+<ul>
+<li><a href="http://www.fit.vutbr.cz/research/groups/speech/publi/2010/mikolov_interspeech2010_IS100722.pdf" target="_blank" rel="external">循环神经网络语言模型</a></li>
+<li><a href="http://www.fit.vutbr.cz/research/groups/speech/publi/2011/mikolov_icassp2011_5528.pdf" target="_blank" rel="external">基于神经网络的语义模型的扩展</a></li>
+<li><a href="http://machinelearning.wustl.edu/mlpapers/paper_files/ICML2011Sutskever_524.pdf" target="_blank" rel="external">用循环神经网络生成文本</a></li>
+</ul>
+<p>####机器翻译<br>机器翻译类似于语言建模，因为我们的输入是一系列单词（例如德语），输出的是一系列的单词(比如中文)。一个关键的区别是，我们的输出只有在我们看到完整的输入之后开始，因为翻译的句子的第一个单词可能需要从完整输入序列中才能获取。<br><img src="http://opdexhju0.bkt.clouddn.com/14956166135764.png" alt="机器翻译RNN。图片来源：http://cs224d.stanford.edu/lectures/CS224d-Lecture8.pdf"></p>
+<p>机器翻译研究论文</p>
+<ul>
+<li><a href="http://www.aclweb.org/anthology/P14-1140.pdf" target="_blank" rel="external">A Recursive Recurrent Neural Network for Statistical Machine Translation
+</a></li>
+<li><a href="http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf" target="_blank" rel="external">Sequence to Sequence Learning with Neural Networks</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/gzweig/Pubs/EMNLP2013RNNMT.pdf" target="_blank" rel="external">Joint Language and Translation Modeling with Recurrent Neural Networks</a></li>
+</ul>
+<p>####语音识别<br>给定来自声波的声信号的输入序列，我们可以预测语音段的序列及其概率。</p>
+<p>关于语音识别的研究论文：</p>
+<ul>
+<li><a href="http://www.jmlr.org/proceedings/papers/v32/graves14.pdf" target="_blank" rel="external">Towards End-to-End Speech Recognition with Recurrent Neural Networks
+</a></li>
+</ul>
+<p>####生成图像说明<br>与卷积神经网络一起，RNN已被用作模型的一部分，以生成未标记图像的描述。这是非常惊人的，这似乎是有效的。组合模型甚至将生成的单词与图像中发现的特征对齐。</p>
+<p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/Screen-Shot-2015-09-17-at-11.44.24-AM-1024x349.png" alt="Deep Visual-Semantic Alignments for Generating Image Descriptions. Source: http://cs.stanford.edu/people/karpathy/deepimagesent/"></p>
+<h2 id="如何训练RNN"><a href="#如何训练RNN" class="headerlink" title="如何训练RNN"></a>如何训练RNN</h2><p>看了上面，RNN这么牛逼，那么怎么实现呢，不要着急，其实它类似训练传统的神经网络，我们也使用反向传播算法，不过是变化了下，由于参数由网络中的所有time step共享，每个输出的梯度不仅取决于当前time step的计算，而且还取决于以前的tiem step。例如，计算t = 4的梯度我们需要按照时间序列反向计算3个然后累加起来就是第四个时间的梯度，这称为基于时间的反向传播算法（BPTT）。要注意的是：RNNs的当层级比较多时（相距很远的步骤之间存在依赖关系）由于梯度消失/爆炸问题在训练上会存在一定的学习困难。当然，在业内也设计了一些类型（如LSTMs）避开这些问题。</p>
+<h2 id="RNN扩展"><a href="#RNN扩展" class="headerlink" title="RNN扩展"></a>RNN扩展</h2><p>多年来，研究人员开发了更复杂类型的RNN来处理RNN模型的一些缺点。我们将在稍后的文章中更详细地介绍这些内容，但是我希望本节作为简概，可以让读者熟悉一些模型的分类。</p>
+<ul>
+<li>双向RNNs(Bidirectional RNNs) 是一种当前时刻不仅仅取决于以前时刻同时还取决于未来时刻的RNN变体。举个例子, 比如我的一段文本不仅仅和前面有关系, 还和后面有一定的关系,要预测序列中缺少的单词，你要查看左侧和右侧上下文。双向RNN非常简单，你理解两个堆叠在一起的RNN。然后基于两个RNN的隐藏状态来计算输出。</li>
+</ul>
+<p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/bidirectional-rnn-300x196.png" alt=""></p>
+<ul>
+<li>LSTM RNNs(LSTM networks)是近几年比较火的一种RNN变体, 实际上也是运用最为广泛的一种形式, 它克服了梯度衰减问题, 这个问题在NN中也同样存在, LSTM本身也有变体, 至少不下十几种形式, 但是本质都差不多.</li>
+</ul>
+<p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/Screen-Shot-2015-09-16-at-2.21.51-PM.png" alt=""></p>
+<p>我的<br><a href="http://www.jianshu.com/u/9d619ad71963" target="_blank" rel="external">简书地址</a><br><a href="www.uqlai.cn">uqlai`blog</a></p>
+<p>扩展阅读：<br><a href="https://zhuanlan.zhihu.com/p/24720659" target="_blank" rel="external">循环神经网络（Recurrent）——介绍</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#RNN" >
+    <span class="tag-code">RNN</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是RNN"><span class="toc-nav-text">什么是RNN?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RNN可以做什么？"><span class="toc-nav-text">RNN可以做什么？</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#如何训练RNN"><span class="toc-nav-text">如何训练RNN</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RNN扩展"><span class="toc-nav-text">RNN扩展</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/05/24/RNN系列教程之rnns简介/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "RNN系列教程之rnns简介",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

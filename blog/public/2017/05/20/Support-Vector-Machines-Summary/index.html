@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Support Vector Machines Summary | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Support Vector Machines Summary</h2>
+  <p class="post-date">2017-05-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>经过最近的学习了解了部分理论但是没有实践应用，所以先写下来，可能不准确。</p>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>在reddit上看到一个很好的解释更直观和生动：<br><a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">如何向一个五岁的孩子解释SVM</a><br>知乎上也有人提到这个，而且已经整理如下：<a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">中文</a><br><a id="more"></a></p>
+<p><a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank" rel="external">wiki定义</a>:其实就是个监督学习模型，用来分析回归和分类，它巧妙的运用非线性变换把低维的特征投影到高维，可以执行比较复杂的分类任务（升维打击），是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机；</p>
+<p>包含了构建从简单到复杂的模型：线性可分支持向量机（linear support vector machine in linearly separable case)、线性支持向量机（linear support vector machine)及非线性支持向量机（non-linear support vector machine)。简单模型是复杂模型的基础，也是复杂模型的特殊情况。（具体可以看李航老师的《统计学习方法》）</p>
+<h3 id="1基本问题"><a href="#1基本问题" class="headerlink" title="1基本问题"></a>1基本问题</h3><p>在<a href="http://uqlai.cn/2017/05/10/%E7%9F%A5%E9%94%99%E8%83%BD%E6%94%B9%E7%9A%84%E6%84%9F%E7%9F%A5%E6%9C%BA/">知错能改的感知机</a>中，学习到在线性可分的训练数据中，我们可以得到不能分分类界线<br><img src="http://opdexhju0.bkt.clouddn.com/14952791835673.jpg" alt=""></p>
+<p>为了得到最大边界间隔的超平面，将问题准换为优化问题，期中margin(b,w)表示超平面wx+b 离样本的最小距离，进而让这个最小距离最大化：<br><img src="http://opdexhju0.bkt.clouddn.com/14952778382070.jpg" alt=""><br>描述距离：<br><img src="http://opdexhju0.bkt.clouddn.com/14952779512133.jpg" alt="描述距离"><br>距离推导的结果：<br><img src="http://opdexhju0.bkt.clouddn.com/14952780106684.jpg" alt=""><br>将问题转化为：<br><img src="http://opdexhju0.bkt.clouddn.com/14952781553706.jpg" alt=""><br>进一步简化，因为w和b同时成倍的放缩不会影响超平面的变化，所以总可以找到一组w<em> </em>和b<strong>使得miny(</strong>wx+b<em> </em>)=1,所以有<br><img src="http://opdexhju0.bkt.clouddn.com/14952785985439.jpg" alt=""><br>当然可以用反正法证明一下，假设</p>
+<p>y(<em>*wx+b</em> *)&gt;1， 我们可以通过放缩w，b得到更优化的解，约束条件和下图等价<br><img src="http://opdexhju0.bkt.clouddn.com/14952787703405.jpg" alt=""><br>最后得到上图的优化问题，这个问题的形式和二次规划（线性规划的进阶版）一致，所以可以用二次规划的方法解决。</p>
+<h3 id="2可行性"><a href="#2可行性" class="headerlink" title="2可行性"></a>2可行性</h3><p>因为svm对噪声的容忍性更强，所以从VC bound 角度讲(超平面到底能产生多少圈圈叉叉分类的组合)，对于PLA来说可以shatter所有组合，但svm会对margin有限制<br><img src="http://opdexhju0.bkt.clouddn.com/14952797116001.jpg" alt=""><br>linear hard SVM不能shatter任意三个inputs，说明有更少的维度，所以有更好的泛化能力。同时，使用特征转化，可以使Linear hard SVM 进行更精细分类。</p>
+<p><img src="http://opdexhju0.bkt.clouddn.com/14952798405661.jpg" alt=""></p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>SVM的典型使用场景如：<br>一、房价估算<br>根据过去十年来房价和房屋面积、卧室数量、当地消费水平等等各种因素数据，将房屋分为「豪宅」、「中等」、「经济型住房」、「贫民窟」等几类；<br>使用SVM训练这些数据得出一个模型，可以用来预测在新的条件下，某个住房可以被划归到哪种分类，价值区间多少。</p>
+<p>二、垃圾邮件分类器：<br>获取可疑的spam email关键词列表，例如：Buy、now等（实际Spam Corpus可以参考使用Apache Spam Assassin）；<br>收集大量的spam和非spam邮件数据，将其中包含的可疑spam关键词找出并标记在特征向量中，用SVM训练这些数据，得出一个模型，用来判断一封新的邮件是否为一个垃圾邮件。</p>
+<p>####其实SVM最难的在于各种核函数，包括选取，这个在后面的文章中再说。</p>
+<h3 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h3><p>台大林老师《机器学习技法》<br>李航《统计学习方法》</p>
+<p>###扩展阅读：</p>
+<ul>
+<li><a href="http://www.hankcs.com/ml/support-vector-machine.html" target="_blank" rel="external">http://www.hankcs.com/ml/support-vector-machine.html</a></li>
+<li>《机器学习实战》</li>
+<li><a href="https://www.zhihu.com/search?type=content&amp;sort=upvote&amp;q=%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="external">https://www.zhihu.com/search?type=content&amp;sort=upvote&amp;q=%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</a></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#SVM" >
+    <span class="tag-code">SVM</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#定义："><span class="toc-nav-text">定义：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1基本问题"><span class="toc-nav-text">1基本问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2可行性"><span class="toc-nav-text">2可行性</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用场景"><span class="toc-nav-text">使用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Reference："><span class="toc-nav-text">Reference：</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/05/20/Support-Vector-Machines-Summary/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Support Vector Machines Summary",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

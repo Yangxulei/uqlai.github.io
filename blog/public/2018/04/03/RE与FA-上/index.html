@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      RE与FA(上) | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>RE与FA(上)</h2>
+  <p class="post-date">2018-04-03</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><img src="https://upload-images.jianshu.io/upload_images/744392-eb349b9f87c37fc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="词法分析器的自动生成方法"><br>程序员只需要指定声明式的规范就行，不需要书写繁重复杂的词法分析器算法，大大减少了工作量。</p>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><ul>
+<li>对给定的字符集 Σ = c1,c2,….cn.</li>
+<li>正则表达式是一个声明式的规范方法<ul>
+<li>归纳定义：</li>
+<li>空串ε 是正则表达式</li>
+<li>对于任意的 c ∈  Σ， c是正则表达式</li>
+<li>如果M和N是正则表达式，则下面也是正则表达式<ul>
+<li>选择： M | N  = {M, N}</li>
+<li>连接： MN = {mn | m ∈ M, n ∈ N}</li>
+<li>闭包： M* = {ε, M, MM, MMM, …}  (Kleene 闭包)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>如下是正则表达式的形式表示：<br><img src="https://upload-images.jianshu.io/upload_images/744392-99341eeef078ba65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="正则例子"></p>
+<p>此中前面的两种是基本形式，后面三种是归纳形式，选择，连接和闭包。</p>
+<p>对于给定的一个字符集 Σ = a,b 可以写出如下正则表达式</p>
+<ul>
+<li>1、ε </li>
+<li>2、a, b</li>
+<li>3、ε | ε  ……(选择)</li>
+<li>4、ε a, ε b, ab,ε ε , ….., a(ε | a),……. （连接）</li>
+<li>5、ε <em>，(a(ε |a))</em>，…… (闭包)</li>
+</ul>
+<p> 可以写出如下正则表达式：</p>
+<ol>
+<li>ε （第一个规则，空串ε是正则表达式）</li>
+<li>a, b</li>
+<li>ε|ε， ε|a，… （选择）</li>
+<li>εa， εb， ab， εε， …, a(ε|a), … （连接）</li>
+<li>ε<em>, (a(ε|a))</em>, … （闭包）</li>
+</ol>
+<p>C语言中有很多关键字，例如 if, while 等：</p>
+<p>对于 if ， i ∈ Σ， f ∈ Σ， 所以 if 属于正则表达式。<br>其他，同理。<br>C语言中的标识符，是以字母和下划线开头，后跟零个或者多个字母、数字或下划线。其用正则表达式表达的方式如下：(a|b|…|z|A|B|…|Z|<em>)(a|b|…|z|A|B|…|Z|</em>|0|1|…|9)*。因为这里的后面部分是可以为零的，也就是任意个，所以直接使用闭包即可。</p>
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><p>可以引入更多的语法糖，来简化创造。</p>
+<ul>
+<li>[c1 - cn] == c1|c2|c3|…|cn</li>
+<li>e+ == 一个或者多个e</li>
+<li>e? ==  零个或一个e， 等价于 ε | e<br>-“a<em>“ == a</em> 本身，不是 a 的 Kleen 闭包</li>
+<li>e{i,j} == i 到j个e的连接</li>
+<li>. == 除’\n’外的任意字符</li>
+</ul>
+<p>ps：汇编是通过赋值与跳转两种就可以完成所有的机制，通过语法糖可以封装高效利用这些机制</p>
+<h1 id="有限自动机"><a href="#有限自动机" class="headerlink" title="有限自动机"></a>有限自动机</h1><p><a href="http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html" target="_blank" rel="external">JavaScript与有限状态机</a><br>从上述例子更好理解状态转移<br><img src="https://upload-images.jianshu.io/upload_images/744392-eb349b9f87c37fc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="词法分析器的自动生成方法"></p>
+<h4 id="输出更加形式化的表达：有限状态自动机"><a href="#输出更加形式化的表达：有限状态自动机" class="headerlink" title="输出更加形式化的表达：有限状态自动机"></a>输出更加形式化的表达：有限状态自动机</h4><p><img src="https://upload-images.jianshu.io/upload_images/744392-b58e5b2999cfbca5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="有限自动机"></p>
+<h1 id="确定有限自动机（DFA）"><a href="#确定有限自动机（DFA）" class="headerlink" title="确定有限自动机（DFA）"></a>确定有限自动机（DFA）</h1><ul>
+<li>对任意的字符，最多有一个状态可以转移<ul>
+<li>δ： S * Σ -&gt; S</li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/744392-e4048eda56858566.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="确定有限自动机"></p>
+<ul>
+<li>Σ 表示自动机可以识别的所有的不同的字符的集合。 Σ = {a, b}</li>
+<li>S 是状态集，在这里只有三种状态，所以 S = {0, 1, 2}</li>
+<li>q0 是初始状态，我们一般约定只有一个单向箭头的边指向的节点是起始状态。q0 = 0</li>
+<li>F 是终结状态，或者说是接收状态，在图中表示为双圈。 F = {2}</li>
+<li>δ 是转移函数，是一个映射的概念，为 </li>
+</ul>
+<p>{(q0, a) -&gt; q1, (q0, b) -&gt; q0,<br>(q1, a) -&gt; q2, (q1, b) -&gt; q1,<br>(q2, a) -&gt; q2, (q2, b) -&gt; q2}。 是所有的映射构成的一个集合。</p>
+<h4 id="串被接受？"><a href="#串被接受？" class="headerlink" title="串被接受？"></a>串被接受？</h4><p>接受的意思就是处于起始状态，给定一个输入串S，根据转移函数δ进行状态转移，最后到达了F总结状态，这样的串S就可以被接受。</p>
+<h1 id="非确定有限自动机-（NFA）"><a href="#非确定有限自动机-（NFA）" class="headerlink" title="非确定有限自动机 （NFA）"></a>非确定有限自动机 （NFA）</h1><ul>
+<li>对任意的字符，有多余一个状态可以转移<ul>
+<li>δ：S X (Σ ∪ ε) -&gt; Φ(S的幂集)</li>
+</ul>
+</li>
+</ul>
+<p>ps： X：笛卡尔积<br>  eg: s={a,b}  幂集={φ，{a},{b},{a,b}} 共有2^n</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/744392-bb090a603ef48cd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="非确定有限自动机例子"><br>转移函数：<br>{(q0, a) -&gt; {q0, q1},       // 得到一个集合<br>(q0, b) -&gt; {q1},<br>(q1, b) -&gt; {q0, q1}}     //得到一个集合</p>
+<p>综上例子来种自动机，对于存在一种状态 ，给定的一个字符的转移函数是不确定，可以得到一个集合，如上式中的第一个和第三个集合，我们称这样的状态机是非确定状态自动机（NFA）。如果转移函数所有的结果都是一个确定的值，是单集合元素，就像上一个例子一样，这样的状态机就是确实有限状态自动机（DFA）。</p>
+<h4 id="对于-NFA-和-DFA-在接受的时候有很大的差别。"><a href="#对于-NFA-和-DFA-在接受的时候有很大的差别。" class="headerlink" title="对于 NFA 和 DFA 在接受的时候有很大的差别。"></a>对于 NFA 和 DFA 在接受的时候有很大的差别。</h4><p>如该例中，q0 状态在 a 状态后可以得到 q0 或 q1 两种状态，如果是 q0 那就不能进入终结状态F，不能被接受，而选择 q1 时可以被接受。所以我们对 NFA 定义，只要在多种走法中最终由一种走法可以被接受就是可以被接受。所以该例可以被接受。</p>
+<p>一般对于这种是否可以接受的判断，我们常常会先将 NFA 转化为 DFA 再进行判断。</p>
+<h2 id="DFA实现："><a href="#DFA实现：" class="headerlink" title="DFA实现："></a>DFA实现：</h2><p>DFA其实是一个有向图，可以用邻接矩阵对其进行了表示。</p>
+<p><em>！！！！对于ε动作的FA会放在下面一块讲解</em></p>
+<h1 id="正则表达式到非确定有限状态自动机的转化算法"><a href="#正则表达式到非确定有限状态自动机的转化算法" class="headerlink" title="正则表达式到非确定有限状态自动机的转化算法"></a>正则表达式到非确定有限状态自动机的转化算法</h1><p><img src="https://upload-images.jianshu.io/upload_images/744392-cf0bb874214ef43c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>RE-&gt;NFA ：<a href="https://zh.wikipedia.org/wiki/Thompson%E6%9E%84%E9%80%A0%E6%B3%95" target="_blank" rel="external">Thompson算法</a>(递归)</li>
+<li>NFA-&gt;DFA：子集构造算法</li>
+<li>DFA-&gt;: 词法分析器代码：使用 Hopcroft 最小化算法做压缩。</li>
+</ul>
+<h4 id="Thompson算法"><a href="#Thompson算法" class="headerlink" title="Thompson算法"></a><a href="https://zh.wikipedia.org/wiki/Thompson%E6%9E%84%E9%80%A0%E6%B3%95" target="_blank" rel="external">Thompson算法</a></h4><ul>
+<li>基于对 RE 的结构做归纳<ul>
+<li>对基本的 RE 直接构造</li>
+<li>对复合的 RE 递归构造</li>
+</ul>
+</li>
+<li>递归算法，容易实现</li>
+</ul>
+<p>举个栗子🌰：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/744392-4d22655baf72ac72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>对于第一种空串和第二种一个单个字符，可以直接构造</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/744392-912c568363bc5a5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e-&gt;ε"><br><img src="https://upload-images.jianshu.io/upload_images/744392-793cc18da0a62a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e-&gt;c"></p>
+<ul>
+<li>后三种可以通过递归构造</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/744392-7181f8d7f00531c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e -&gt; e1e2"><br><img src="https://upload-images.jianshu.io/upload_images/744392-77aa07da573a92fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e -&gt; e1 | e2"><br><img src="https://upload-images.jianshu.io/upload_images/744392-efe5aa07b016c2b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e -&gt; e1*"></p>
+<ul>
+<li>看一个复杂点的例子，(a|b)*abb，它所对应的 NFA 如下：<br><img src="https://upload-images.jianshu.io/upload_images/744392-18af4fda4dfc8cdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="课本28页"></li>
+</ul>
+<h1 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读:"></a>推荐阅读:</h1><p><a href="http://lotabout.me/2015/write-a-C-interpreter-0/" target="_blank" rel="external">手把手教你构建 C 语言编译器</a></p>
+<h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><ul>
+<li>《编译原理》(龙书)</li>
+<li><a href="https://blog.csdn.net/echo_qiang/article/details/5904563" target="_blank" rel="external">DFA&amp;NFA（简易比较）</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26524390" target="_blank" rel="external">Web中无处不在的状态机</a></li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#自动机" >
+    <span class="tag-code">自动机</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#正则表达式"><span class="toc-nav-text">正则表达式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#语法糖"><span class="toc-nav-text">语法糖</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#有限自动机"><span class="toc-nav-text">有限自动机</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出更加形式化的表达：有限状态自动机"><span class="toc-nav-text">输出更加形式化的表达：有限状态自动机</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#确定有限自动机（DFA）"><span class="toc-nav-text">确定有限自动机（DFA）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#串被接受？"><span class="toc-nav-text">串被接受？</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#非确定有限自动机-（NFA）"><span class="toc-nav-text">非确定有限自动机 （NFA）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对于-NFA-和-DFA-在接受的时候有很大的差别。"><span class="toc-nav-text">对于 NFA 和 DFA 在接受的时候有很大的差别。</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#DFA实现："><span class="toc-nav-text">DFA实现：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#正则表达式到非确定有限状态自动机的转化算法"><span class="toc-nav-text">正则表达式到非确定有限状态自动机的转化算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thompson算法"><span class="toc-nav-text">Thompson算法</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#推荐阅读"><span class="toc-nav-text">推荐阅读:</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Reference："><span class="toc-nav-text">Reference：</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2018/04/03/RE与FA-上/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "RE与FA(上)",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

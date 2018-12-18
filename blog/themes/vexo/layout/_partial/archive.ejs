@@ -1,0 +1,29 @@
+<section class="time-section">
+  <h1 class="section-year">
+    <%= year %>
+  </h1>
+  <div class="section-list">
+    <% posts.sort((l, r) => r.date - l.date) %>
+    <% posts.forEach(post => { %>
+      <div class="section-list-item">
+        <a href="<%= url_for(post.path) %>" class="archive-title"><%= post.title %></a>
+        <p class="archive-date"><%-date(post.date, "MM-DD")%></p>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: ' ', // 可选。默认为 location.href
+  owner: 'YangXulei',
+  repo: 'https://github.com/Yangxulei/uqlai.github.io',
+  oauth: {
+    client_id: '21b7e54951fb0d13b30a',
+    client_secret: '17474d9be1b0de2212e9992efb1a43b70efb2f5c',
+  },
+})
+gitment.render('container')
+</script>

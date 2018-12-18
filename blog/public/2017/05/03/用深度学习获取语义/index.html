@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      用深度学习获取语义 | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>用深度学习获取语义</h2>
+  <p class="post-date">2017-05-03</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>&gt;</p>
+<blockquote>
+<p>当我看到好的文章后我就会把它翻译下来放在博客里，一方面方便回顾，另一方面在翻译地过程中学习，可能有不准确的地方以原文为主</p>
+</blockquote>
+<p>这篇内容是使用深度学习获取语义意义，<br><a id="more"></a>了解如何以分布式方式处理大型自然语言文本，其中包括搭建spark的自然语言理解管道。原文地址：<a href="https://www.oreilly.com/learning/capturing-semantic-meanings-using-deep-learning" target="_blank" rel="external">《Capturing semantic meanings using deep learning》</a> </p>
+<h2 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h2><p>词嵌入是一种将词作为相对相似性与语义相似性相关的向量的技术。这种技术是无监督学习最成功的应用之一。自然语言处理（NLP）系统传统上将字编码为字符串，它们是任意的，并且不向系统提供关于可能存在于不同单词之间的关系的有用信息。词嵌入是NLP中的替代技术，其中来自词汇表的词或短语相对于词汇大小被映射到低维空间中的实数向量，并且向量之间的相似性与词语义相关。</p>
+<p>例如，让我们来说，女人，男人，女王和王。我们可以得到它们的向量表示，并使用基本的代数运算来发现语义相似性。使用诸如余弦相似度的度量可以测量向量之间的相似性。所以，当我们减去这个词的矢量男子从词的矢量女人，那么它的余弦距离将接近字之间的距离女王减去单词王（见图1）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">W(&quot;woman&quot;)−W(&quot;man&quot;) ≃ W(&quot;queen&quot;)−W(&quot;king&quot;)</div></pre></td></tr></table></figure>
+<p><img src="http://opdexhju0.bkt.clouddn.com/14938046787310.jpg" alt="Figure 1. Gender vectors. Source: Lior Shkiller"></p>
+<p>提出了许多不同类型的模型来表示单词作为连续向量，包括潜在语义分析（LSA）和潜在的Dirichlet分配（LDA）。这些方法背后的想法是，相关的词通常会出现在相同的文档中。例如，背包， 学校， 笔记本和老师可能会一起出现。但学校，老虎，苹果和篮球可能不会一起出现。为了将单词表示为向量 - 使用类似单词将在类似文档中出现的假设 - LSA创建一个矩阵，其中行表示唯一的单词，列表示每个段落。然后，获得O’Reilly的每周数据通讯.</p>
+<p>而不是计算和存储大量的数据，我们可以尝试创建一个神经网络模型，以便能够学习单词之间的关系，并有效地进行。</p>
+<h2 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h2><p>最流行的一个词嵌入模型word2vec，通过创建Mikolov等。，2013年。该模型显示出巨大的效果和效率的提高。Mikolov等人提出了负采样方法作为一种更有效的方法来推导字嵌入。您可以在这里阅读更多。</p>
+<p>该模型可以使用两种架构中的任一种来生成分布式表示的单词：连续的单词（CBOW）或连续的跳过。</p>
+<p>接下来我们来看这两种架构。</p>
+<p>####CBOW模式</p>
+<p>在CBOW架构中，该模型预测了周围环境词窗口中的当前单词。Mikolov等人因此使用目标词w之前和之后的n个词预测它。</p>
+<p>单词序列相当于一组项目。因此，也可以替换术语单词和项目，这允许对协作过滤和推荐系统应用相同的方法。CBOW比跳过式模型快几倍，对频繁出现的单词的准确度略高一些（见下图）。</p>
+<p><img src="https://d3ansictanv2wj.cloudfront.net/image00_1400-3825b20030f46e47a994645c04fe5216.jpg" alt="F2"></p>
+<p>####连续跳转模型</p>
+<p>在跳格式模型中，不是使用周围的单词来预测中心词，而是使用中心词来预测周围的单词（见图3）。根据Mikolov等人的说法，skip-gram与少量的训练数据就可以工作得很好，并且很好地表达了罕见的单词和短语。</p>
+<p><img src="https://d3ansictanv2wj.cloudfront.net/image02_1400-dffee04f74194ed216f5224997951785.jpg" alt=""></p>
+<p>####编码</p>
+<p>这个模型的伟大之处在于，它可以很好地支持多种语言。</p>
+<p>我们所要做的就是为我们需要的语言下载一个大数据集。</p>
+<p>寻找维基百科的大数据集</p>
+<p>我们可以寻找任何给定语言的维基百科。要获取大数据集，请按照下列步骤操作：</p>
+<p>查找所需语言的ISO 639代码：ISO 639代码列表<br>转到：(https：//dumps.wikimedia.org/维基/最新/)<br>下载 wiki-latest-pages-articles.xml.bz2<br>接下来，为了方便起见，我们将安装gensim，一个实现word2vec的Python包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade gensim</div></pre></td></tr></table></figure>
+<p>我们需要创建维基百科的语料库，我们将用它来训练word2vec模型。以下代码的输出是“wiki”.text“ - 其中包含维基百科中所有文章的所有单词，由语言分隔。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">from gensim.corpora import WikiCorpus</div><div class="line"></div><div class="line">language_code = &quot;he&quot;</div><div class="line">inp = language_code+&quot;wiki-latest-pages-articles.xml.bz2&quot;</div><div class="line">outp = &quot;wiki.&#123;&#125;.text&quot;.format(language_code)</div><div class="line">i = 0</div><div class="line"></div><div class="line">print(&quot;Starting to create wiki corpus&quot;)</div><div class="line">output = open(outp, &apos;w&apos;)</div><div class="line">space = &quot; &quot;</div><div class="line">wiki = WikiCorpus(inp, lemmatize=False, dictionary=&#123;&#125;)</div><div class="line">for text in wiki.get_texts():</div><div class="line">  article = space.join([t.decode(&quot;utf-8&quot;) for t in text])</div><div class="line"></div><div class="line">  output.write(article + &quot;\n&quot;)</div><div class="line">  i = i + 1</div><div class="line">  if (i % 1000 == 0):</div><div class="line">    print(&quot;Saved &quot; + str(i) + &quot; articles&quot;)</div><div class="line"></div><div class="line">output.close()</div><div class="line">print(&quot;Finished - Saved &quot; + str(i) + &quot; articles&quot;)</div></pre></td></tr></table></figure>
+<h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><p>参数如下：</p>
+<ul>
+<li>大小：向量的维数<ul>
+<li>较大的尺寸值需要更多的训练数据，但可以导致更准确的模型</li>
+</ul>
+</li>
+<li>窗口：句子中当前和预测词之间的最大距离</li>
+<li>min_count：忽略总频率低于此值的所有单词</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">import multiprocessing</div><div class="line">from gensim.models import Word2Vec</div><div class="line">from gensim.models.word2vec import LineSentence</div><div class="line"></div><div class="line">language_code = &quot;he&quot;</div><div class="line">inp = &quot;wiki.&#123;&#125;.text&quot;.format(language_code)</div><div class="line">out_model = &quot;wiki.&#123;&#125;.word2vec.model&quot;.format(language_code)</div><div class="line">size = 100</div><div class="line">window = 5</div><div class="line">min_count = 5</div><div class="line"></div><div class="line">start = time.time()</div><div class="line"></div><div class="line">model = Word2Vec(LineSentence(inp), sg = 0, # 0=CBOW , 1= SkipGram</div><div class="line">       size=size, window=window, min_count=min_count, workers=multiprocessing.cpu_count())</div><div class="line"></div><div class="line"># trim unneeded model memory = use (much) less RAM</div><div class="line">model.init_sims(replace=True)</div><div class="line"></div><div class="line">print(time.time()-start)</div><div class="line"></div><div class="line">model.save(out_model)</div></pre></td></tr></table></figure>
+<p>训练word2vec花了18分钟。</p>
+<p>###fastText</p>
+<p>Facebook的人工智能研究（FAIR）实验室最近发布了fastText，这是一个基于Bojanowski等人在文章“ 丰富词汇向量与字词信息 ”中所报告的工作的库。fastText是从word2vec不同之处在于每个字被表示为一个字符Ñ -grams。矢量表示与每个字符相关联Ñ -gram，和字被表示为这些表示的总和。</p>
+<p>使用Facebook的库很容易：</p>
+<p>pip安装fasttext</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install fasttext</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">start = time.time（）</div><div class="line">language_code =“he” </div><div class="line">inp =“wiki。&#123;&#125; .text”.format（language_code）</div><div class="line">output =“wiki。&#123;&#125;。fasttext.model”.format（language_code）</div><div class="line">model = fasttext.cbow inp，output）</div><div class="line"></div><div class="line">print（time.time（） -  start）</div></pre></td></tr></table></figure>
+<p>训练fastText的模型花了13分钟。</p>
+<h2 id="评估嵌入式：类比"><a href="#评估嵌入式：类比" class="headerlink" title="评估嵌入式：类比"></a>评估嵌入式：类比</h2><p>接下来，我们通过对我们前面的例子进行测试来评估模型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">W(&quot;woman&quot;)−W(&quot;man&quot;) ≃ W(&quot;queen&quot;)−W(&quot;king&quot;)</div></pre></td></tr></table></figure>
+<p>以下代码首先计算正负字的加权平均值。</p>
+<p>之后，它计算所有测试词的向量表示和加权平均值之间的点积。</p>
+<p>在我们的例子中，测试词是整个词汇。最后，我们打印出具有最高余弦相似度的词与正和负词的加权平均值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import numpy as np </div><div class="line">from gensim.matutils import unitvec </div><div class="line"></div><div class="line">def test（model，positive，negative，test_words）：</div><div class="line"></div><div class="line">  mean = [] </div><div class="line">  for pos_word in positive：</div><div class="line">    mean.append（1.0 * np.array（model [pos_word]））</div><div class="line"></div><div class="line">  for neg_word in negative：</div><div class="line">    mean.append（-1.0 * np.array（model [neg_word]））</div><div class="line"></div><div class="line">  ＃计算所有单词的加权平均值</div><div class="line">  mean = unitvec（np.array（mean）.mean（axis = 0））</div><div class="line"></div><div class="line">  scores = &#123;&#125; </div><div class="line">  for在test_words中的单词：</div><div class="line"></div><div class="line">    如果单词不在正面+负面：</div><div class="line"></div><div class="line">      test_word = unitvec（np.array（model [word]））</div><div class="line"></div><div class="line">      ＃余弦相似度</div><div class="line">      分数[word] = np.dot（test_word，mean）</div><div class="line"></div><div class="line">    print（sorted（scores，key = scores.get，reverse = True）[：1]）</div></pre></td></tr></table></figure>
+<p>接下来，我们要测试我们的原始示例。</p>
+<p>测试它在fastText和gensim的word2vec：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">positive_words = [&quot;queen&quot;,&quot;man&quot;]</div><div class="line"></div><div class="line">negative_words = [&quot;king&quot;]</div><div class="line"></div><div class="line"># Test Word2vec</div><div class="line">print(&quot;Testing Word2vec&quot;)</div><div class="line">model = word2vec.getModel()</div><div class="line">test(model,positive_words,negative_words,model.vocab)</div><div class="line"></div><div class="line"># Test Fasttext</div><div class="line">print(&quot;Testing Fasttext&quot;)</div><div class="line">model = fasttxt.getModel()</div><div class="line">test(model,positive_words,negative_words,model.words)</div></pre></td></tr></table></figure>
+<p>###结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Testing Word2vec</div><div class="line">  [‘woman’]</div><div class="line">Testing Fasttext</div><div class="line">  [‘woman’]</div></pre></td></tr></table></figure>
+<p>这些结果意味着该过程在fastText和gensim的word2vec上都有效！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">W(&quot;woman&quot;) ≃ W(&quot;man&quot;)+ W(&quot;queen&quot;)− W(&quot;king&quot;)</div></pre></td></tr></table></figure>
+<p>正如你所看到的，这些向量实际上捕获了这些单词之间的语义关系。</p>
+<p>通过我们描述的模型提出的想法，可用于许多不同的应用，使企业能够预测他们将需要在未来的应用，进行情感分析，代表生物序列，执行图像语义搜索等。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#semantic、翻译" >
+    <span class="tag-code">semantic、翻译</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#词嵌入"><span class="toc-nav-text">词嵌入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Word2Vec"><span class="toc-nav-text">Word2Vec</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#训练模型"><span class="toc-nav-text">训练模型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#评估嵌入式：类比"><span class="toc-nav-text">评估嵌入式：类比</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/05/03/用深度学习获取语义/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "用深度学习获取语义",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

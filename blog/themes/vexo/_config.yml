@@ -1,0 +1,53 @@
+author: YangXuLei # 作者
+description: UqRai's blog
+keyword: Python, Anguler.js
+favicon:
+
+excerpt_link: Read more
+
+menu:
+ Home: /
+ Tags: /tags/
+ Archives: /archives/
+ Projects: /project/
+ About: /about/
+
+# highlight
+highlight:
+  tomorrow
+
+# catalog
+catalog: true
+
+# donate
+donate: true
+
+# qrcode
+qrcode: true
+
+# comment
+# you can set gitment or uyan
+
+comment: gitment
+
+# gitment config
+gitment_owner: Yangxulei
+gitment_repo: uqlai.github.io
+gitment_oauth_id: 21b7e54951fb0d13b30a
+gitment_oauth_secret: 17474d9be1b0de2212e9992efb1a43b70efb2f5c
+
+# uyan
+# if you want to use uyan as your blog comment, plz remove/comment out gitment config
+
+baidu_id:
+
+about:
+  banner:
+  avatar:
+  description: The end is always near.
+  # Links
+  weibo_username: uqrai
+#  twitter_username:
+  github_username: Yangxulei
+#  zhihu_username: yummy1121
+  douban_username: YangXuLei

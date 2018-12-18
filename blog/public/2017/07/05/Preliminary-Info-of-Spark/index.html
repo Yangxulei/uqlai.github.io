@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Preliminary Info of Spark | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Preliminary Info of Spark</h2>
+  <p class="post-date">2017-07-05</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="What-is-Apache-Spark"><a href="#What-is-Apache-Spark" class="headerlink" title="What is Apache Spark?"></a>What is Apache Spark?</h2><p>Apache Spark is a cluster computing platform designed to be fast and general-purpose.<br><a id="more"></a><br>On the speed side, Spark extends the popular MapReduce model to efficiently support more types of computations, including interactive queries and stream processing. One of the main features Spark offers for speed is the ability to run computations in memory, but the system is also more efficient than MapReduce for complex applications running on disk.</p>
+<p>Apache Spark 是一款旨在快速通用的集群计算平台,在速度方面，扩展了流行的MapReduce模型，以有效支持更多类型的计算，包括交互式查询和流处理。能够在内存中运行计算，但是对于在磁盘上运行的复杂应用程序，该系统也比MapReduce更高效。</p>
+<p>The Spark project contains multiple closely integrated components. At its core, Spark is a “computational engine” that is responsible for scheduling, distributing, and mon‐itoring applications consisting of many computational tasks across many worker machines, or a computing cluster. Because the core engine of Spark is both fast and general-purpose, it powers multiple higher-level components specialized for various workloads, such as SQL or machine learning. These components are designed to interoperate closely, letting you combine them like libraries in a software project。</p>
+<p>Spark项目包含多个紧密集成的组件。其核心在于，Spark是一个“计算引擎”，负责在多个工作机器或计算集群中安排，分发和监视由许多计算任务组成的应用程序。由于Spark的核心引擎既快速又通用，因此可以为多种工作负载（如SQL或机器学习）提供专门的多个高级组件。这些组件的设计是为了与软件项目中的library进行紧密的交互操作。</p>
+<p>We should learn the characteristics and benefits of its tight integration. Specific content, you can see “learning spark”。<br>我们应该学习它的紧密整合的特点和好处。具体的内容，可以看看《learning spark》</p>
+<h2 id="Each-of-Spark’s-components"><a href="#Each-of-Spark’s-components" class="headerlink" title="Each of Spark’s components"></a>Each of Spark’s components</h2><p><img src="http://opdexhju0.bkt.clouddn.com/14992172107388.jpg" alt=" Each of Spark’s components"></p>
+<h4 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h4><p>Spark core includes the basic functions of Spark, including for task scheduling, memory management, fault recovery, and storage system interaction components. Spark Core also defines the Flexible Distributed Data Set (RDD) API. He provides a number of APIs for building and manipulating collections</p>
+<p>Spark core 包含Spark的基本功能，包括用于任务调度，内存管理，故障恢复，与存储系统交互的组件。Spark Core 也是定义弹性分布式数据集(RDD)API所在。他提供了许多用于构建和操作集合的API</p>
+<h4 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h4><p>Spark SQL is a spark package for handling structured data. It allows data to be queried through SQL. Is a variant of Apache Hive. Combine SQL with complex analysis.</p>
+<p>Spark SQL是用于处理结构化数据的spark包。它允许通过SQL查询数据。是Apache Hive的变体。将SQL与复杂的分析相结合。</p>
+<h4 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h4><p>Spark Streaming is a Spark component that can handle real-time streaming data. At the same time, it provides an API for handling data streams that are closely related to the Spark Core RDD API. This is very convenient. And move between applications that store data on memory, on disk, or in real-time access. The same program has fault tolerance, throughput, and scalability as the Spark Core.</p>
+<p>Spark Streaming 是一个Spark组件，可以处理实时流数据。同时，它提供了一个API用于处理与Spark Core RDD API密切相关的数据流。这是很方便的。而且操作存储在内存，磁盘上的或者实时访问中的数据的应用程序之间移动。与Spark Core有相同程序的容错能力，吞吐量和可扩展性。</p>
+<h4 id="MLIb"><a href="#MLIb" class="headerlink" title="MLIb"></a>MLIb</h4><p>This is a library of common machine learning functions that provide many types of machine learning algorithms, including classification, regression, clustering, and collaborative filtering. It also provides some lower level ML primitives, including gradient descent optimization algorithms. So these methods can be designed to expand the cluster expansion, is not it amazing?</p>
+<p>这是一个通用机器学习功能的库，提供很多类型的机器学习算法，包括分类，回归，聚类和协同过滤等等。它还提供了一些较低级别的ML原语，包括梯度下降优化算法。所以的这些方法都可以被设计为扩集群扩展，是不是很amazing呢？</p>
+<h4 id="GraphX"><a href="#GraphX" class="headerlink" title="GraphX"></a>GraphX</h4><p>GraphX is a library for manipulating graphics and performing graphical parallel computing. It also extends the Spark RDD API, allowing the user to create a directed graph with arbi-trary attributes attached to each vertex and edge. GraphX also provides a variety of operators for manipulating graphics and a library of common graphics algorithms.</p>
+<p>Graphx 是用于操作图形和执行图形并行计算的库，它也扩展了Spark RDD API，允许使用者创建一个连接到每个顶点和边缘的具有arbi-trary属性的有向图。GraphX还提供了各种用于操作图形的操作器和一个常见图形算法库。</p>
+<h4 id="Cluster-Managers-集群管理器"><a href="#Cluster-Managers-集群管理器" class="headerlink" title="Cluster Managers(集群管理器)"></a>Cluster Managers(集群管理器)</h4><p>Under the engine, Spark is designed to effectively extend from one to thousands of compute nodes. How to achieve and maximize flexibility? So with the cluster manager. Spark can run on a clustered manager, including Hadoop YARN, Apache Mesos, and a simple cluster manager that is included in Spark itself as a separate scheduler. This concept is far from the current far, and so learn to write later, first we just  know  this concept.</p>
+<p>在引擎下，Spark旨在有效地从一个到数千个计算节点扩展。怎么实现而且最大限度地提升灵活性？于是有了集群管理器。Spark可以运行在在中集群管理器上，包括Hadoop YARN，Apache Mesos，以及包含在Spark本身称为独立调度程序的简单集群管理器。这个概念离目前有点远，等学到后面再写，先知道有这个概念就好。</p>
+<p>具体的可以看看Spark的官方文档。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Spark" >
+    <span class="tag-code">Spark</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#What-is-Apache-Spark"><span class="toc-nav-text">What is Apache Spark?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Each-of-Spark’s-components"><span class="toc-nav-text">Each of Spark’s components</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Spark-Core"><span class="toc-nav-text">Spark Core</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Spark-SQL"><span class="toc-nav-text">Spark SQL</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Spark-Streaming"><span class="toc-nav-text">Spark Streaming</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#MLIb"><span class="toc-nav-text">MLIb</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#GraphX"><span class="toc-nav-text">GraphX</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Cluster-Managers-集群管理器"><span class="toc-nav-text">Cluster Managers(集群管理器)</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/07/05/Preliminary-Info-of-Spark/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Preliminary Info of Spark",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

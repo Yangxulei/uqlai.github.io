@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="UqRai&#39;s blog">
+  <meta name="keyword" content="Python, Anguler.js">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Softmax回归 | Uqlai`blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Uqlai`blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Softmax回归</h2>
+  <p class="post-date">2017-08-03</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<p>SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛<br><a id="more"></a></p>
+<h2 id="从名字上理解"><a href="#从名字上理解" class="headerlink" title="从名字上理解"></a>从名字上理解</h2><p>上面一句话可谓是精辟，Softmax回归是<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">logistics回归</a>在多分类问题上的推广。max就是比较大小取大呗，但是有时不能直接取，不然会造成分值小的饥饿，怎么解决，也要雨露均沾，经常取大的，偶尔取小的就好了，概率和大小有关这也就是为啥是soft max。</p>
+</blockquote>
+<p>Softmax回归具体的典型实例就是<a href="http://www.tensorfly.cn/tfdoc/tutorials/mnist_beginners.html" target="_blank" rel="external">MNIST手写数字分类(关于Softmax部分)</a>。</p>
+<p>这个函数在<a href="https://www.youtube.com/watch?v=G4G7dWBi3II&amp;list=PLbBM_dvjud8oFj09MqqYnGSrT6zek42Q0&amp;index=4" target="_blank" rel="external">斯坦福最优化课程28分钟左右</a>有详细讲解，在吴恩达的课程中也有，不懂得可以再详细看看。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Softmax代价函数与logistic 代价函数在形式上非常类似，只是在Softmax损失函数中对类标记的k个可能值进行了累加。注意在Softmax回归中将x分类为类别j的概率为：<br><img src="http://upload-images.jianshu.io/upload_images/744392-7ea9eb17fa574abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Softmax代价函数与logistic 代价函数在形式上非常类似"><br>J(θ)最下化问题，通过求导得到梯度公式：<br><img src="http://upload-images.jianshu.io/upload_images/744392-841d57054be63449.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="梯度公式"></p>
+<p>Softmax是有监督的，当然也可以和无监督结合用。这个后面文章再说，</p>
+<p>简单的可以这样看：假设有一个数组V,Vi表示第i个指数，那么这个元素的Softmax值为：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-f938d5f1f6a9268b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Softmax值：该元素指数与所有元素指数和之比"></p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><h4 id="1、计算与标注样本的差距"><a href="#1、计算与标注样本的差距" class="headerlink" title="1、计算与标注样本的差距"></a>1、计算与标注样本的差距</h4><p>在神经网络计算中，我们经常计算正向传播计算分数S1和按照正确标注的分数S2之间的差距，计算Loss，才能应用反向传播。Loss定义为交叉熵</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-93c197dbc6d110f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="L_{i} = -\log(\frac{e^{f_{y_{i}}}}{\sum_{j}e^{j}})"></p>
+<p>取log里面的值就是这组数据正确分类的Softmax值，它占的比重越大，这个样本的Loss也就越小，这种定义符合我们的要求</p>
+<h4 id="2、计算方便"><a href="#2、计算方便" class="headerlink" title="2、计算方便"></a>2、计算方便</h4><p>当我们对分类的Loss进行改进的时候，我们要通过梯度下降，每次优化一个step大小的梯度，这个时候我们就要求Loss对每个权重矩阵的偏导，然后应用链式法则。那么这个过程的第一步，就是求Loss对score的偏导 (下面公式推导部分对于求偏导符号就用求导符号代替)</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-02d0f2e4fcd8015c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="推导"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/744392-3035225fe2166829.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接结果"><br>最后结果的形式非常的简单，只要将算出来的概率的向量对应的真正结果的那一维减1，就可以了，举个例子，通过若干层的计算，最后得到的某个训练样本的向量的分数是[ 1, 5, 3 ], 那么概率分别就是[0.015,0.866,0.117],如果这个样本正确的分类是第二个的话，那么计算出来的偏导就是[0.015,0.866−1,0.117]=[0.015,−0.134,0.117]，是不是很简单！！然后再根据这个进行back propagation就可以了。</p>
+<p>看完上面还懂吗，不懂看这幅图<br><img src="http://upload-images.jianshu.io/upload_images/744392-144e8942fbf438f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="《一天搞懂深度学习》"></p>
+<p>不行就推推公式看看视频反过来再看看,数学公式的详细推到在这里面<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="external">ufldl:Softmax回归</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Softmax" >
+    <span class="tag-code">Softmax</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#从名字上理解"><span class="toc-nav-text">从名字上理解</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原理"><span class="toc-nav-text">原理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#优点"><span class="toc-nav-text">优点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1、计算与标注样本的差距"><span class="toc-nav-text">1、计算与标注样本的差距</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2、计算方便"><span class="toc-nav-text">2、计算方便</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://uqlai.cn/2017/08/03/Softmax回归/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Yangxulei";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Softmax回归",
+        owner: "Yangxulei",
+        repo: "uqlai.github.io",
+        oauth: {
+          client_id: "21b7e54951fb0d13b30a",
+          client_secret: "17474d9be1b0de2212e9992efb1a43b70efb2f5c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
