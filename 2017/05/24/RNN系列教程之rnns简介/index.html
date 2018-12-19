@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -122,7 +122,7 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><blockquote>
-<p>本篇翻译自Denny Britz(Google Brain Team成员)的<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">RNN系列教程</a>，因为RNN应用很广也取得一定的成果，但作者发现在这方面的教程和资料很少，所以写下这个系列</p>
+<p>本篇翻译自Denny Britz(Google Brain Team成员)的<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="noopener">RNN系列教程</a>，因为RNN应用很广也取得一定的成果，但作者发现在这方面的教程和资料很少，所以写下这个系列</p>
 </blockquote>
 <p>RNN也就是Recurrent Neural Network，在语音识别，自然语言处理(NLP)等很多领域广泛应用，人气很高。这个系列教程包含以下：<br><a id="more"></a><br>1、RNN简介(本文)<br>2、使用Python和Theano实现RNN<br>3、了解方向传播算法和梯度消失问题<br>4、实施GRU/LSTM RNN</p>
 <p>本文假设你对基本的神经网络有所了解。</p>
@@ -146,22 +146,22 @@
 <p>给定一系列单词，我们想预测并给出先前任一单词的概率。语言模型允许我们去衡量句子相似性，这是机器翻译的重要输入（因为高概率句子通常是正确的)。在能够预测下一个单词时会有一个slider-effect，它会得到一个生成模型，允许我们从输出概率中抽样生成新的文本。根据我们的训练数据，我们可以生成各种各样的东西。在语言建模中，我们的输入通常是一系列单词（例如，编码为one-hot），我们的输出是预测单词的序列。我们构造o<sub>t</sub> = x<sub>t + 1</sub>可以在step t中的输出单词是实际中我们想要的。</p>
 <p>####关于语言建模和生成文本的研究论文：</p>
 <ul>
-<li><a href="http://www.fit.vutbr.cz/research/groups/speech/publi/2010/mikolov_interspeech2010_IS100722.pdf" target="_blank" rel="external">循环神经网络语言模型</a></li>
-<li><a href="http://www.fit.vutbr.cz/research/groups/speech/publi/2011/mikolov_icassp2011_5528.pdf" target="_blank" rel="external">基于神经网络的语义模型的扩展</a></li>
-<li><a href="http://machinelearning.wustl.edu/mlpapers/paper_files/ICML2011Sutskever_524.pdf" target="_blank" rel="external">用循环神经网络生成文本</a></li>
+<li><a href="http://www.fit.vutbr.cz/research/groups/speech/publi/2010/mikolov_interspeech2010_IS100722.pdf" target="_blank" rel="noopener">循环神经网络语言模型</a></li>
+<li><a href="http://www.fit.vutbr.cz/research/groups/speech/publi/2011/mikolov_icassp2011_5528.pdf" target="_blank" rel="noopener">基于神经网络的语义模型的扩展</a></li>
+<li><a href="http://machinelearning.wustl.edu/mlpapers/paper_files/ICML2011Sutskever_524.pdf" target="_blank" rel="noopener">用循环神经网络生成文本</a></li>
 </ul>
 <p>####机器翻译<br>机器翻译类似于语言建模，因为我们的输入是一系列单词（例如德语），输出的是一系列的单词(比如中文)。一个关键的区别是，我们的输出只有在我们看到完整的输入之后开始，因为翻译的句子的第一个单词可能需要从完整输入序列中才能获取。<br><img src="http://opdexhju0.bkt.clouddn.com/14956166135764.png" alt="机器翻译RNN。图片来源：http://cs224d.stanford.edu/lectures/CS224d-Lecture8.pdf"></p>
 <p>机器翻译研究论文</p>
 <ul>
-<li><a href="http://www.aclweb.org/anthology/P14-1140.pdf" target="_blank" rel="external">A Recursive Recurrent Neural Network for Statistical Machine Translation
+<li><a href="http://www.aclweb.org/anthology/P14-1140.pdf" target="_blank" rel="noopener">A Recursive Recurrent Neural Network for Statistical Machine Translation
 </a></li>
-<li><a href="http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf" target="_blank" rel="external">Sequence to Sequence Learning with Neural Networks</a></li>
-<li><a href="http://research.microsoft.com/en-us/um/people/gzweig/Pubs/EMNLP2013RNNMT.pdf" target="_blank" rel="external">Joint Language and Translation Modeling with Recurrent Neural Networks</a></li>
+<li><a href="http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf" target="_blank" rel="noopener">Sequence to Sequence Learning with Neural Networks</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/gzweig/Pubs/EMNLP2013RNNMT.pdf" target="_blank" rel="noopener">Joint Language and Translation Modeling with Recurrent Neural Networks</a></li>
 </ul>
 <p>####语音识别<br>给定来自声波的声信号的输入序列，我们可以预测语音段的序列及其概率。</p>
 <p>关于语音识别的研究论文：</p>
 <ul>
-<li><a href="http://www.jmlr.org/proceedings/papers/v32/graves14.pdf" target="_blank" rel="external">Towards End-to-End Speech Recognition with Recurrent Neural Networks
+<li><a href="http://www.jmlr.org/proceedings/papers/v32/graves14.pdf" target="_blank" rel="noopener">Towards End-to-End Speech Recognition with Recurrent Neural Networks
 </a></li>
 </ul>
 <p>####生成图像说明<br>与卷积神经网络一起，RNN已被用作模型的一部分，以生成未标记图像的描述。这是非常惊人的，这似乎是有效的。组合模型甚至将生成的单词与图像中发现的特征对齐。</p>
@@ -176,15 +176,15 @@
 <li>LSTM RNNs(LSTM networks)是近几年比较火的一种RNN变体, 实际上也是运用最为广泛的一种形式, 它克服了梯度衰减问题, 这个问题在NN中也同样存在, LSTM本身也有变体, 至少不下十几种形式, 但是本质都差不多.</li>
 </ul>
 <p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/Screen-Shot-2015-09-16-at-2.21.51-PM.png" alt=""></p>
-<p>我的<br><a href="http://www.jianshu.com/u/9d619ad71963" target="_blank" rel="external">简书地址</a><br><a href="www.uqlai.cn">uqlai`blog</a></p>
-<p>扩展阅读：<br><a href="https://zhuanlan.zhihu.com/p/24720659" target="_blank" rel="external">循环神经网络（Recurrent）——介绍</a></p>
+<p>我的<br><a href="http://www.jianshu.com/u/9d619ad71963" target="_blank" rel="noopener">简书地址</a><br><a href="www.uqlai.cn">uqlai`blog</a></p>
+<p>扩展阅读：<br><a href="https://zhuanlan.zhihu.com/p/24720659" target="_blank" rel="noopener">循环神经网络（Recurrent）——介绍</a></p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#RNN" >
+  <a href="/tags#RNN">
     <span class="tag-code">RNN</span>
   </a>
 

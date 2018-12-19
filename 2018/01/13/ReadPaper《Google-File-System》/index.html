@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -129,15 +129,15 @@
 <li>组件故障应当被视作日常而不是异常(基于大量廉价硬件)</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>文件的大小通常比较大(日志文件，几个G很常见)</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="3">
 <li>写文件的方式以追加为主，很少会覆盖(日志文件，一般都是追加文件)</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="4">
 <li>客户端的使用和文件系统是一起设计的，比较灵活(没必要完全按照POSIX的标准来，客户端只要在使用过程中稍微注意一点，就能给服务端减少很多复杂的设计。后面会提到GFS一个独有的atomic append的操作，这个操作可能会导致不一致性，但是不影响客户端的使用)</li>
 </ol>
 </li>
@@ -148,23 +148,23 @@
 <li>整个系统基于许多廉价的硬件，因此容易坏，系统能够在某个硬件失效的时候快速恢复；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>系统存在许多大文件；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="3">
 <li>读文件的方式以顺序读为主，支持少量的随机读；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="4">
 <li>写文件的方式以顺序写为主，而且写完很少会修改，随机写文件也会被支持，但是可能效率很差；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="5">
 <li>支持多个客户端同时写一个文件；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="6">
 <li>宽带的吞吐量高比延迟低更重要，写日志通常是比较大的数据，因此系统能够稳定的处理大量的数据比快速响应请求更为重要。</li>
 </ol>
 </li>
@@ -178,11 +178,11 @@
 <li>File namespace: 可以理解为文件目录结构；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>每个文件所包含的chunk；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="3">
 <li>每一个chunk存放在哪些chunk server上面(不在master进行持久化，master启动时询问所有的chunk server，chunk server加入时也会主动注册)。</li>
 </ol>
 </li>
@@ -215,27 +215,27 @@
 <li>client请求master某个chunk;</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>master告诉client拥有这个chunk的primary和secondary分别是谁;</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="3">
 <li>client将自己的操作数据传给其中某个chunk server，chunk server在收到数据之后，立刻推给最近的另外一台没有接受过数据的chunk server，直到所有chunk server都有这个数据。这种数据分发方式有助于充分利用系统内的带宽;</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="4">
 <li>client告诉primary进行操作;</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="5">
 <li>primary告诉其他secondary进行操作;</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="6">
 <li>如果所有secondary操作成功，则整个操作成功;</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="7">
 <li>如果操作失败，由primary告诉clinet，并进行重试。</li>
 </ol>
 </li>
@@ -277,11 +277,11 @@
 <li>新chunk的创建；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>chunk的副本数低于阈值，需要再复制一些；</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="3">
 <li>chunk副本的分布不是很好，需要优化。</li>
 </ol>
 </li>
@@ -292,7 +292,7 @@
 <li>master会定时检测没有被文件引用的chunk并删除。</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>在master和chunk server的心跳包中，chunk server会报告目前拥有的chunk，master跟自己的对比之后返回可以删除的chunk，然后chunk server进行删除操作。</li>
 </ol>
 </li>
@@ -300,8 +300,8 @@
 <h1 id="陈旧副本的侦测"><a href="#陈旧副本的侦测" class="headerlink" title="陈旧副本的侦测"></a>陈旧副本的侦测</h1><p>master发放租约的时候，会带上一个版本号给所有的副本，如果某个副本机器挂了，没有拿到这个版本号，那么在该副本重启的过程中，master会发现版本号不一致，则会让该副本失效。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>GFS 适合于大数据量读写，大多是追加操作的场景。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a href="http://blog.bizcloudsoft.com/wp-content/uploads/Google-File-System%E4%B8%AD%E6%96%87%E7%89%88_1.0.pdf" target="_blank" rel="external">Google File System中文版</a></li>
-<li><a href="http://web.eecs.umich.edu/~mosharaf/Readings/GFS.pdf" target="_blank" rel="external">Google File System</a></li>
+<li><a href="http://blog.bizcloudsoft.com/wp-content/uploads/Google-File-System%E4%B8%AD%E6%96%87%E7%89%88_1.0.pdf" target="_blank" rel="noopener">Google File System中文版</a></li>
+<li><a href="http://web.eecs.umich.edu/~mosharaf/Readings/GFS.pdf" target="_blank" rel="noopener">Google File System</a></li>
 <li>以及开设这门课程老师的PPT</li>
 </ul>
 </section>
@@ -310,7 +310,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#GoogleFileSystem" >
+  <a href="/tags#GoogleFileSystem">
     <span class="tag-code">GoogleFileSystem</span>
   </a>
 

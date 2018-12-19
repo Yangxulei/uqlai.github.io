@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -135,15 +135,15 @@
 <li>函数作用域</li>
 </ul>
 <p>函数作用域可以决定变量的作用域范围。一个在函数中被定义的变量，在这个函数体中，以及该函数体中嵌套定义的所有函数内部都可见。另外和同名本地变量覆盖全局变量同理，嵌套函数中的同名本地变量也会覆盖其上层函数中的本地变量。</p>
-<p>其实变量的本质就是通过对象来组织到一起的属性集合。定义全局变量就是在全局对象(window)上定义了一个属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = &#123;&#125;;</div><div class="line">window.a ==== a   //true</div></pre></td></tr></table></figure></p>
+<p>其实变量的本质就是通过对象来组织到一起的属性集合。定义全局变量就是在全局对象(window)上定义了一个属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;&#125;;</span><br><span class="line">window.a ==== a   //true</span><br></pre></td></tr></table></figure></p>
 <p>所以对于本地变量的话，相当于某个对象的属性，只是没有办法获取到这个对象。这个对象被称为 <em>调用对象</em> 或者 <em>声明上下文</em> 。</p>
 <h2 id="引出作用域链"><a href="#引出作用域链" class="headerlink" title="引出作用域链"></a>引出作用域链</h2><p>为了可以定位到具体指向哪个变量，就需要作用域链。</p>
 <blockquote>
-<p>作用域链：JavaScript每一个代码块都会与一个作用域链相关联，这个链是一个对象列表，对于每一个标识符，都依次从这个链的对象中查找具有相同标识符的属性。而作用域链就是由全局变量和不定数量的由函数调用产生的调用对象构成的列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var x = 1;</div><div class="line">var y = 2;</div><div class="line"></div><div class="line">// 代码执行到此，为了确定x和y，查询其作用域链： [ window ]，从 window.x 和 window.y 中取出了值</div><div class="line">console.log( x + y );</div><div class="line"></div><div class="line">function fnA()&#123;</div><div class="line">     // 函数被调用，产生了fnA的调用对象（即为a），用于查询变量的作用域链为：[ a, window ]</div><div class="line">     var x = 2;</div><div class="line">     // a.x 定位到x，a.y不存在，继续从 window.y 中定位到y</div><div class="line">     console.log( x + y );</div><div class="line">&#125;</div><div class="line"></div><div class="line">fn();</div></pre></td></tr></table></figure></p>
+<p>作用域链：JavaScript每一个代码块都会与一个作用域链相关联，这个链是一个对象列表，对于每一个标识符，都依次从这个链的对象中查找具有相同标识符的属性。而作用域链就是由全局变量和不定数量的由函数调用产生的调用对象构成的列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">var y = 2;</span><br><span class="line"></span><br><span class="line">// 代码执行到此，为了确定x和y，查询其作用域链： [ window ]，从 window.x 和 window.y 中取出了值</span><br><span class="line">console.log( x + y );</span><br><span class="line"></span><br><span class="line">function fnA()&#123;</span><br><span class="line">     // 函数被调用，产生了fnA的调用对象（即为a），用于查询变量的作用域链为：[ a, window ]</span><br><span class="line">     var x = 2;</span><br><span class="line">     // a.x 定位到x，a.y不存在，继续从 window.y 中定位到y</span><br><span class="line">     console.log( x + y );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>注意函数刚定义的时候还没有调用对象存在，所以当函数嵌套多的话，作用域链就很长</p>
 <h1 id="引出词法作用域"><a href="#引出词法作用域" class="headerlink" title="引出词法作用域"></a>引出词法作用域</h1><blockquote>
-<p>词法作用域（lexical scoping）是指，函数在执行时，使用的是它被定义时的作用域，而不是这个函数被调用时的作用域。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var scope = &apos;global scope&apos;;</div><div class="line">function checkScope()&#123;</div><div class="line">     var scope = &apos;local scope&apos;;</div><div class="line"></div><div class="line">     return function()&#123;</div><div class="line">         console.log( scope );</div><div class="line">     &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var f = checkScope();</div><div class="line">f();      // local scope</div></pre></td></tr></table></figure></p>
+<p>词法作用域（lexical scoping）是指，函数在执行时，使用的是它被定义时的作用域，而不是这个函数被调用时的作用域。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var scope = &apos;global scope&apos;;</span><br><span class="line">function checkScope()&#123;</span><br><span class="line">     var scope = &apos;local scope&apos;;</span><br><span class="line"></span><br><span class="line">     return function()&#123;</span><br><span class="line">         console.log( scope );</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var f = checkScope();</span><br><span class="line">f();      // local scope</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>实际该函数执行时‘fn()’时作用域中的‘scope’是 ‘global scope’ 但实际执行使用的是定义函数时那个‘local scope‘，因为函数在执行时使用的作用域链是它在定义时绑定的那个作用域链（准确地说是使用当时绑定的那个作用域链加上新建的调用对象组成的新的作用域链），而不是函数调用时所处上下文的作用域链。</p>
 <p>最后理解闭包后，闭包的强大之处其实在于：JavaScript中的函数，通过作用域链和词法作用域两者的特性，将该函数定义时的所处的作用域中的相关函数进行了捕获和保存，从而可以在完全不同的上下文中进行引用。</p>
@@ -159,7 +159,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#闭包" >
+  <a href="/tags#闭包">
     <span class="tag-code">闭包</span>
   </a>
 
@@ -207,9 +207,9 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#引出作用域链"><span class="toc-nav-text">引出作用域链</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#引出词法作用域"><span class="toc-nav-text">引出词法作用域</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-text">应用场景</span></a>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#引出作用域链"><span class="toc-nav-text">引出作用域链</span></a></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#引出词法作用域"><span class="toc-nav-text">引出词法作用域</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-text">应用场景</span></a>
     
-  </div>
+  </li></div>
 </aside>
   
   <!-- Catalog END -->

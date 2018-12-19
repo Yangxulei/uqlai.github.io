@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -123,10 +123,10 @@
   <article class="post-article">
     <section class="markdown-content"><blockquote>
 <p>SVM只选自己喜欢的男神，Softmax把所有备胎全部拉出来评分，最后还归一化一下   —–王晨琛<br><a id="more"></a></p>
-<h2 id="从名字上理解"><a href="#从名字上理解" class="headerlink" title="从名字上理解"></a>从名字上理解</h2><p>上面一句话可谓是精辟，Softmax回归是<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="external">logistics回归</a>在多分类问题上的推广。max就是比较大小取大呗，但是有时不能直接取，不然会造成分值小的饥饿，怎么解决，也要雨露均沾，经常取大的，偶尔取小的就好了，概率和大小有关这也就是为啥是soft max。</p>
 </blockquote>
-<p>Softmax回归具体的典型实例就是<a href="http://www.tensorfly.cn/tfdoc/tutorials/mnist_beginners.html" target="_blank" rel="external">MNIST手写数字分类(关于Softmax部分)</a>。</p>
-<p>这个函数在<a href="https://www.youtube.com/watch?v=G4G7dWBi3II&amp;list=PLbBM_dvjud8oFj09MqqYnGSrT6zek42Q0&amp;index=4" target="_blank" rel="external">斯坦福最优化课程28分钟左右</a>有详细讲解，在吴恩达的课程中也有，不懂得可以再详细看看。</p>
+<h2 id="从名字上理解"><a href="#从名字上理解" class="headerlink" title="从名字上理解"></a>从名字上理解</h2><p>上面一句话可谓是精辟，Softmax回归是<a href="http://www.jianshu.com/p/4db93e9f38af" target="_blank" rel="noopener">logistics回归</a>在多分类问题上的推广。max就是比较大小取大呗，但是有时不能直接取，不然会造成分值小的饥饿，怎么解决，也要雨露均沾，经常取大的，偶尔取小的就好了，概率和大小有关这也就是为啥是soft max。</p>
+<p>Softmax回归具体的典型实例就是<a href="http://www.tensorfly.cn/tfdoc/tutorials/mnist_beginners.html" target="_blank" rel="noopener">MNIST手写数字分类(关于Softmax部分)</a>。</p>
+<p>这个函数在<a href="https://www.youtube.com/watch?v=G4G7dWBi3II&amp;list=PLbBM_dvjud8oFj09MqqYnGSrT6zek42Q0&amp;index=4" target="_blank" rel="noopener">斯坦福最优化课程28分钟左右</a>有详细讲解，在吴恩达的课程中也有，不懂得可以再详细看看。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Softmax代价函数与logistic 代价函数在形式上非常类似，只是在Softmax损失函数中对类标记的k个可能值进行了累加。注意在Softmax回归中将x分类为类别j的概率为：<br><img src="http://upload-images.jianshu.io/upload_images/744392-7ea9eb17fa574abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Softmax代价函数与logistic 代价函数在形式上非常类似"><br>J(θ)最下化问题，通过求导得到梯度公式：<br><img src="http://upload-images.jianshu.io/upload_images/744392-841d57054be63449.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="梯度公式"></p>
 <p>Softmax是有监督的，当然也可以和无监督结合用。这个后面文章再说，</p>
 <p>简单的可以这样看：假设有一个数组V,Vi表示第i个指数，那么这个元素的Softmax值为：</p>
@@ -138,14 +138,14 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/744392-02d0f2e4fcd8015c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="推导"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/744392-3035225fe2166829.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接结果"><br>最后结果的形式非常的简单，只要将算出来的概率的向量对应的真正结果的那一维减1，就可以了，举个例子，通过若干层的计算，最后得到的某个训练样本的向量的分数是[ 1, 5, 3 ], 那么概率分别就是[0.015,0.866,0.117],如果这个样本正确的分类是第二个的话，那么计算出来的偏导就是[0.015,0.866−1,0.117]=[0.015,−0.134,0.117]，是不是很简单！！然后再根据这个进行back propagation就可以了。</p>
 <p>看完上面还懂吗，不懂看这幅图<br><img src="http://upload-images.jianshu.io/upload_images/744392-144e8942fbf438f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="《一天搞懂深度学习》"></p>
-<p>不行就推推公式看看视频反过来再看看,数学公式的详细推到在这里面<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="external">ufldl:Softmax回归</a></p>
+<p>不行就推推公式看看视频反过来再看看,数学公式的详细推到在这里面<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="noopener">ufldl:Softmax回归</a></p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Softmax" >
+  <a href="/tags#Softmax">
     <span class="tag-code">Softmax</span>
   </a>
 
@@ -193,7 +193,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#从名字上理解"><span class="toc-nav-text">从名字上理解</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原理"><span class="toc-nav-text">原理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#优点"><span class="toc-nav-text">优点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1、计算与标注样本的差距"><span class="toc-nav-text">1、计算与标注样本的差距</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2、计算方便"><span class="toc-nav-text">2、计算方便</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#从名字上理解"><span class="toc-nav-text">从名字上理解</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原理"><span class="toc-nav-text">原理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#优点"><span class="toc-nav-text">优点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1、计算与标注样本的差距"><span class="toc-nav-text">1、计算与标注样本的差距</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2、计算方便"><span class="toc-nav-text">2、计算方便</span></a></li></ol></li></ol>
     
   </div>
 </aside>

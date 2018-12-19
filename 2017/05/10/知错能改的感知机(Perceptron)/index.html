@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -147,7 +147,7 @@
 <p>一个特定样本的损失函数，在误分类的时候该函数是w和b的线性函数，而正确分类的时候是0，因此损失函数时w和b的连续可导函数。</p>
 <p><strong>划重点：感知机学习策略就是在假设空间中选取使感知机的损失函数最小的模型参数w和b，即感知机模型。</strong></p>
 <p>2&gt;感知机学习算法转化为求解感知机损失函数的最优化问题，最优化的方法是随机梯度下降法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">学习算法：</div><div class="line">输入：训练数据集T、学习率α</div><div class="line">输出：w,b；感知机模型f(x)=sign(w.x + b)</div><div class="line">(1)选取初值w0,b0</div><div class="line">(2)在训练集中选取数据(xi,yi)</div><div class="line">(3)如果yi(w.xi + b) &lt;= 0，使用随机梯度下降法更新w和b</div><div class="line">(4)转至(2)，直至训练集中没有误分类点（重复的将误分类的点一直更新）</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">学习算法：</span><br><span class="line">输入：训练数据集T、学习率α</span><br><span class="line">输出：w,b；感知机模型f(x)=sign(w.x + b)</span><br><span class="line">(1)选取初值w0,b0</span><br><span class="line">(2)在训练集中选取数据(xi,yi)</span><br><span class="line">(3)如果yi(w.xi + b) &lt;= 0，使用随机梯度下降法更新w和b</span><br><span class="line">(4)转至(2)，直至训练集中没有误分类点（重复的将误分类的点一直更新）</span><br></pre></td></tr></table></figure>
 <p>任意选取一个超平面w0,b0w0,b0，然后用梯度下降法不断地极小化目标函数</p>
 <p><img src="http://opdexhju0.bkt.clouddn.com/14952806461673.jpg" alt=""></p>
 <p>随机选取一个误分类点(xi,yi)(xi,yi)，对w,b进行更新：<br><img src="http://opdexhju0.bkt.clouddn.com/14952806644853.jpg" alt=""></p>
@@ -178,7 +178,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#感知机" >
+  <a href="/tags#感知机">
     <span class="tag-code">感知机</span>
   </a>
 
@@ -226,7 +226,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#感知机模型"><span class="toc-nav-text">感知机模型</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#感知机是咋学习的，为啥说它是知错能改？"><span class="toc-nav-text">感知机是咋学习的，为啥说它是知错能改？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#但是这个PLA算法真的会停吗？"><span class="toc-nav-text">但是这个PLA算法真的会停吗？</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据线性可分"><span class="toc-nav-text">数据线性可分:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据线性不可分："><span class="toc-nav-text">数据线性不可分：</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#感知机模型"><span class="toc-nav-text">感知机模型</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#感知机是咋学习的，为啥说它是知错能改？"><span class="toc-nav-text">感知机是咋学习的，为啥说它是知错能改？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#但是这个PLA算法真的会停吗？"><span class="toc-nav-text">但是这个PLA算法真的会停吗？</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据线性可分"><span class="toc-nav-text">数据线性可分:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据线性不可分："><span class="toc-nav-text">数据线性不可分：</span></a></li></ol></li></ol>
     
   </div>
 </aside>

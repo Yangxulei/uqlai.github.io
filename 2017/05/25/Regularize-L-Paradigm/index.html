@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -133,7 +133,7 @@
 </ul>
 <h3 id="正则化本质"><a href="#正则化本质" class="headerlink" title="正则化本质"></a>正则化本质</h3><p><img src="http://upload-images.jianshu.io/upload_images/744392-bf0af0037df1989e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="多核支持向量机目标函数正则化"><br>看到上图没，也就是对我们构造的目标函数添加了个 r(d)项，r(d)可以理解为有d的参数进行约束，或者 D 向量有d个维度。这样的约束可以解释为先验知识(正则化参数等价于对参数引入先验分布)。约束有引导作用，在优化误差函数的时候倾向于选择满足约束的梯度减少的方向，使最终的解倾向于符合先验知识(如一般的l-norm先验，表示原问题更可能是比较简单的，这样的优化倾向于产生参数值量级小的解，一般对应于稀疏参数的平滑解)。同时正则化，解决了逆问题的不适定性，产生的解是存在，唯一同时也依赖于数据的，噪声对不适定的影响就弱，解就不会过拟合，而且如果先验(正则化)合适，则解就倾向于是符合真解(更不会过拟合了)，即使训练集中彼此间不相关的样本数很少。</p>
 <p>比如我们都很熟悉的最小二乘估计和loss估计2范式严格小于后者，这在数学上可以证明，前者，他俩之间就差别了个正则项，有大神认为，这个正则项的加入，在某种意义上让估计出的(向量)参数变短了(数学上叫shrinkage)，相当于某些分量细微变小进而质变导致总体程度上被压缩到0。压缩到零比如 0x，这就没有意义的特征就可以去掉，貌似是达到了减轻拟合的目的哈。</p>
-<p>扩展阅读：<a href="https://www.zhihu.com/question/38121173/answer/104955389" target="_blank" rel="external">Linear least squares, Lasso,ridge regression有何本质区别？</a></p>
+<p>扩展阅读：<a href="https://www.zhihu.com/question/38121173/answer/104955389" target="_blank" rel="noopener">Linear least squares, Lasso,ridge regression有何本质区别？</a></p>
 <h3 id="L0-L1-L2是什么东东"><a href="#L0-L1-L2是什么东东" class="headerlink" title="L0,L1,L2是什么东东"></a>L0,L1,L2是什么东东</h3><p>L0,L1,L2就是对于上面那个约束r()的选择。</p>
 <ul>
 <li><p>L0范数是指向量中非0的元素的个数。我们都希望这个矩阵越稀疏越好巴不得都是0呢。</p>
@@ -143,7 +143,7 @@
 <li><p>L2范数是指向量各元素的平方和然后求平方根，实现了对模型空间的限制，它的美称我们都见过，一个叫岭回归，另一个也叫 权重衰减</p>
 </li>
 </ul>
-<p>扩展阅读：<a href="http://m.blog.csdn.net/article/details?id=24971995" target="_blank" rel="external">机器学习中的范数规则化之（一）L0、L1与L2范数
+<p>扩展阅读：<a href="http://m.blog.csdn.net/article/details?id=24971995" target="_blank" rel="noopener">机器学习中的范数规则化之（一）L0、L1与L2范数
 </a></p>
 <h3 id="为什么正则化可以减轻过拟合"><a href="#为什么正则化可以减轻过拟合" class="headerlink" title="为什么正则化可以减轻过拟合"></a>为什么正则化可以减轻过拟合</h3><p>除了上文我们那个本质解释，通常的说法：小的权重在某种程度上意味着更低的复杂性，也对数据给出了一种更简单却强大的因素。这满足奥卡姆剃刀原则，在实现同样效果时选择最简单那个。在规范过的网络中，更小的权重意味着网络的行为不会因为我们随便改变了一个输入而改变太大。另外我们规范并不会bias，因为大的bias不会像权重那样对神经元敏感，所以大的bias带来噪声不必担心，同时，大的bias能够让网络更加灵活，以为，大的bias让神经元更容易饱和。  </p>
 <p>还有其他的规范化方法就不说了，没有上面几个常见。开发强大的规范化技术来减轻过拟合是当前领域研究的活跃方面。</p>
@@ -153,7 +153,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Regularize" >
+  <a href="/tags#Regularize">
     <span class="tag-code">Regularize</span>
   </a>
 

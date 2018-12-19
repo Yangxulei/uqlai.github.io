@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -131,7 +131,7 @@
 <p>在模型预测中，模型可能出现的误差来自两个主要来源，即：因模型无法表示基本数据的复杂度而造成的偏差（bias），或者因模型对训练它所用的有限数据过度敏感而造成的方差（variance）。我们会对两者进行更详细的探讨。</p>
 <p>偏差造成的误差 - 精度和欠拟合<br>如前所述，如果模型具有足够的数据，但因不够复杂而无法捕捉基本关系，则会出现偏差。这样一来，模型一直会系统地错误表示数据，从而导致预测精度低。这种现象叫做欠拟合（underfitting）。<br>简单来说，如果模型不适当，就会出现偏差。举个例子：如果对象是按颜色和形状分类的，但模型只能按颜色来区分对象和将对象分类（模型过度简化），因而一直会错误地分类对象。<br>或者，我们可能有本质上是多项式的连续数据，但模型只能表示线性关系。在此情况下，我们向模型提供多少数据并不重要，因为模型根本无法表示其中的基本关系，我们需要更复杂的模型。</p>
 <p>方差造成的误差 - 精度和过拟合<br>在训练模型时，通常使用来自较大母体（训练集）的有限数量样本。如果利用随机选择的数据子集反复训练模型，可以预料它的预测结果会因提供给它的具体样本而异。在这里，方差（variance）用来测量预测结果对于任何给定的测试样本会出现多大的变化。<br>出现方差是正常的，但方差过高表明模型无法将其预测结果泛化到从中抽取训练样本的较大母体。对训练集高度敏感也称为过拟合（overfitting），而且通常出现在模型过于复杂或我们没有足够的数据支持它时。</p>
-<p>改进模型的有效性<br>我们可以看到，在给定一组固定数据时，模型不能过于简单或复杂。如果过于简单，模型无法了解数据并会错误地表示数据。但是，如果建立非常复杂的模型，则需要更多数据才能了解基本关系，否则十分常见的是，模型会推断出在数据中实际上并不存在的关系。<br>关键在于，通过找出正确的模型复杂度来找到最大限度降低偏差和方差的最有效点。当然，数据越多，模型随着时间推移会变得越好。<br>要详细了解偏差和方差，建议阅读 Scott Fortmann-Roe 撰写的这篇文章。<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="external">http://scott.fortmann-roe.com/docs/BiasVariance.html</a></p>
+<p>改进模型的有效性<br>我们可以看到，在给定一组固定数据时，模型不能过于简单或复杂。如果过于简单，模型无法了解数据并会错误地表示数据。但是，如果建立非常复杂的模型，则需要更多数据才能了解基本关系，否则十分常见的是，模型会推断出在数据中实际上并不存在的关系。<br>关键在于，通过找出正确的模型复杂度来找到最大限度降低偏差和方差的最有效点。当然，数据越多，模型随着时间推移会变得越好。<br>要详细了解偏差和方差，建议阅读 Scott Fortmann-Roe 撰写的这篇文章。<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="noopener">http://scott.fortmann-roe.com/docs/BiasVariance.html</a></p>
 <p>决策树 ID3(偏差)</p>
 </section>
     <!-- Tags START -->
@@ -139,7 +139,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#演绎法、溯因法和归纳法" >
+  <a href="/tags#演绎法、溯因法和归纳法">
     <span class="tag-code">演绎法、溯因法和归纳法</span>
   </a>
 

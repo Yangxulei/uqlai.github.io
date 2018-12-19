@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -121,7 +121,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>关键内容：<br><em>（1）字符串循环左移 | 字符串全排列（递归，非递归）</em>《本节内容》<br><a id="more"></a><br><a href="http://www.jianshu.com/p/6805f13603bb" target="_blank" rel="external">（2）KMP算法| BF算法</a><br><a href="http://www.jianshu.com/p/0e3e7530f24a" target="_blank" rel="external">（3   字符串的最长回文子串|BM算法| 字符串查找</a></p>
+    <section class="markdown-content"><p>关键内容：<br><em>（1）字符串循环左移 | 字符串全排列（递归，非递归）</em>《本节内容》<br><a id="more"></a><br><a href="http://www.jianshu.com/p/6805f13603bb" target="_blank" rel="noopener">（2）KMP算法| BF算法</a><br><a href="http://www.jianshu.com/p/0e3e7530f24a" target="_blank" rel="noopener">（3   字符串的最长回文子串|BM算法| 字符串查找</a></p>
 <blockquote>
 <p>串是有零个或者多个字符组成的有限序列，也叫字符串。电子词典查找单词就是字符串的典型应用</p>
 </blockquote>
@@ -132,15 +132,15 @@
 <li><p>三次拷贝<br>S[0…k] → T[0…k]<br>S[k+1…N-1] → S[0…N-k-1]<br>T[0…k] →S[N-k…N-1]<br>时间复杂度O(N)，空间复杂度O(k)</p>
 </li>
 <li><p>上面都过于粗鲁，学过线代的都知道这个转置，可能不太恰当，理解就好，时间复杂度O(N)，空间复杂度O(1)：<br>如:abcdef<br>X=ab X’=ba<br>Y=cdef Y’=fedc<br>(X’Y’)’=(bafedc)’=cdefab<br>是不是很那个奇妙，算法就是要多想想，而不是死记硬背</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">void ReverseString(char*,int from,int to)&#123;</div><div class="line">  while(from &lt; to)&#123;</div><div class="line">      char t = s[from];</div><div class="line">      s[from++] = s[to];</div><div class="line">      s[to--] = t;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">void leftRotateString(char*, int n, int m)&#123;</div><div class="line">      m %= n;</div><div class="line">      ReverseString(s,0,m-1);</div><div class="line">      ReverseString(s,m,n-1);</div><div class="line">      ReverseString(s,0,n-1);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void ReverseString(char*,int from,int to)&#123;</span><br><span class="line">  while(from &lt; to)&#123;</span><br><span class="line">      char t = s[from];</span><br><span class="line">      s[from++] = s[to];</span><br><span class="line">      s[to--] = t;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">void leftRotateString(char*, int n, int m)&#123;</span><br><span class="line">      m %= n;</span><br><span class="line">      ReverseString(s,0,m-1);</span><br><span class="line">      ReverseString(s,m,n-1);</span><br><span class="line">      ReverseString(s,0,n-1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="二、字符串全排列"><a href="#二、字符串全排列" class="headerlink" title="二、字符串全排列"></a>二、字符串全排列</h2><h4 id="问题：给定字符串S-0…N-1-，设计算法，枚举S的-全排列。"><a href="#问题：给定字符串S-0…N-1-，设计算法，枚举S的-全排列。" class="headerlink" title="问题：给定字符串S[0…N-1]，设计算法，枚举S的 全排列。"></a>问题：给定字符串S[0…N-1]，设计算法，枚举S的 全排列。</h4><ul>
 <li>递归  </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">char[] = &quot;1234&quot;;</div><div class="line">int size = sizeof(str) / sizeof(char);</div><div class="line">void Permutation(int from,int to)&#123;</div><div class="line">    if(from==to)&#123;</div><div class="line">        for(int i = 0;i &lt;=to;i++)&#123;</div><div class="line">            cout&lt;&lt;str[i];</div><div class="line">        &#125;</div><div class="line">        cout&lt;&lt;&apos;\n&apos;;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    for(int i = from; i&lt;=to;i++)&#123;</div><div class="line">        swap(str[i],str[from]);</div><div class="line">        Permutation(from+1,to);</div><div class="line">        swap(str[i],str[from]);</div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">int _tmain(int argc, _TCHAR* argv[])&#123;</div><div class="line">    Permutaiton(0,size-2);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">char[] = &quot;1234&quot;;</span><br><span class="line">int size = sizeof(str) / sizeof(char);</span><br><span class="line">void Permutation(int from,int to)&#123;</span><br><span class="line">    if(from==to)&#123;</span><br><span class="line">        for(int i = 0;i &lt;=to;i++)&#123;</span><br><span class="line">            cout&lt;&lt;str[i];</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;&apos;\n&apos;;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i = from; i&lt;=to;i++)&#123;</span><br><span class="line">        swap(str[i],str[from]);</span><br><span class="line">        Permutation(from+1,to);</span><br><span class="line">        swap(str[i],str[from]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">int _tmain(int argc, _TCHAR* argv[])&#123;</span><br><span class="line">    Permutaiton(0,size-2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>带重复字符的全排列就是每个字符分别与它后面非重复出现的字符交换。即:第i个字符与第j个字符交换时，要求[i,j)中没有与第j个字符相等的数。<br>代码怎么写?其实在上面基础上加上简单判断一下就行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">    for(int i = from; i&lt;=to;i++)&#123;</div><div class="line">     if(!IsSwap(from,1))</div><div class="line">        continue;</div><div class="line">    swap(str[i],str[from]);</div><div class="line">    Permutation(from+1,to);</div><div class="line">    swap(str[i],str[from]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    for(int i = from; i&lt;=to;i++)&#123;</span><br><span class="line">     if(!IsSwap(from,1))</span><br><span class="line">        continue;</span><br><span class="line">    swap(str[i],str[from]);</span><br><span class="line">    Permutation(from+1,to);</span><br><span class="line">    swap(str[i],str[from]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>复杂度计算：<br>∵f(n) = n<em>f(n-1) + n^2<br>  ∵f (n-1)=(n-1)</em>f(n-2) + (n-1)^2<br>  ∴f(n) = n<em>((n-1)</em>f(n-2) + (n-1)^2) + n^2<br>  ∵ f(n-2) = (n-2)<em>f(n-3) + (n-2)^2<br>  ∴ f(n) = n</em>(n-1)<em>((n-2)</em>f(n-3) + (n-2)^2) + n<em>(n-1)^2 + n^2<br>  = n</em>(n-1)<em>(n-2)</em>f(n-3) + n<em>(n-1)</em>(n-2)^2 + n<em>(n-1)^2 + n^2<br>  =…….<br>  &lt; n! + n! + n! + n! + … + n!<br>  = (n+1)</em>n!<br>  时间复杂度为O((n+1)!)<br>  注:当n足够大时:n! &gt; n+1</p>
 <ul>
 <li>非递归</li>
@@ -154,7 +154,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#String" >
+  <a href="/tags#String">
     <span class="tag-code">String</span>
   </a>
 
@@ -202,7 +202,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一、字符串循环左移"><span class="toc-nav-text">一、字符串循环左移</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#问题：给定一个字符串S-0…N-1-，要求把S的前k-个字符移动到S的尾部，如把字符串“abcdef”-前面的2个字符‘a’、‘b’移动到字符串的尾部，得到新字符串“cdefab”-即字符串循环左移k。"><span class="toc-nav-text">问题：给定一个字符串S[0…N-1]，要求把S的前k 个字符移动到S的尾部，如把字符串“abcdef” 前面的2个字符‘a’、‘b’移动到字符串的尾部，得到新字符串“cdefab”:即字符串循环左移k。</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二、字符串全排列"><span class="toc-nav-text">二、字符串全排列</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#问题：给定字符串S-0…N-1-，设计算法，枚举S的-全排列。"><span class="toc-nav-text">问题：给定字符串S[0…N-1]，设计算法，枚举S的 全排列。</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一、字符串循环左移"><span class="toc-nav-text">一、字符串循环左移</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#问题：给定一个字符串S-0…N-1-，要求把S的前k-个字符移动到S的尾部，如把字符串“abcdef”-前面的2个字符‘a’、‘b’移动到字符串的尾部，得到新字符串“cdefab”-即字符串循环左移k。"><span class="toc-nav-text">问题：给定一个字符串S[0…N-1]，要求把S的前k 个字符移动到S的尾部，如把字符串“abcdef” 前面的2个字符‘a’、‘b’移动到字符串的尾部，得到新字符串“cdefab”:即字符串循环左移k。</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二、字符串全排列"><span class="toc-nav-text">二、字符串全排列</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#问题：给定字符串S-0…N-1-，设计算法，枚举S的-全排列。"><span class="toc-nav-text">问题：给定字符串S[0…N-1]，设计算法，枚举S的 全排列。</span></a></li></ol></li>
     
   </div>
 </aside>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -166,7 +166,7 @@
 <li>. == 除’\n’外的任意字符</li>
 </ul>
 <p>ps：汇编是通过赋值与跳转两种就可以完成所有的机制，通过语法糖可以封装高效利用这些机制</p>
-<h1 id="有限自动机"><a href="#有限自动机" class="headerlink" title="有限自动机"></a>有限自动机</h1><p><a href="http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html" target="_blank" rel="external">JavaScript与有限状态机</a><br>从上述例子更好理解状态转移<br><img src="https://upload-images.jianshu.io/upload_images/744392-eb349b9f87c37fc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="词法分析器的自动生成方法"></p>
+<h1 id="有限自动机"><a href="#有限自动机" class="headerlink" title="有限自动机"></a>有限自动机</h1><p><a href="http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html" target="_blank" rel="noopener">JavaScript与有限状态机</a><br>从上述例子更好理解状态转移<br><img src="https://upload-images.jianshu.io/upload_images/744392-eb349b9f87c37fc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="词法分析器的自动生成方法"></p>
 <h4 id="输出更加形式化的表达：有限状态自动机"><a href="#输出更加形式化的表达：有限状态自动机" class="headerlink" title="输出更加形式化的表达：有限状态自动机"></a>输出更加形式化的表达：有限状态自动机</h4><p><img src="https://upload-images.jianshu.io/upload_images/744392-b58e5b2999cfbca5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="有限自动机"></p>
 <h1 id="确定有限自动机（DFA）"><a href="#确定有限自动机（DFA）" class="headerlink" title="确定有限自动机（DFA）"></a>确定有限自动机（DFA）</h1><ul>
 <li>对任意的字符，最多有一个状态可以转移<ul>
@@ -200,11 +200,11 @@
 <p><em>！！！！对于ε动作的FA会放在下面一块讲解</em></p>
 <h1 id="正则表达式到非确定有限状态自动机的转化算法"><a href="#正则表达式到非确定有限状态自动机的转化算法" class="headerlink" title="正则表达式到非确定有限状态自动机的转化算法"></a>正则表达式到非确定有限状态自动机的转化算法</h1><p><img src="https://upload-images.jianshu.io/upload_images/744392-cf0bb874214ef43c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <ul>
-<li>RE-&gt;NFA ：<a href="https://zh.wikipedia.org/wiki/Thompson%E6%9E%84%E9%80%A0%E6%B3%95" target="_blank" rel="external">Thompson算法</a>(递归)</li>
+<li>RE-&gt;NFA ：<a href="https://zh.wikipedia.org/wiki/Thompson%E6%9E%84%E9%80%A0%E6%B3%95" target="_blank" rel="noopener">Thompson算法</a>(递归)</li>
 <li>NFA-&gt;DFA：子集构造算法</li>
 <li>DFA-&gt;: 词法分析器代码：使用 Hopcroft 最小化算法做压缩。</li>
 </ul>
-<h4 id="Thompson算法"><a href="#Thompson算法" class="headerlink" title="Thompson算法"></a><a href="https://zh.wikipedia.org/wiki/Thompson%E6%9E%84%E9%80%A0%E6%B3%95" target="_blank" rel="external">Thompson算法</a></h4><ul>
+<h4 id="Thompson算法"><a href="#Thompson算法" class="headerlink" title="Thompson算法"></a><a href="https://zh.wikipedia.org/wiki/Thompson%E6%9E%84%E9%80%A0%E6%B3%95" target="_blank" rel="noopener">Thompson算法</a></h4><ul>
 <li>基于对 RE 的结构做归纳<ul>
 <li>对基本的 RE 直接构造</li>
 <li>对复合的 RE 递归构造</li>
@@ -225,11 +225,11 @@
 <ul>
 <li>看一个复杂点的例子，(a|b)*abb，它所对应的 NFA 如下：<br><img src="https://upload-images.jianshu.io/upload_images/744392-18af4fda4dfc8cdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="课本28页"></li>
 </ul>
-<h1 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读:"></a>推荐阅读:</h1><p><a href="http://lotabout.me/2015/write-a-C-interpreter-0/" target="_blank" rel="external">手把手教你构建 C 语言编译器</a></p>
+<h1 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读:"></a>推荐阅读:</h1><p><a href="http://lotabout.me/2015/write-a-C-interpreter-0/" target="_blank" rel="noopener">手把手教你构建 C 语言编译器</a></p>
 <h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><ul>
 <li>《编译原理》(龙书)</li>
-<li><a href="https://blog.csdn.net/echo_qiang/article/details/5904563" target="_blank" rel="external">DFA&amp;NFA（简易比较）</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/26524390" target="_blank" rel="external">Web中无处不在的状态机</a></li>
+<li><a href="https://blog.csdn.net/echo_qiang/article/details/5904563" target="_blank" rel="noopener">DFA&amp;NFA（简易比较）</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26524390" target="_blank" rel="noopener">Web中无处不在的状态机</a></li>
 </ul>
 </section>
     <!-- Tags START -->
@@ -237,7 +237,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#自动机" >
+  <a href="/tags#自动机">
     <span class="tag-code">自动机</span>
   </a>
 
@@ -285,7 +285,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#正则表达式"><span class="toc-nav-text">正则表达式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#语法糖"><span class="toc-nav-text">语法糖</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#有限自动机"><span class="toc-nav-text">有限自动机</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出更加形式化的表达：有限状态自动机"><span class="toc-nav-text">输出更加形式化的表达：有限状态自动机</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#确定有限自动机（DFA）"><span class="toc-nav-text">确定有限自动机（DFA）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#串被接受？"><span class="toc-nav-text">串被接受？</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#非确定有限自动机-（NFA）"><span class="toc-nav-text">非确定有限自动机 （NFA）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对于-NFA-和-DFA-在接受的时候有很大的差别。"><span class="toc-nav-text">对于 NFA 和 DFA 在接受的时候有很大的差别。</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#DFA实现："><span class="toc-nav-text">DFA实现：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#正则表达式到非确定有限状态自动机的转化算法"><span class="toc-nav-text">正则表达式到非确定有限状态自动机的转化算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thompson算法"><span class="toc-nav-text">Thompson算法</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#推荐阅读"><span class="toc-nav-text">推荐阅读:</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Reference："><span class="toc-nav-text">Reference：</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#正则表达式"><span class="toc-nav-text">正则表达式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#语法糖"><span class="toc-nav-text">语法糖</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#有限自动机"><span class="toc-nav-text">有限自动机</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出更加形式化的表达：有限状态自动机"><span class="toc-nav-text">输出更加形式化的表达：有限状态自动机</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#确定有限自动机（DFA）"><span class="toc-nav-text">确定有限自动机（DFA）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#串被接受？"><span class="toc-nav-text">串被接受？</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#非确定有限自动机-（NFA）"><span class="toc-nav-text">非确定有限自动机 （NFA）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对于-NFA-和-DFA-在接受的时候有很大的差别。"><span class="toc-nav-text">对于 NFA 和 DFA 在接受的时候有很大的差别。</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#DFA实现："><span class="toc-nav-text">DFA实现：</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#正则表达式到非确定有限状态自动机的转化算法"><span class="toc-nav-text">正则表达式到非确定有限状态自动机的转化算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thompson算法"><span class="toc-nav-text">Thompson算法</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#推荐阅读"><span class="toc-nav-text">推荐阅读:</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Reference："><span class="toc-nav-text">Reference：</span></a></li>
     
   </div>
 </aside>

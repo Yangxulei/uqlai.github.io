@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="UqRai&#39;s blog">
@@ -25,7 +25,7 @@
 <script src="/js/gitment.js"></script>
 </head>
 <div class="wechat-share">
-  <img src="/css/images/logo.png" />
+  <img src="/css/images/logo.png">
 </div>
 
   <body>
@@ -122,12 +122,12 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><p>经过最近的学习了解了部分理论但是没有实践应用，所以先写下来，可能不准确。</p>
-<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>在reddit上看到一个很好的解释更直观和生动：<br><a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="external">如何向一个五岁的孩子解释SVM</a><br>知乎上也有人提到这个，而且已经整理如下：<a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">中文</a><br><a id="more"></a></p>
-<p><a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank" rel="external">wiki定义</a>:其实就是个监督学习模型，用来分析回归和分类，它巧妙的运用非线性变换把低维的特征投影到高维，可以执行比较复杂的分类任务（升维打击），是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机；</p>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>在reddit上看到一个很好的解释更直观和生动：<br><a href="https://www.reddit.com/r/MachineLearning/comments/15zrpp/please_explain_support_vector_machines_svm_like_i/" target="_blank" rel="noopener">如何向一个五岁的孩子解释SVM</a><br>知乎上也有人提到这个，而且已经整理如下：<a href="https://www.zhihu.com/question/21094489" target="_blank" rel="noopener">中文</a><br><a id="more"></a></p>
+<p><a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank" rel="noopener">wiki定义</a>:其实就是个监督学习模型，用来分析回归和分类，它巧妙的运用非线性变换把低维的特征投影到高维，可以执行比较复杂的分类任务（升维打击），是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机；</p>
 <p>包含了构建从简单到复杂的模型：线性可分支持向量机（linear support vector machine in linearly separable case)、线性支持向量机（linear support vector machine)及非线性支持向量机（non-linear support vector machine)。简单模型是复杂模型的基础，也是复杂模型的特殊情况。（具体可以看李航老师的《统计学习方法》）</p>
 <h3 id="1基本问题"><a href="#1基本问题" class="headerlink" title="1基本问题"></a>1基本问题</h3><p>在<a href="http://uqlai.cn/2017/05/10/%E7%9F%A5%E9%94%99%E8%83%BD%E6%94%B9%E7%9A%84%E6%84%9F%E7%9F%A5%E6%9C%BA/">知错能改的感知机</a>中，学习到在线性可分的训练数据中，我们可以得到不能分分类界线<br><img src="http://opdexhju0.bkt.clouddn.com/14952791835673.jpg" alt=""></p>
 <p>为了得到最大边界间隔的超平面，将问题准换为优化问题，期中margin(b,w)表示超平面wx+b 离样本的最小距离，进而让这个最小距离最大化：<br><img src="http://opdexhju0.bkt.clouddn.com/14952778382070.jpg" alt=""><br>描述距离：<br><img src="http://opdexhju0.bkt.clouddn.com/14952779512133.jpg" alt="描述距离"><br>距离推导的结果：<br><img src="http://opdexhju0.bkt.clouddn.com/14952780106684.jpg" alt=""><br>将问题转化为：<br><img src="http://opdexhju0.bkt.clouddn.com/14952781553706.jpg" alt=""><br>进一步简化，因为w和b同时成倍的放缩不会影响超平面的变化，所以总可以找到一组w<em> </em>和b<strong>使得miny(</strong>wx+b<em> </em>)=1,所以有<br><img src="http://opdexhju0.bkt.clouddn.com/14952785985439.jpg" alt=""><br>当然可以用反正法证明一下，假设</p>
-<p>y(<em>*wx+b</em> *)&gt;1， 我们可以通过放缩w，b得到更优化的解，约束条件和下图等价<br><img src="http://opdexhju0.bkt.clouddn.com/14952787703405.jpg" alt=""><br>最后得到上图的优化问题，这个问题的形式和二次规划（线性规划的进阶版）一致，所以可以用二次规划的方法解决。</p>
+<p>y(*<em>wx+b</em> *)&gt;1， 我们可以通过放缩w，b得到更优化的解，约束条件和下图等价<br><img src="http://opdexhju0.bkt.clouddn.com/14952787703405.jpg" alt=""><br>最后得到上图的优化问题，这个问题的形式和二次规划（线性规划的进阶版）一致，所以可以用二次规划的方法解决。</p>
 <h3 id="2可行性"><a href="#2可行性" class="headerlink" title="2可行性"></a>2可行性</h3><p>因为svm对噪声的容忍性更强，所以从VC bound 角度讲(超平面到底能产生多少圈圈叉叉分类的组合)，对于PLA来说可以shatter所有组合，但svm会对margin有限制<br><img src="http://opdexhju0.bkt.clouddn.com/14952797116001.jpg" alt=""><br>linear hard SVM不能shatter任意三个inputs，说明有更少的维度，所以有更好的泛化能力。同时，使用特征转化，可以使Linear hard SVM 进行更精细分类。</p>
 <p><img src="http://opdexhju0.bkt.clouddn.com/14952798405661.jpg" alt=""></p>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>SVM的典型使用场景如：<br>一、房价估算<br>根据过去十年来房价和房屋面积、卧室数量、当地消费水平等等各种因素数据，将房屋分为「豪宅」、「中等」、「经济型住房」、「贫民窟」等几类；<br>使用SVM训练这些数据得出一个模型，可以用来预测在新的条件下，某个住房可以被划归到哪种分类，价值区间多少。</p>
@@ -136,9 +136,9 @@
 <h3 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h3><p>台大林老师《机器学习技法》<br>李航《统计学习方法》</p>
 <p>###扩展阅读：</p>
 <ul>
-<li><a href="http://www.hankcs.com/ml/support-vector-machine.html" target="_blank" rel="external">http://www.hankcs.com/ml/support-vector-machine.html</a></li>
+<li><a href="http://www.hankcs.com/ml/support-vector-machine.html" target="_blank" rel="noopener">http://www.hankcs.com/ml/support-vector-machine.html</a></li>
 <li>《机器学习实战》</li>
-<li><a href="https://www.zhihu.com/search?type=content&amp;sort=upvote&amp;q=%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="external">https://www.zhihu.com/search?type=content&amp;sort=upvote&amp;q=%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</a></li>
+<li><a href="https://www.zhihu.com/search?type=content&amp;sort=upvote&amp;q=%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="noopener">https://www.zhihu.com/search?type=content&amp;sort=upvote&amp;q=%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</a></li>
 </ul>
 </section>
     <!-- Tags START -->
@@ -146,7 +146,7 @@
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#SVM" >
+  <a href="/tags#SVM">
     <span class="tag-code">SVM</span>
   </a>
 
